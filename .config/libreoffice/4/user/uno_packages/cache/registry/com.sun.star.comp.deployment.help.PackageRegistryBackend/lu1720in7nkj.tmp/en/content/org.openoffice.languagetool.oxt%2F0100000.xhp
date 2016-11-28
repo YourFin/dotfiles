@@ -1,7 +1,0 @@
-LanguageTool - language checker.
-An Open Source language checker for English, French, German, Polish, Dutch, Romanian, Russian and other languages. This is a rule-based language checker that will find errors for which a rule is defined in its XML configuration files. Rules for more complicated errors can be written in Java. You can think of LanguageTool as a tool to detect errors that a simple spell checker cannot detect, e.g. mixing up there/their, no/now etc. It can also detect some grammar mistakes. It does not include spell checking for OpenOffice.org/LibreOffice version.
-LanguageTool will only find errors for which a rule is defined in its XML configuration files. Rules for more complicated errors can be written in Java.
-Requires Java 7. We strongly recommend using LibreOffice 3.5.4 or Apache OpenOffice 3.4.1 or later as older versions have a bug that causes a freeze on startup. You need to restart OpenOffice.org/LibreOffice after installation of this extension.
-You can select required grammar rules in Tools -> LanguageTool -> Configuration menu.
-If you are using LibreOffice 3.5.x or later and you want to check English texts: Use Options -> Language Settings -> Writing Aids -> Edit... to disable LightProof and enable LanguageTool for English
-
