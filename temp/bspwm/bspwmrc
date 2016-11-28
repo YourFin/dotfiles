@@ -1,0 +1,34 @@
+#! /bin/bash
+
+#Java fix to allow jetbrains IDE's to run
+wmname LG3D
+
+bspc config border_width         2
+bspc config window_gap          12
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+
+bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
+bspc monitor DP1 -d external
+bspc config focus_follows_pointer true
+bspc config pointer_follows_monitor true
+bspc config remove_unplugged_monitors true
+bspc config remove_disabled_monitors true
+bspc config merge_overlapping_monitors true
+
+bspc rule -a state=floating follow=on
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
+compton --config ~/.config/compton.conf			 &
+dropbox &
+feh --randomize --bg-scale ~/.config/desktopBgs/*	 &
+redshift &
+
+
