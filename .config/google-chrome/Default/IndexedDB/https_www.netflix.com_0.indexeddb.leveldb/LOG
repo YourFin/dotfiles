@@ -1,0 +1,6 @@
+2016/11/26-01:10:39.164 2862 Reusing MANIFEST /home/pen/.config/google-chrome/Default/IndexedDB/https_www.netflix.com_0.indexeddb.leveldb/MANIFEST-000001
+2016/11/26-01:10:39.164 2862 Recovering log #41
+2016/11/26-01:10:39.171 2862 Reusing old log /home/pen/.config/google-chrome/Default/IndexedDB/https_www.netflix.com_0.indexeddb.leveldb/000041.log 
+2016/11/26-02:42:30.642 3112 Level-0 table #45: started
+2016/11/26-02:42:30.731 3112 Level-0 table #45: 1644608 bytes OK
+2016/11/26-02:42:30.738 3112 Delete type=0 #41

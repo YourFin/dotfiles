@@ -1,0 +1,29 @@
+2016/11/25-18:53:23.493 2857 Reusing MANIFEST /home/pen/.config/google-chrome/Default/Local Extension Settings/cjpalhdlnbpafiamejdnhcphjbkeiagm/MANIFEST-000001
+2016/11/25-18:53:23.493 2857 Recovering log #70
+2016/11/25-18:53:23.533 2857 Reusing old log /home/pen/.config/google-chrome/Default/Local Extension Settings/cjpalhdlnbpafiamejdnhcphjbkeiagm/000070.log 
+2016/11/25-19:37:24.779 3647 Level-0 table #76: started
+2016/11/25-19:37:24.815 3647 Level-0 table #76: 2600580 bytes OK
+2016/11/25-19:37:24.819 3647 Delete type=0 #70
+2016/11/26-00:15:59.982 3647 Level-0 table #78: started
+2016/11/26-00:16:00.008 3647 Level-0 table #78: 1317004 bytes OK
+2016/11/26-00:16:00.012 3647 Delete type=0 #75
+2016/11/26-02:06:13.246 3647 Level-0 table #80: started
+2016/11/26-02:06:13.357 3647 Level-0 table #80: 2297415 bytes OK
+2016/11/26-02:06:13.365 3647 Delete type=0 #77
+2016/11/26-12:51:19.376 3647 Level-0 table #82: started
+2016/11/26-12:51:19.406 3647 Level-0 table #82: 2039420 bytes OK
+2016/11/26-12:51:19.412 3647 Delete type=0 #79
+2016/11/26-12:51:19.415 3647 Compacting 4@0 + 2@1 files
+2016/11/26-12:51:19.493 3647 Generated table #83@0: 20 keys, 2819935 bytes
+2016/11/26-12:51:19.522 3647 Generated table #84@0: 12 keys, 262430 bytes
+2016/11/26-12:51:19.522 3647 Compacted 4@0 + 2@1 files => 3082365 bytes
+2016/11/26-12:51:19.527 3647 compacted to: files[ 0 2 1 0 0 0 0 ]
+2016/11/26-12:51:19.528 3647 Delete type=2 #76
+2016/11/26-12:51:19.528 3647 Delete type=2 #82
+2016/11/26-12:51:19.529 3647 Delete type=2 #78
+2016/11/26-12:51:19.529 3647 Delete type=2 #80
+2016/11/26-12:51:19.530 3647 Delete type=2 #72
+2016/11/26-12:51:19.530 3647 Delete type=2 #73
+2016/11/26-14:22:13.603 3647 Level-0 table #86: started
+2016/11/26-14:22:13.666 3647 Level-0 table #86: 2310912 bytes OK
+2016/11/26-14:22:13.671 3647 Delete type=0 #81

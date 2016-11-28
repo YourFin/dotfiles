@@ -1,0 +1,38 @@
+2016/09/25-23:48:34.699 11739 Reusing MANIFEST /home/pen/.config/google-chrome/Default/IndexedDB/https_drive.google.com_0.indexeddb.leveldb/MANIFEST-000001
+2016/09/25-23:48:34.993 11739 Current memtable full; waiting...
+2016/09/25-23:48:34.993 12001 Level-0 table #5: started
+2016/09/25-23:48:34.998 12001 Level-0 table #5: 597 bytes OK
+2016/09/25-23:48:35.008 12001 Delete type=0 #3
+2016/09/25-23:48:35.008 12001 Level-0 table #7: started
+2016/09/25-23:48:35.008 12001 Level-0 table #7: 0 bytes OK
+2016/09/25-23:48:35.017 12001 Delete type=0 #4
+2016/09/25-23:48:35.017 12001 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
+2016/09/26-12:23:59.109 12001 Level-0 table #9: started
+2016/09/26-12:23:59.167 12001 Level-0 table #9: 4231823 bytes OK
+2016/09/26-12:23:59.173 12001 Delete type=0 #6
+2016/09/26-15:33:02.508 12001 Level-0 table #11: started
+2016/09/26-15:33:02.547 12001 Level-0 table #11: 4398730 bytes OK
+2016/09/26-15:33:02.552 12001 Delete type=0 #8
+2016/09/26-17:23:12.383 12001 Level-0 table #13: started
+2016/09/26-17:23:12.437 12001 Level-0 table #13: 4428633 bytes OK
+2016/09/26-17:23:12.444 12001 Delete type=0 #10
+2016/09/28-20:10:38.037 12001 Level-0 table #15: started
+2016/09/28-20:10:38.168 12001 Level-0 table #15: 4178168 bytes OK
+2016/09/28-20:10:38.178 12001 Delete type=0 #12
+2016/09/29-17:29:09.495 12001 Compacting 3@0 + 1@1 files
+2016/09/29-17:29:09.532 12001 Generated table #16@0: 13 keys, 601728 bytes
+2016/09/29-17:29:09.532 12001 Compacted 3@0 + 1@1 files => 601728 bytes
+2016/09/29-17:29:09.544 12001 compacted to: files[ 0 1 1 0 0 0 0 ]
+2016/09/29-17:29:09.545 12001 Delete type=2 #11
+2016/09/29-17:29:09.547 12001 Delete type=2 #9
+2016/09/29-17:29:09.550 12001 Delete type=2 #15
+2016/09/29-17:29:09.555 12001 Delete type=2 #13
+2016/09/29-17:49:11.464 12001 Level-0 table #18: started
+2016/09/29-17:49:11.510 12001 Level-0 table #18: 4594904 bytes OK
+2016/09/29-17:49:11.515 12001 Delete type=0 #14
+2016/09/30-13:19:20.870 12001 Level-0 table #20: started
+2016/09/30-13:19:20.912 12001 Level-0 table #20: 4425744 bytes OK
+2016/09/30-13:19:20.917 12001 Delete type=0 #17
+2016/09/30-15:55:53.142 12001 Level-0 table #22: started
+2016/09/30-15:55:53.295 12001 Level-0 table #22: 4425649 bytes OK
+2016/09/30-15:55:53.398 12001 Delete type=0 #19

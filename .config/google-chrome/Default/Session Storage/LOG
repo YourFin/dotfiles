@@ -1,0 +1,18 @@
+2016/11/25-18:54:23.124 2855 Reusing MANIFEST /home/pen/.config/google-chrome/Default/Session Storage/MANIFEST-000001
+2016/11/25-18:54:23.125 2855 Recovering log #110
+2016/11/25-18:54:23.126 2855 Reusing old log /home/pen/.config/google-chrome/Default/Session Storage/000110.log 
+2016/11/25-18:58:15.175 3647 Level-0 table #114: started
+2016/11/25-18:58:15.181 3647 Level-0 table #114: 69781 bytes OK
+2016/11/25-18:58:15.186 3647 Delete type=0 #110
+2016/11/25-19:16:50.072 3647 Level-0 table #116: started
+2016/11/25-19:16:50.081 3647 Level-0 table #116: 69706 bytes OK
+2016/11/25-19:16:50.091 3647 Delete type=0 #113
+2016/11/25-19:16:50.091 3647 Compacting 4@0 + 1@1 files
+2016/11/25-19:16:50.116 3647 Generated table #117@0: 2798 keys, 184587 bytes
+2016/11/25-19:16:50.116 3647 Compacted 4@0 + 1@1 files => 184587 bytes
+2016/11/25-19:16:50.120 3647 compacted to: files[ 0 1 1 0 0 0 0 ]
+2016/11/25-19:16:50.120 3647 Delete type=2 #116
+2016/11/25-19:16:50.120 3647 Delete type=2 #114
+2016/11/25-19:16:50.120 3647 Delete type=2 #111
+2016/11/25-19:16:50.120 3647 Delete type=2 #108
+2016/11/25-19:16:50.120 3647 Delete type=2 #106

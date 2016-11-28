@@ -1,0 +1,29 @@
+[Default Applications]
+x-scheme-handler/http=userapp-Firefox-VXY0FY.desktop
+x-scheme-handler/https=userapp-Firefox-VXY0FY.desktop
+x-scheme-handler/ftp=userapp-Firefox-VXY0FY.desktop
+x-scheme-handler/chrome=userapp-Firefox-VXY0FY.desktop
+text/html=userapp-Firefox-VXY0FY.desktop
+application/x-extension-htm=userapp-Firefox-VXY0FY.desktop
+application/x-extension-html=userapp-Firefox-VXY0FY.desktop
+application/x-extension-shtml=userapp-Firefox-VXY0FY.desktop
+application/xhtml+xml=userapp-Firefox-VXY0FY.desktop
+application/x-extension-xhtml=userapp-Firefox-VXY0FY.desktop
+application/x-extension-xht=userapp-Firefox-VXY0FY.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-C1GQGY.desktop
+message/rfc822=userapp-Thunderbird-C1GQGY.desktop
+
+[Added Associations]
+x-scheme-handler/http=userapp-Firefox-VXY0FY.desktop;
+x-scheme-handler/https=userapp-Firefox-VXY0FY.desktop;
+x-scheme-handler/ftp=userapp-Firefox-VXY0FY.desktop;
+x-scheme-handler/chrome=userapp-Firefox-VXY0FY.desktop;
+text/html=userapp-Firefox-VXY0FY.desktop;
+application/x-extension-htm=userapp-Firefox-VXY0FY.desktop;
+application/x-extension-html=userapp-Firefox-VXY0FY.desktop;
+application/x-extension-shtml=userapp-Firefox-VXY0FY.desktop;
+application/xhtml+xml=userapp-Firefox-VXY0FY.desktop;
+application/x-extension-xhtml=userapp-Firefox-VXY0FY.desktop;
+application/x-extension-xht=userapp-Firefox-VXY0FY.desktop;
+application/pdf=firefox.desktop;libreoffice-startcenter.desktop;
+application/octet-stream=org.gnome.gedit.desktop;
