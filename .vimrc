@@ -8,6 +8,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 " fix airline
 "set lastatus=2
 
+set updatetime=750
 " highlight current line
 augroup CursorLine
 	au!
