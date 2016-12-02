@@ -1,2 +1,2 @@
 # dotfiles
-My general Arch dotfiles
+My general Arch dotfiles, with symlink install script
