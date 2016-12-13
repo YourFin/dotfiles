@@ -13,6 +13,8 @@ stty -ixon
 
 alias startmsf="sudo systemctl start postgresql.service & msfconsole --quiet -x \"db_connect ${USER}@msf\""
 
+#thefuck alias
+eval "$(thefuck --alias)"
 alias gdb='gdb -tui'
 alias firefox='firefox --new-window'
 alias y='yaourt -Syua'
