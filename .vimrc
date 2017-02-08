@@ -18,8 +18,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'L9'
 
 "Editing
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'easymotion/vim-easymotion'
@@ -77,6 +76,7 @@ autocmd VimResized * :wincmd = "automatically rebalance windows on resize
 " Turn on syntax highlinting and line numbering
 syntax on
 set number
+set lazyredraw
 
 filetype plugin indent on
 
