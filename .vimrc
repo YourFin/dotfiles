@@ -73,6 +73,8 @@ set incsearch
 set ignorecase
 set smartcase
 
+autocmd VimResized * :wincmd = "automatically rebalance windows on resize
+
 " Turn on syntax highlinting and line numbering
 syntax on
 set number
@@ -89,6 +91,9 @@ nnoremap k gk
 " remap Y to copy to end of line (as opposed to another way of doing yy)
 nnoremap Y y$
 
+if expand('%:p') =~# '/home/*/.vimrc' || expand('%:p') =~# '/home/*/*git*/.vimrc' || expand('%:p') =~# '/home/*/*git*/vimrc' 
+	nnoremap <F1> :source %<CR>
+endif
 
 " Delete keys by default going into blackhole register, with 'cut' rebound to m
 noremap gm m
@@ -116,6 +121,30 @@ if has('persistent_undo')
     set undofile
 endif
 
+if has('gui_running')
+  set guioptions-=T            "turn off toolbar
+  set guioptions-=m            "turn off menubar
+
+  "turn off scrollbars
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=r
+  set guioptions-=b
+end
+
+" Strip the newline from the end of a string
+function! Chomp(str)
+  return substitute(a:str, '\n$', '', '')
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpen(cmd)
+  let fname = Chomp(system("git ls-files | dmenu -i -l 20 -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""Plugins""""""""""""""""""""""""
@@ -144,6 +173,8 @@ let g:EclimCompletionMethod = 'omnifunc'
 """Fugative
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gb :Gblame<CR>
+vnoremap <space>gb :'<,'>Gblame<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
 nnoremap <space>gw :Gwrite<CR><CR>
