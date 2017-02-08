@@ -139,3 +139,15 @@ let g:EasyMotion_keys='aoeuihd,.k'
 """"Eclim
 "Make eclim and ycm play nice
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+"""Fugative
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gps :Git push<CR>
+nnoremap <space>gpl :Git pull<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>noremap <space>gps :Dispatch! git push<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>noremap <space>gd :Gdiff<CR>
