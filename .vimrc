@@ -70,6 +70,8 @@ map <ScrollWheelDown> <C-E>
 let mapleader = "-"
 
 set incsearch
+set ignorecase
+set smartcase
 
 " Turn on syntax highlinting and line numbering
 syntax on
@@ -132,5 +134,8 @@ map J <Plug>(easymotion-j)
 map K <Plug>(easymotion-k)
 map H <Plug>(easymotion-linebackward)
 
+let g:EasyMotion_keys='aoeuihd,.k'
+
 """"Eclim
+"Make eclim and ycm play nice
 let g:EclimCompletionMethod = 'omnifunc'
