@@ -154,13 +154,13 @@ nnoremap <F6> :GundoToggle<CR>
 
 """Easymotion
 "Remap J & K to leader J K
-noremap <Leader>J J
-noremap <Leader>K K
+noremap <Leader>j J
+noremap <Leader>k K
 
-map L <Plug><Silent>(easymotion-lineforward)
-map J <Plug><Silent>(easymotion-j)
-map K <Plug><Silent>(easymotion-k)
-map H <Plug><Silent>(easymotion-linebackward)
+map <silent> L <Plug>(easymotion-lineforward)
+map <silent> J <Plug>(easymotion-j)
+map <silent> K <Plug>(easymotion-k)
+map <silent> H <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_keys='aoeuihd,.k'
 
@@ -180,3 +180,4 @@ nnoremap <space>gw :Gwrite<CR><CR>
 nnoremap <space>gps :Git push<CR>
 nnoremap <space>gpl :Git pull<CR>
 nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>go :exec DmenuOpen("badd")<CR>
