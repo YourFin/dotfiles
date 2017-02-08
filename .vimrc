@@ -41,7 +41,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " eclim and YCM play nice
-let g:EclimCompletionMethod = 'omnifunc'
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""End Vundle"""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " fix airline
 "set lastatus=2
@@ -97,10 +99,31 @@ noremap X "_X
 noremap d "_d
 noremap D "_D
 
+"""Persistant Undo
+" Put plugins and dictionaries in this dir (also on Windows)
+let vimDir = '$HOME/.vim'
+let &runtimepath.=','.vimDir
+
+" Keep undo history across sessions by storing it in a file
+if has('persistent_undo')
+    let myUndoDir = expand(vimDir . '/undodir')
+    " Create dirs
+    call system('mkdir ' . vimDir)
+    call system('mkdir ' . myUndoDir)
+    let &undodir = myUndoDir
+    set undofile
+endif
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""Plugins""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "Gundo
 nnoremap <F6> :GundoToggle<CR>
 
-"Easymotion
+"""Easymotion
+"Remap J & K to leader J K
 noremap <Leader>J J
 noremap <Leader>K K
 
@@ -108,3 +131,6 @@ map L <Plug>(easymotion-lineforward)
 map J <Plug>(easymotion-j)
 map K <Plug>(easymotion-k)
 map H <Plug>(easymotion-linebackward)
+
+""""Eclim
+let g:EclimCompletionMethod = 'omnifunc'
