@@ -40,7 +40,6 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-" eclim and YCM play nice
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""End Vundle"""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -158,10 +157,10 @@ nnoremap <F6> :GundoToggle<CR>
 noremap <Leader>J J
 noremap <Leader>K K
 
-map L <Plug>(easymotion-lineforward)
-map J <Plug>(easymotion-j)
-map K <Plug>(easymotion-k)
-map H <Plug>(easymotion-linebackward)
+map L <Plug><Silent>(easymotion-lineforward)
+map J <Plug><Silent>(easymotion-j)
+map K <Plug><Silent>(easymotion-k)
+map H <Plug><Silent>(easymotion-linebackward)
 
 let g:EasyMotion_keys='aoeuihd,.k'
 
