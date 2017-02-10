@@ -10,20 +10,23 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
 
-"Editing
+"Visual
 Plugin 'itchyny/lightline.vim'
+Plugin 'airblade/vim-gitgutter'
+
+"Editing
 Plugin 'valloric/youcompleteme'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'sjl/gundo.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'terryma/vim-multiple-cursors'
+
+"Individual Filetypes
+Plugin 'lervag/vimtex'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,12 +58,15 @@ augroup CursorLine
 augroup END
 set hlsearch
 
-" fix something:
-" http://stackoverflow.com/questions/16359878/vim-how-to-map-shift-enter
-" Get return to kill highlited searchs
-autocmd CmdwinEnter * nnoremap <CR> <CR>
-autocmd BufReadPost quickfix nnoremap <CR> <CR>
-nnoremap <CR> :noh<CR><CR>
+"Remove error bells
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
+
+"Remap Control-c to its default behavior AND turn off highlighting
+nnoremap <C-c> :noh<CR><C-c>>
+
+"turn off insert at the bottom of the screen
+set noshowmode
 
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
@@ -76,7 +82,11 @@ autocmd VimResized * :wincmd = "automatically rebalance windows on resize
 " Turn on syntax highlinting and line numbering
 syntax on
 set number
-set lazyredraw
+
+" fix statusline
+autocmd VimEnter * set nolazyredraw lazyredraw
+" always show statusline
+set laststatus=2
 
 filetype plugin indent on
 
@@ -181,3 +191,59 @@ nnoremap <space>gps :Git push<CR>
 nnoremap <space>gpl :Git pull<CR>
 nnoremap <space>gd :Gdiff<CR>
 nnoremap <space>go :exec DmenuOpen("badd")<CR>
+
+
+"""LightLine
+let g:lightline = {
+	\ 'separator': { 'left': '', 'right': "\ue0b2" },
+	\ 'subseparator': { 'left': '', 'right': '' }
+	\ }
+
+let g:lightline.active = {
+			\ 'left': [ [ 'mode', 'paste' ],
+			\           [ 'readonly', 'filename', 'modified' ] ],
+			\ 'right': [ [ 'percent' ],
+			\ 	     [ 'syntastic' ],
+			\            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
+			\ },
+			\ 'component_expand': {
+			\   'syntastic': 'SyntasticStatuslineFlag',
+			\ },
+			\ 'component_type': {
+			\   'syntastic': 'error',
+			\ }
+let g:syntastic_mode_map = { 'mode': 'passive' }
+augroup AutoSyntastic
+	autocmd!
+	autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+	SyntasticCheck
+	call lightline#update()
+endfunction
+let g:lightline.inactive = {
+			\ 'left': [ [ 'filename' ] ],
+			\ 'right': [ [ 'lineinfo' ],
+			\            [ 'percent' ] ] }
+let g:lightline.tabline = {
+			\ 'left': [ [ 'tabs' ] ],
+			\ 'right': [ [ 'close' ] ] }
+"""vimtex
+let g:vimtex_view_method = 'mupdf'
+let g:vimtex_use_temp_files = 1
+let g:vimtex_view_general_viewer = 'mupdf'
+autocmd BufNewFile,BufRead *.tex :vimtex_latexmk_continuous
+
+if !exists('g:ycm_semantic_triggers')
+	let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = [
+			\ 're!\\[A-Za-z]*cite[A-Za-z]*(\[[^]]*\]){0,2}{[^}]*',
+			\ 're!\\[A-Za-z]*ref({[^}]*|range{([^,{}]*(}{)?))',
+			\ 're!\\hyperref\[[^]]*',
+			\ 're!\\includegraphics\*?(\[[^]]*\]){0,2}{[^}]*',
+			\ 're!\\(include(only)?|input){[^}]*',
+			\ 're!\\\a*(gls|Gls|GLS)(pl)?\a*(\s*\[[^]]*\]){0,2}\s*\{[^}]*',
+			\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
+			\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
+			\ ]
