@@ -1,8 +1,58 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""Neovim""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ConfigNeovimSetup ()
+	if has("unix")
+		let s:uname = system("uname")
+		let g:python_host_prog='/usr/bin/python'
+		" found via `which python`
+		if s:uname == "Darwin\n"
+			let g:python_host_prog='/usr/local/bin/python' 
+		endif
+	endif
+	let s:editor_root=expand("~/.config/nvim")
+	let g:vimDir = "$HOME/.config/nvim"
+	let &runtimepath.=','.vimDir
+	
+	set rtp+=~/.config/nvim/bundle/Vundle.vim
+endfunction
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""normal vim""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+function! ConfigVanillaVimSetup ()
+	let s:editor_root=expand("~/.vim")
+	let g:vimDir = "$HOME/.vim"
+	set rtp+=~/.vim/bundle/Vundle.vim
+endfunction
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""universal setup"""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
+    call ConfigNeovimSetup()
+else
+    call ConfigVanillaVimSetup()
+endif
+
+"create config folders and clone vundle if such things don't exist.
+if empty(glob(expand(vimDir)))
+	call mkdir(expand(vimDir))
+endif
+if empty(glob(expand(vimDir . '/bundle')))
+	call mkdir((vimDir . '/bundle'))
+endif
+if empty(glob(expand(vimDir . '/bundle/Vundle.vim')))
+	call system('git clone https://github.com/VundleVim/Vundle.vim.git' . expand(vimDir . '/bundle/Vundle.vim'))
+endif
+
+
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -14,8 +64,11 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 
 "Visual
-Plugin 'itchyny/lightline.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'majutsushi/tagbar'
+Plugin 'chrisbra/recover.vim'
 
 "Editing
 Plugin 'valloric/youcompleteme'
@@ -43,11 +96,8 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 """""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""End Vundle"""""""""""""""""""""
+""""""""""""""""""""End-Vundle"""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
-
-" fix airline
-"set lastatus=2
 
 set updatetime=750
 " highlight current line
@@ -63,7 +113,7 @@ set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
 "Remap Control-c to its default behavior AND turn off highlighting
-nnoremap <C-c> :noh<CR><C-c>>
+nnoremap <silent><C-c> :noh <CR><silent><C-c>
 
 "turn off insert at the bottom of the screen
 set noshowmode
@@ -73,18 +123,20 @@ map <ScrollWheelDown> <C-E>
 
 let mapleader = "-"
 
+
 set incsearch
 set ignorecase
 set smartcase
-
-autocmd VimResized * :wincmd = "automatically rebalance windows on resize
 
 " Turn on syntax highlinting and line numbering
 syntax on
 set number
 
-" fix statusline
-autocmd VimEnter * set nolazyredraw lazyredraw
+augroup vimrc
+	autocmd VimResized * :wincmd = "automatically rebalance windows on resize
+	" fix statusline
+	autocmd VimEnter * set nolazyredraw lazyredraw
+augroup END
 " always show statusline
 set laststatus=2
 
@@ -96,13 +148,14 @@ set clipboard=unnamedplus
 " j and k listen to the current text wrapping in visual mode and normal mode
 nnoremap j gj
 nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" substitute only in selection (whole line is default) in visual mode
+vnoremap s :<del><del><del><del><del>s/\%V
 
 " remap Y to copy to end of line (as opposed to another way of doing yy)
 nnoremap Y y$
-
-if expand('%:p') =~# '/home/*/.vimrc' || expand('%:p') =~# '/home/*/*git*/.vimrc' || expand('%:p') =~# '/home/*/*git*/vimrc' 
-	nnoremap <F1> :source %<CR>
-endif
 
 " Delete keys by default going into blackhole register, with 'cut' rebound to m
 noremap gm m
@@ -116,10 +169,6 @@ noremap d "_d
 noremap D "_D
 
 """Persistant Undo
-" Put plugins and dictionaries in this dir (also on Windows)
-let vimDir = '$HOME/.vim'
-let &runtimepath.=','.vimDir
-
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
     let myUndoDir = expand(vimDir . '/undodir')
@@ -159,8 +208,11 @@ endfunction
 """"""""""""""""""""Plugins""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
-"Gundo
-nnoremap <F6> :GundoToggle<CR>
+"""Gundo
+noremap <F9> :GundoToggle<CR>
+
+"""Tagbar
+noremap <F8> :TagbarToggle<CR>
 
 """Easymotion
 "Remap J & K to leader J K
@@ -177,13 +229,15 @@ let g:EasyMotion_keys='aoeuihd,.k'
 """"Eclim
 "Make eclim and ycm play nice
 let g:EclimCompletionMethod = 'omnifunc'
+"Start eclim server
+" nnoremap <space>es :![ -e /usr/lib/eclipse/eclimd ] && \! ps -A | grep eclimd > /dev/null && /usr/lib/eclipse/eclimd > /dev/null 2> /dev/null 1> /dev/null<CR>
 
 
 """Fugative
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
 nnoremap <space>gb :Gblame<CR>
-vnoremap <space>gb :'<,'>Gblame<CR>
+vnoremap <space>gb :Gblame<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
 nnoremap <space>gw :Gwrite<CR><CR>
@@ -193,46 +247,33 @@ nnoremap <space>gd :Gdiff<CR>
 nnoremap <space>go :exec DmenuOpen("badd")<CR>
 
 
-"""LightLine
-let g:lightline = {
-	\ 'separator': { 'left': '', 'right': "\ue0b2" },
-	\ 'subseparator': { 'left': '', 'right': '' }
-	\ }
+"""AirLine
+let g:airline_skip_empty_sections = 1
 
-let g:lightline.active = {
-			\ 'left': [ [ 'mode', 'paste' ],
-			\           [ 'readonly', 'filename', 'modified' ] ],
-			\ 'right': [ [ 'percent' ],
-			\ 	     [ 'syntastic' ],
-			\            [ 'fileformat', 'fileencoding', 'filetype' ] ] 
-			\ },
-			\ 'component_expand': {
-			\   'syntastic': 'SyntasticStatuslineFlag',
-			\ },
-			\ 'component_type': {
-			\   'syntastic': 'error',
-			\ }
-let g:syntastic_mode_map = { 'mode': 'passive' }
-augroup AutoSyntastic
-	autocmd!
-	autocmd BufWritePost *.c,*.cpp call s:syntastic()
-augroup END
-function! s:syntastic()
-	SyntasticCheck
-	call lightline#update()
-endfunction
-let g:lightline.inactive = {
-			\ 'left': [ [ 'filename' ] ],
-			\ 'right': [ [ 'lineinfo' ],
-			\            [ 'percent' ] ] }
-let g:lightline.tabline = {
-			\ 'left': [ [ 'tabs' ] ],
-			\ 'right': [ [ 'close' ] ] }
+let g:airline_symbols = {}
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+let g:airline_detect_spell=1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
+
+"line items
+
+
+"""syntastic 
+let g:syntastic_check_on_open = 1
+nnoremap <F7> :SyntasticCheck<CR>
+
 """vimtex
 let g:vimtex_view_method = 'mupdf'
 let g:vimtex_use_temp_files = 1
 let g:vimtex_view_general_viewer = 'mupdf'
-autocmd BufNewFile,BufRead *.tex :vimtex_latexmk_continuous
 
 if !exists('g:ycm_semantic_triggers')
 	let g:ycm_semantic_triggers = {}
@@ -247,3 +288,6 @@ let g:ycm_semantic_triggers.tex = [
 			\ 're!\\includepdf(\s*\[[^]]*\])?\s*\{[^}]*',
 			\ 're!\\includestandalone(\s*\[[^]]*\])?\s*\{[^}]*',
 			\ ]
+
+
+noh
