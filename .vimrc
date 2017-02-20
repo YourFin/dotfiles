@@ -8,14 +8,18 @@ function! ConfigNeovimSetup ()
 	if has("unix")
 		let s:uname = system("uname")
 		let g:python_host_prog='/usr/bin/python'
-		" found via `which python`
 		if s:uname == "Darwin\n"
 			let g:python_host_prog='/usr/local/bin/python' 
 		endif
+
+		"deal with arch's python mapping to python3 stupidity
+		if system('uname -a | grep -c ARCH')
+			let g:python_host_prog='/usr/bin/python2'
+		endif
 	endif
 	let s:editor_root=expand("~/.config/nvim")
-	let g:vimDir = "$HOME/.config/nvim"
-	let &runtimepath.=','.vimDir
+	let g:vimDir =expand("~/.config/nvim")
+	let &runtimepath=&runtimepath . ',' . g:vimDir
 	
 	set rtp+=~/.config/nvim/bundle/Vundle.vim
 endfunction
@@ -47,15 +51,14 @@ if empty(glob(expand(vimDir . '/bundle')))
 	call mkdir((vimDir . '/bundle'))
 endif
 if empty(glob(expand(vimDir . '/bundle/Vundle.vim')))
-	call system('git clone https://github.com/VundleVim/Vundle.vim.git' . expand(vimDir . '/bundle/Vundle.vim'))
+	call system(expand('git clone https://github.com/VundleVim/Vundle.vim.git ' . vimDir . '/bundle/Vundle.vim'))
 endif
 
 
 
 " set the runtime path to include Vundle and initialize
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call vundle#rc(g:vimDir . '/bundle')
+call vundle#begin(g:vimDir . '/bundle')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -69,6 +72,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'chrisbra/recover.vim'
+Plugin 'flazz/vim-colorschemes'
 
 "Editing
 Plugin 'valloric/youcompleteme'
@@ -77,6 +81,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'zowens/vim-eclim'
 
 "Individual Filetypes
 Plugin 'lervag/vimtex'
@@ -291,3 +296,11 @@ let g:ycm_semantic_triggers.tex = [
 
 
 noh
+
+"""colorscheme 
+if system('hostname') =~# ".*firecakes.*"
+	colorscheme elrond
+	hi Search ctermbg=grey term=bold
+else 
+	colorscheme desertink
+endif
