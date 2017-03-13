@@ -67,7 +67,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 
 "Visual
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
+UnBundle 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
@@ -173,6 +174,10 @@ noremap X "_X
 noremap d "_d
 noremap D "_D
 
+"""Space remapping stuff
+nnoremap <space>sa :%s//g<left><left>
+nnoremap <space>sc :%s//gc<left><left><left>
+
 """Persistant Undo
 " Keep undo history across sessions by storing it in a file
 if has('persistent_undo')
@@ -241,7 +246,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 """Fugative
 nnoremap <space>ga :Git add %:p<CR><CR>
 nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gb :Gblame<CR>
+nnoremap <space>gg :sp<bar>Ggrep 
 vnoremap <space>gb :Gblame<CR>
 nnoremap <space>gc :Gcommit -v -q<CR>
 nnoremap <space>gt :Gcommit -v -q %:p<CR>
@@ -250,6 +255,7 @@ nnoremap <space>gps :Git push<CR>
 nnoremap <space>gpl :Git pull<CR>
 nnoremap <space>gd :Gdiff<CR>
 nnoremap <space>go :exec DmenuOpen("badd")<CR>
+nnoremap <space>gp :exec DmenuOpen("split")<CR>
 
 
 """AirLine
@@ -267,6 +273,21 @@ let g:airline_symbols.linenr = ''
 let g:airline_detect_spell=1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#tagbar#enabled = 0
+
+
+let g:airline_mode_map = {
+      \ '__' : '-',
+      \ 'n' : "\ue7a7",
+      \ 'i'  : 'I',
+      \ 'R'  : 'R',
+      \ 'c'  : 'C',
+      \ 'v'  : 'V',
+      \ 'V'  : 'V',
+      \ '' : "\ue7aa",
+      \ 's'  : 'S',
+      \ 'S'  : 'S',
+      \ '' : 'S',
+      \ }
 
 "line items
 
@@ -296,6 +317,7 @@ let g:ycm_semantic_triggers.tex = [
 
 
 noh
+
 
 """colorscheme 
 if system('hostname') =~# ".*firecakes.*"
