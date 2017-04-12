@@ -4,6 +4,8 @@ filetype off                  " required
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""Neovim""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
+if has("win32") 
+	let s:neoVimDir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 function! ConfigNeovimSetup ()
 	if has("unix")
 		let s:uname = system("uname")
@@ -17,11 +19,14 @@ function! ConfigNeovimSetup ()
 			let g:python_host_prog='/usr/bin/python2'
 		endif
 	endif
+	if has("win32")
+		let g:vimDir = g:neoVimDir
+	endif
 	let s:editor_root=expand("~/.config/nvim")
 	let g:vimDir =expand("~/.config/nvim")
 	let &runtimepath=&runtimepath . ',' . g:vimDir
 	
-	set rtp+=~/.config/nvim/bundle/Vundle.vim
+	set rtp+=g:vimDir/bundle/Vundle.vim
 endfunction
 
 
@@ -30,6 +35,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""
 function! ConfigVanillaVimSetup ()
 	let s:editor_root=expand("~/.vim")
+	if has("win32")
 	let g:vimDir = "$HOME/.vim"
 	set rtp+=~/.vim/bundle/Vundle.vim
 endfunction
@@ -50,7 +56,7 @@ endif
 if empty(glob(expand(vimDir . '/bundle')))
 	call mkdir((vimDir . '/bundle'))
 endif
-if empty(glob(expand(vimDir . '/bundle/Vundle.vim')))
+if empty(glob(expand(vimDir . '/bundle/Vundle.vim'))) && has("unix")
 	call system(expand('git clone https://github.com/VundleVim/Vundle.vim.git ' . vimDir . '/bundle/Vundle.vim'))
 endif
 
@@ -67,8 +73,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 
 "Visual
-"Plugin 'airblade/vim-gitgutter'
-UnBundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
@@ -82,7 +87,6 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'zowens/vim-eclim'
 
 "Individual Filetypes
 Plugin 'lervag/vimtex'
@@ -214,6 +218,13 @@ function! DmenuOpen(cmd)
   execute a:cmd . " " . fname
 endfunction
 
+
+"""Spellcheck
+set spelllang=en
+set spellfile=g:vimDir/spell/en.utf-8.add
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""Plugins""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,40 +272,40 @@ nnoremap <space>gp :exec DmenuOpen("split")<CR>
 """AirLine
 let g:airline_skip_empty_sections = 1
 
-let g:airline_symbols = {}
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
-let g:airline_detect_spell=1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#tagbar#enabled = 0
+if system('hostname') =~# ".*firecakes.*"
+	let g:airline_symbols = {}
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline_left_sep = ''
+	let g:airline_left_alt_sep = ''
+	let g:airline_right_sep = ''
+	let g:airline_right_alt_sep = ''
+	let g:airline_symbols.branch = ''
+	let g:airline_symbols.readonly = ''
+	let g:airline_symbols.linenr = ''
+	let g:airline_detect_spell=1
+	let g:airline#extensions#syntastic#enabled = 1
+	let g:airline#extensions#tagbar#enabled = 0
 
-
-let g:airline_mode_map = {
-      \ '__' : '-',
-      \ 'n' : "\ue7a7",
-      \ 'i'  : 'I',
-      \ 'R'  : 'R',
-      \ 'c'  : 'C',
-      \ 'v'  : 'V',
-      \ 'V'  : 'V',
-      \ '' : "\ue7aa",
-      \ 's'  : 'S',
-      \ 'S'  : 'S',
-      \ '' : 'S',
-      \ }
+	let g:airline_mode_map = {
+	      \ '__' : '-',
+	      \ 'n' : "\ue7a7",
+	      \ 'i'  : 'I',
+	      \ 'R'  : 'R',
+	      \ 'c'  : 'C',
+	      \ 'v'  : 'V',
+	      \ 'V'  : 'V',
+	      \ '' : "\ue7aa",
+	      \ 's'  : 'S',
+	      \ 'S'  : 'S',
+	      \ '' : 'S',
+	      \ }
+endif
 
 "line items
 
 
 """syntastic 
 let g:syntastic_check_on_open = 1
-nnoremap <F7> :SyntasticCheck<CR>
 
 """vimtex
 let g:vimtex_view_method = 'mupdf'
