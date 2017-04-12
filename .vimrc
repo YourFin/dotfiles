@@ -5,7 +5,8 @@ filetype off                  " required
 """""""""""""""""""""Neovim""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
 if has("win32") 
-	let s:neoVimDir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+	let b:neoVimDir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
+endif
 function! ConfigNeovimSetup ()
 	if has("unix")
 		let s:uname = system("uname")
@@ -18,15 +19,13 @@ function! ConfigNeovimSetup ()
 		if system('uname -a | grep -c ARCH')
 			let g:python_host_prog='/usr/bin/python2'
 		endif
+		let g:vimDir =expand("~/.config/nvim")
 	endif
 	if has("win32")
-		let g:vimDir = g:neoVimDir
+		let g:vimDir = b:neoVimDir
 	endif
 	let s:editor_root=expand("~/.config/nvim")
-	let g:vimDir =expand("~/.config/nvim")
-	let &runtimepath=&runtimepath . ',' . g:vimDir
-	
-	set rtp+=g:vimDir/bundle/Vundle.vim
+	let &runtimepath.="," . g:vimDir . "/bundle/Vundle.vim"
 endfunction
 
 
@@ -35,7 +34,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""
 function! ConfigVanillaVimSetup ()
 	let s:editor_root=expand("~/.vim")
-	if has("win32")
 	let g:vimDir = "$HOME/.vim"
 	set rtp+=~/.vim/bundle/Vundle.vim
 endfunction
@@ -202,7 +200,7 @@ if has('gui_running')
   set guioptions-=L
   set guioptions-=r
   set guioptions-=b
-end
+endif
 
 " Strip the newline from the end of a string
 function! Chomp(str)
@@ -220,8 +218,31 @@ endfunction
 
 
 """Spellcheck
+function! MySpellCheck ()
+	if &spell
+		set spell!
+		unmap <buffer> n
+		unmap <buffer> N
+		unmap <buffer> s
+		unmap <buffer> a
+		unmap <buffer> y
+		unmap <buffer> l
+	else
+		set spell
+		nnoremap <buffer> n ]s
+		nnoremap <buffer> N [s
+		nnoremap <buffer> s z=1
+		"add to dictionary
+		nnoremap <buffer> a zg
+		"undo add
+		nnoremap <buffer> y zug
+		nnoremap <silent> l :spellrepall <CR>
+	endif
+endfunction
+
+nnoremap <silent> <F7> :exec MySpellCheck() <CR>
 set spelllang=en
-set spellfile=g:vimDir/spell/en.utf-8.add
+let spellfile=g:vimDir . "/spell/en.utf-8.add"
 
 
 
