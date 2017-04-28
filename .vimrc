@@ -88,6 +88,8 @@ Plugin 'terryma/vim-multiple-cursors'
 
 "Individual Filetypes
 Plugin 'lervag/vimtex'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'dansomething/vim-eclim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
