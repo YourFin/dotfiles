@@ -133,6 +133,8 @@ map <ScrollWheelDown> <C-E>
 
 let mapleader = "-"
 
+" Turn on fancy ex mode tab completion
+set wildmenu
 
 set incsearch
 set ignorecase
@@ -221,6 +223,7 @@ endfunction
 
 """Spellcheck
 function! MySpellCheck ()
+	let l:spell_view=winsaveview()
 	if &spell
 		set spell!
 		unmap <buffer> n
@@ -238,8 +241,9 @@ function! MySpellCheck ()
 		nnoremap <buffer> a zg
 		"undo add
 		nnoremap <buffer> y zug
-		nnoremap <silent> l :spellrepall <CR>
+		nnoremap <buffer> <silent> l :spellrepall <CR>
 	endif
+	call winrestview(spell_view)
 endfunction
 
 nnoremap <silent> <F7> :exec MySpellCheck() <CR>
