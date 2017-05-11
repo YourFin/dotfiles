@@ -47,6 +47,7 @@ if has('nvim')
 else
     call ConfigVanillaVimSetup()
 endif
+let s:this_file = expand('<sfile>')
 
 ""Touch relative to vim directory
 function! Touch(name)
@@ -60,12 +61,14 @@ function! Touch(name)
 	return
 endfunction
 
+let s:configured = 1
 "create config folders and clone vundle if such things don't exist.
 if empty(glob(expand(vimDir)))
 	call mkdir(expand(vimDir))
 endif
 if empty(glob(expand(vimDir . '/bundle')))
 	call mkdir((vimDir . '/bundle'))
+	let s:configured = 0
 endif
 if empty(glob(expand(g:vimDir . '/spell')))
 	call mkdir(glob(expand(g:vimDir . '/spell')))
@@ -97,12 +100,14 @@ Plugin 'L9'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ctrlpvim/ctrlp.vim.git'
 " only if ctags is installed
 if has('unix') && system('hash ctags')
 	Plugin 'majutsushi/tagbar'
 endif
 Plugin 'chrisbra/recover.vim'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'dodie/vim-disapprove-deep-indentation'
 
 " Only include in Full install
 if ! empty(glob(expand(vimDir . '/full.conf')))
@@ -112,6 +117,7 @@ if ! empty(glob(expand(vimDir . '/full.conf')))
 	Plugin 'lervag/vimtex'
 	Plugin 'derekwyatt/vim-scala'
 	Plugin 'dansomething/vim-eclim'
+	Plugin 'rust-lang/rust.vim'
 
 endif
 
@@ -121,6 +127,11 @@ Plugin 'sjl/gundo.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'terryma/vim-expand-region'
+Plugin 'tpope/vim-sleuth'
+Plugin 'sts10/vim-zipper'
+Plugin 'vim-scripts/gitignore'
+Plugin 'matze/vim-move'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -140,8 +151,13 @@ filetype plugin indent on    " required
 """"""""""""""""""""End-Vundle"""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""Plugin Installation"""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+
 """Full install
 function! FullInstall()
+	"Note that this touch function is further up my vimrc
 	call Touch('full.conf')
 	echom 'restart vim, and then run YcmCompile to finish'
 	return	
@@ -154,12 +170,20 @@ function! CompileYcm()
 		let l:command .= ' --clang-completer --omnisharp-completer'
 	endif
 	if system('hostname') =~# ".*firecakes.*"
-		let l:command .= ' --system-libclang'
+		let l:command .= ' --system-libclang --racer-completer'
 	endif
-	call system(command)
+	echo system(command)
 	return
 endfunction
-command YcmCompile :call CompileYcm()
+command YcmCompile :echo CompileYcm()
+
+if ! s:configured
+	PluginInstall
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""Normal Vim Config""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 set updatetime=750
 " highlight current line
@@ -191,6 +215,9 @@ set wildmenu
 set incsearch
 set ignorecase
 set smartcase
+
+"Indent manual
+set foldmethod=syntax
 
 " Turn on syntax highlinting and line numbering
 syntax on
@@ -267,6 +294,14 @@ if has('gui_running')
   set guioptions-=b
 endif
 
+"""make it easier to leave the damn terminal
+if has('nvim')
+    :tnoremap <A-h> <C-\><C-n><C-w>h
+    :tnoremap <A-j> <C-\><C-n><C-w>j
+    :tnoremap <A-k> <C-\><C-n><C-w>k
+    :tnoremap <A-l> <C-\><C-n><C-w>l
+endif
+
 " Strip the newline from the end of a string
 function! Chomp(str)
   return substitute(a:str, '\n$', '', '')
@@ -283,38 +318,39 @@ endfunction
 
 
 """Spellcheck
-" Creates a spellcheck mode, akin to word and the like 
-" instead of having weird-ass bindings like [s to find
-" the next one and keeps annoying spellcheck highlighting
-" off your screen when you don't care about it
-function! MySpellCheck ()
-
-	if &spell
-		set spell!
-		unmap <buffer> n
-		unmap <buffer> N
-		unmap <buffer> s
-		unmap <buffer> a
-		unmap <buffer> y
-		unmap <buffer> l
-	else
-		set spell
-		nnoremap <buffer> n ]s
-		nnoremap <buffer> N [s
-		" substitute current word
-		nnoremap <buffer> s z=1
-		"add to dictionary
-		nnoremap <buffer> a zg
-		"undo add
-		nnoremap <buffer> y zug
-		nnoremap <buffer> <silent> l :spellrepall <CR>
-	endif
-
-endfunction
-
-nnoremap <silent> <F7> :call MySpellCheck() <CR>
-set spelllang=en
-let spellfile=s:spfle
+    " Creates a spellcheck mode, akin to word and the like 
+    " instead of having weird-ass bindings like [s to find
+    " the next one and keeps annoying spellcheck highlighting
+    " off your screen when you don't care about it
+    function! MySpellCheck ()
+    
+    	if &spell
+    		set spell!
+    		unmap <buffer> n
+    		unmap <buffer> N
+    		unmap <buffer> s
+    		unmap <buffer> a
+    		unmap <buffer> y
+    		nnoremap <buffer> y "+y
+    		unmap <buffer> l
+    	else
+    		set spell
+    		nnoremap <buffer> n ]s
+    		nnoremap <buffer> N [s
+    		" substitute current word
+    		nnoremap <buffer> s z=1
+    		"add to dictionary
+    		nnoremap <buffer> a zg
+    		"undo add
+    		nnoremap <buffer> y zug
+    		nnoremap <buffer> <silent> l :spellrepall <CR>
+    	endif
+    
+    endfunction
+    
+    nnoremap <silent> <F7> :call MySpellCheck() <CR>
+    set spelllang=en
+    let spellfile=s:spfle
 
 
 
@@ -329,35 +365,35 @@ noremap <F9> :GundoToggle<CR>
 noremap <F8> :TagbarToggle<CR>
 
 """Easymotion
-"Remap J & K to leader J K
-noremap <Leader>j J
-noremap <Leader>k K
-
-map <silent> L <Plug>(easymotion-lineforward)
-map <silent> J <Plug>(easymotion-j)
-map <silent> K <Plug>(easymotion-k)
-map <silent> H <Plug>(easymotion-linebackward)
-
-let g:EasyMotion_keys='aoeuihd,.k'
+    "Remap J & K to leader J K
+    noremap <Leader>j J
+    noremap <Leader>k K
+    
+    map <silent> L <Plug>(easymotion-lineforward)
+    map <silent> J <Plug>(easymotion-j)
+    map <silent> K <Plug>(easymotion-k)
+    map <silent> H <Plug>(easymotion-linebackward)
+    
+    let g:EasyMotion_keys='aoeuihd,.k'
 
 """"Eclim
-"Make eclim and ycm play nice
-let g:EclimCompletionMethod = 'omnifunc'
+    "Make eclim and ycm play nice
+    let g:EclimCompletionMethod = 'omnifunc'
 
 
 """Fugative
-nnoremap <space>ga :Git add %:p<CR><CR>
-nnoremap <space>gs :Gstatus<CR>
-nnoremap <space>gg :sp<bar>Ggrep 
-vnoremap <space>gb :Gblame<CR>
-nnoremap <space>gc :Gcommit -v -q<CR>
-nnoremap <space>gt :Gcommit -v -q %:p<CR>
-nnoremap <space>gw :Gwrite<CR><CR>
-nnoremap <space>gps :Git push<CR>
-nnoremap <space>gpl :Git pull<CR>
-nnoremap <space>gd :Gdiff<CR>
-nnoremap <space>go :exec DmenuOpen("badd")<CR>
-nnoremap <space>gp :exec DmenuOpen("split")<CR>
+    nnoremap <space>ga :Git add %:p<CR><CR>
+    nnoremap <space>gs :Gstatus<CR>
+    nnoremap <space>gg :sp<bar>Ggrep 
+    vnoremap <space>gb :Gblame<CR>
+    nnoremap <space>gc :Gcommit -v -q<CR>
+    nnoremap <space>gt :Gcommit -v -q %:p<CR>
+    nnoremap <space>gw :Gwrite<CR><CR>
+    nnoremap <space>gps :Git push<CR>
+    nnoremap <space>gpl :Git pull<CR>
+    nnoremap <space>gd :Gdiff<CR>
+    nnoremap <space>go :exec DmenuOpen("badd")<CR>
+    nnoremap <space>gp :exec DmenuOpen("split")<CR>
 
 
 """Multiple Cursors
@@ -370,6 +406,7 @@ let g:multi_cursor_exit_from_insert_mode = 0
 """AirLine
 let g:airline_skip_empty_sections = 1
 
+"Laptop specific stuff
 if system('hostname') =~# ".*firecakes.*"
 	let g:airline_symbols = {}
 	let g:airline#extensions#tabline#enabled = 1
@@ -441,4 +478,28 @@ if system('hostname') =~# ".*firecakes.*"
 	hi Search ctermbg=grey term=bold
 else 
 	colorscheme desertink
+endif
+
+"""Vim-expand-region
+vmap v <plug>(expand_region_expand)
+vmap V <plug>(expand_region_shrink)
+
+
+"""Ctrl-P
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|zip|iso|img)$',
+  \ 'link': '',
+  \ }
+
+
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""Filetype Specific"""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+"""Rust
+autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
+if &filetype =~ "rust"
+	set iskeyword+=!
 endif
