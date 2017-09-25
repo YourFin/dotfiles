@@ -204,6 +204,9 @@ nnoremap <silent><C-c> :noh <CR><silent><C-c>
 "turn off insert at the bottom of the screen
 set noshowmode
 
+" unmap annoyingly close to esc key help key
+noremap <F1> <nop>
+
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
@@ -242,8 +245,8 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 
-" substitute only in selection (whole line is default) in visual mode
 vnoremap ^s :<del><del><del><del><del>s/\%V/g<left><left>
+" substitute only in selection (whole line is default) in visual mode
 vnoremap s :s/\%V/g<left><left>
 
 " remap Y to copy to end of line (as opposed to another way of doing yy)
@@ -293,6 +296,8 @@ if has('gui_running')
   set guioptions-=r
   set guioptions-=b
 endif
+
+set wrap linebreak nolist
 
 """make it easier to leave the damn terminal
 if has('nvim')
@@ -500,6 +505,9 @@ let g:ctrlp_custom_ignore = {
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """Rust
 autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
+if ! system('hash rustc')
+  let g:ycm_rust_src_path = system('rustc --print sysroot') . '/lib/rustlib/src/rust/src/'
+endif
 if &filetype =~ "rust"
 	set iskeyword+=!
 endif

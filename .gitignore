@@ -1,2 +1,4 @@
 #ignore vim undohistory
 .vim/undo*
+/#.zshrc#
+/oh-my-zsh/
