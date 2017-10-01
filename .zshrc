@@ -73,16 +73,6 @@ stty -ixon
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nvim'
-else
-  export EDITOR='emacsclient -nw --alternate-editor="nvim"'
-fi
-if $(hash nvim); then
-  export VISUAL='emacsclient -nw --alternate-editor="nvim"'
-fi
-
 #prevents wm stalling
 alias bspwm='bspc'
 
@@ -175,8 +165,6 @@ fi
 #ruby
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
- 
-
 autoload -U promptinit; promptinit
 
 function cleanVIM()
@@ -191,6 +179,6 @@ function cleanVIM()
   echo "Cleaning ~/.vimundo/"
   rm -Rf ~/.vimundo/*
   echo "All done!"
-
 }
+
 export PATH="/usr/local/bin:$PATH"
