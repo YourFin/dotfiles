@@ -2,3 +2,5 @@
 .vim/undo*
 /#.zshrc#
 /oh-my-zsh/
+.config/FreeCad
+/.config/.mono/
