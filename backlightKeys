@@ -1,9 +1,0 @@
-[Config]
-#backlightPath = /sys/class/backlight/intel_backlight
-allowOff = True
-numPresses = 15
-gamma=2
-
-#brightnessFilePath = /sys/class/backlight/intel_backlight/brightness
-#max_brightnessFilePath = /sys/class/backlight/*/max_brightness
-#valPerJump = 10
