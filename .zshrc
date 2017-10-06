@@ -10,7 +10,7 @@ if hash git 2> /dev/null; then
 	fi
 
 	#Keep track of where the fuck we were in case we start moving around
-	originDir=$(pwd)
+	originDir="$(pwd)"
 	if $(! hash fzy 2> /dev/null) && hash git 2> /dev/null; then
 		echo 'fzy not found; install? (y/N)'
 		read userinput
@@ -84,29 +84,17 @@ export LS_COLORS
 
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _match _approximate _prefix
-
 zstyle ':completion:*' completions 1
-
 zstyle ':completion:*' expand prefix suffix
-
 zstyle ':completion:*' file-sort modification
-
 zstyle ':completion:*' format '%d'
-
 zstyle ':completion:*' glob 1
-
 zstyle ':completion:*' group-name ''
-
 zstyle ':completion:*' insert-unambiguous true
-
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*' '+r:|[._-ABCDEFGHIJKLMNOPQRSTUVWXYZ]=** r:|=**'
-
 zstyle ':completion:*' substitute 1
-
 zstyle :compinstall filename '/home/patrickn/.zshrc'
  
 
@@ -169,7 +157,6 @@ autoload -U promptinit; promptinit
 
 function cleanVIM()
 {
-
   echo "Cleaning ~/.vimbackup/"
   rm -Rf ~/.vimbackup/*
   echo "Cleaning ~/.vimswap/"
