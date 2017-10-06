@@ -292,10 +292,11 @@
 #    summary = "foobar"
 #    format = ""
 
-#[history-ignore]
-#    # This notification will not be saved in history
-#    summary = "foobar"
-#    history_ignore = yes
+[history-ignore]
+    # This notification will not be saved in history
+    appname = Spotify
+    urgency = low
+    history_ignore = yes
 
 #[signed_on]
 #    appname = Pidgin
