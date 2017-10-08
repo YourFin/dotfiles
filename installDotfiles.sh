@@ -18,50 +18,12 @@ linkFile ()
 		ln -sf $first $second 
 	fi
 }
-small () 
-{
-	linkFile .bashrc .bashrc
-	linkFile .vimrc .vimrc
-	linkFile .vim .vim
-}
-medium ()
-{
-	linkFile .xbindkeysrc .xbindkeysrc 
-	linkFile .Xmodmap .Xmodmap 
-	linkFile .bash_profile .bash_profile 
-	linkFile .inputrc .inputrc 
-	small
-}
-large ()
-{
-	if ! [ -d $HOME/.config ] 
-	then
-		mkdir $HOME/.config
-	fi
-	linkFile .vimperatorrc
-	linkFile .vimperator
-	linkFile .bashrc .bashrc
-	linkFile bspwm/ .config/bspwm
-	linkFile sxhkd/ .config/sxhkd
-	linkFile gtk-3.0/ .config/gtk-3.0
-	linkFile termite/ .config/termite
-	linkFile compton.conf .config/compton.conf
-	linkFile redshift.conf .config/redshift.conf
-	linkFile backlightKeys .config/backlightKeys 
-	linkFile .racketrc .racketrc
-	medium
-}
 
+if [ -e "~/.config" ] ; then
+    cp -rn ~/.config/* $SCRIPTPATH/config
+fi
+linkFile config .config
 
-
-case $1 in
-	s)
-		small
-		;;
-	m)
-		medium
-		;;
-	l)
-		large
-		;;
-esac
+for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do
+    linkFile $file $file
+done
