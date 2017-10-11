@@ -4,3 +4,14 @@
 /oh-my-zsh/
 .config/FreeCad
 /.config/.mono/
+/config/FreeCAD/FreeCAD.conf
+/config/.mono/keypairs/[1][98f3a7e3-0d6e-f432-8a18-e1144b53633f][-1].xml
+config/MonoDevelop*
+config/keepassx
+/config/transmission/dht.dat
+config/nvim
+config/htop
+/config/hub
+config/fontforge
+config/QDirStat
+config/blender
