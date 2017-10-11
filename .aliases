@@ -1,0 +1,14 @@
+startmsf="sudo systemctl start postgresql.service & msfconsole --quiet -x \"db_connect ${USER}@msf\""
+
+#thefuck alias
+eval "$(thefuck --alias)"
+gdb='gdb -tui'
+firefox='firefox --new-window'
+sudo='sudo '
+ls='ls --color=auto'
+la='ls --color=auto --block-size=M -la'
+xcp="xclip -selection c"
+wifimenu="sudo wifi-menu"
+aux="ps aux | grep"
+
+vim="emacsclient -nw --alternate-editor=\"nvim\""
