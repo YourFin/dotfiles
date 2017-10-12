@@ -1,0 +1,24 @@
+[Desktop Entry]
+DefaultProfile=Profile 3.profile
+
+[Favorite Profiles]
+Favorites=
+
+[KonsoleWindow]
+SaveGeometryOnExit=false
+ShowAppNameOnTitleBar=false
+ShowMenuBarByDefault=false
+
+[MainWindow]
+Height 600[$d]
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAAiMAAAJFAAAABAAAAAQAAAAIAAAACPwAAAAA
+ToolBarsMovable=Disabled
+Width 1067[$d]
+
+[SearchSettings]
+SearchRegExpression=true
+
+[TabBar]
+TabBarPosition=Top
+TabBarVisibility=ShowTabBarWhenNeeded
