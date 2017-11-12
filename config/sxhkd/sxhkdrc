@@ -16,10 +16,10 @@ super + shift + t
 
 # firefox
 super + c
-      waterfox
+      waterfox 2>/dev/null || firefox
 
 super + shift + c
-      waterfox --private-window
+      waterfox --private-window 2>/dev/null || firefox --private-window
 
 # chrome
 super + shift + g
