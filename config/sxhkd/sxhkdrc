@@ -27,7 +27,7 @@ super + shift + g
 
 # spotify
 super + shift + s
-	spotify --force-device-scale-factor=1.75
+	spotify $(if [ "hostname" = "firecakes"] echo '--force-device-scale-factor=1.75')
 
 # emacsclent
 super + e
