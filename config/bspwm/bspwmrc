@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #Java fix to allow jetbrains IDE's to run
 wmname LG3D
@@ -12,8 +12,20 @@ bspc config gapless_monocle      true
 bspc config focus_by_distance    true
 bspc config history_aware_focus  true
 
-bspc monitor eDP1 -d I II III IV V VI VII VIII IX X
-bspc monitor DP1 -d external
+monitors="$(xrandr --listactivemonitors | awk '{if (NR!=1) {print}}' | sed -e 's/^.* //')"
+nonPrimaryMonitors="$(xrandr --listactivemonitors --noprimary | awk '{if (NR!=1) {print}}' | sed -e 's/^.* //')"
+for monitor in $monitors ; do
+    if $(echo $monitor | grep $nonPrimaryMonitors 2>/dev/null) ; then
+	nonPrimaryMonitorsPrime="$nonPrimaryMonitorsPrime $monitor"
+    else
+	primaryMonitor="$monitor"
+    fi
+done
+
+bspc monitor $primaryMonitor -d I II III IV V VI VII VIII IX X
+for monitor in $nonPrimaryMonitorsPrime ; do
+    bspc $monitor DP1 -d external-$monitor
+done
 bspc config focus_follows_pointer true
 bspc config pointer_follows_monitor true
 bspc config remove_unplugged_monitors true
@@ -29,11 +41,14 @@ bspc rule -a Screenkey manage=off
 # that insists on working even if sound is off
 xset -b
 
-emacs --daemon 						&
-sxhkd -c ~/.config/sxhkd/sxhkdrc 			&
-compton --config ~/.config/compton.conf			&
-dropbox 						&
-libinput-gestures-setup start 				&
-feh --randomize --bg-scale ~/.config/desktopBgs/*	&
-redshift 						&
-sleep 4 && tilda 					&
+#start sxhkd
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
+
+# Other autostart programs
+which emacs >/dev/null 2>/dev/null && emacs --daemon 					&
+which compton >/dev/null 2>/dev/null && compton --config ~/.config/compton.conf		&
+which dropbox >/dev/null 2>/dev/null && dropbox 					&
+which libinput-gestures-setup >/dev/null 2>/dev/null && libinput-gestures-setup start   &
+which feh >/dev/null 2>/dev/null && feh --randomize --bg-scale ~/.config/desktopBgs/*	&
+which redshift >/dev/null 2>/dev/null && redshift                                       &
+which tilda >/dev/null 2>/dev/null && sleep 4 && tilda 					&
