@@ -46,3 +46,5 @@ config/sxhkd/log.txt
 config/thefuck/
 config/transmission/
 config/unity3d/
+config/QtProject.conf
+/config/vlc/*
