@@ -2,38 +2,16 @@
 #------------------Auto Setup---------------------#
 #-------------------------------------------------#
 
+zplugInstalled="true"
 
 if hash git 2> /dev/null; then
-	# Install zplug with curl if curl installed
-	if $(! [[ -d ~/.zplug ]]) && hash curl 2> /dev/null; then
-		curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-	fi
-
-	#Keep track of where the fuck we were in case we start moving around
-	originDir="$(pwd)"
-	if $(! hash fzy 2> /dev/null) && hash git 2> /dev/null; then
-		echo 'fzy not found; install? (y/N)'
-		read userinput
-		if [[ "$userinput" == 'y' ]] ; then
-			mkdir -p ~/.local/src/fzy
-			git clone https://github.com/jhawthorn/fzy ~/.local/src/fzy
-			cd ~/.local/src/fzy
-			make
-			echo 'Local or full install? (L/f)'
-			read userinput
-			if [[ "$userinput" == 'f' ]] ; then
-				sudo make install
-			else 
-				installDir="~/.local/fzy"
-				mkdir -p $installDir
-				make PREXFIX=$installDir install
-			fi
-		fi
-	fi
-	cd $originDir
-
+    # Install zplug with curl if curl installed
+    if $(! [[ -d ~/.zplug ]]) && which curl >/dev/null 2> /dev/null; then
+	zplugInstalled="false"
+	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    fi
 else
-	echo "Why isn\'t git installed. Weirdo."
+    echo "Why isn\'t git installed. Weirdo."
 fi
 #-------------------------------------------------#
 #-----------------Zplug---------------------------#
@@ -49,6 +27,12 @@ zplug "YourFin/pure-agnoster", use:pure-agnoster.zsh, from:github, as:theme
 zplug "zsh-users/zsh-autosuggestions"
 zplug "srijanshetty/zsh-pip-completion"
 zplug "Tarrasch/zsh-bd"
+
+zplug load
+if [ "$zplugInstalled" == "false" ] ; then
+    zplug install
+    zplug update
+fi
 
 #-------------------------------------------------#
 #-------------------Sources-----------------------#
@@ -96,15 +80,13 @@ zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character t
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*' '+r:|[._-ABCDEFGHIJKLMNOPQRSTUVWXYZ]=** r:|=**'
 zstyle ':completion:*' substitute 1
 zstyle :compinstall filename '/home/patrickn/.zshrc'
- 
+
 
 autoload -Uz compinit
 
 compinit
 
 # End of lines added by compinstall
-
-zplug load
 
 HISTFILE=~/.histfile
 
@@ -121,33 +103,33 @@ bindkey -v
 # Easier pacman
 
 if [ -f "/etc/arch-release" ] ; then
-   function y()
-   {
-       if ! [ -z $(which pacaur) ] ; then
-	   pacfunc="pacaur"
-       elif ! [ $(which yaourt) ] ; then
-	   pacfunc="yaourt"
-       else
-	   pacfunc="sudo pacman"
-       fi
-       if [ -z "$1" ]; then
-	   eval "$pacfunc -Syu"
-       else
-	   eval "$pacfunc -S $@"
-       fi &&
-	   # remove to 3 versions of old packages
-	   sudo paccache -r &&
-	   # remove all cached uninstalled packages
-	   sudo paccache -ruk0
-   }
+    function y()
+    {
+	if ! [ -z $(which pacaur) ] ; then
+	    pacfunc="pacaur"
+	elif ! [ $(which yaourt) ] ; then
+	    pacfunc="yaourt"
+	else
+	    pacfunc="sudo pacman"
+	fi
+	if [ -z "$1" ]; then
+	    eval "$pacfunc -Syu"
+	else
+	    eval "$pacfunc -S $@"
+	fi &&
+	    # remove to 3 versions of old packages
+	    sudo paccache -r &&
+	    # remove all cached uninstalled packages
+	    sudo paccache -ruk0
+    }
 fi
 
 if $(hash nvim); then
-  export VISUAL='nvim'
-  export EDITOR='nvim'
+    export VISUAL='nvim'
+    export EDITOR='nvim'
 else
-  export VISUAL='vim'
-  export EDITOR='vim'
+    export VISUAL='vim'
+    export EDITOR='vim'
 fi
 
 #ruby
@@ -157,15 +139,15 @@ autoload -U promptinit; promptinit
 
 function cleanVIM()
 {
-  echo "Cleaning ~/.vimbackup/"
-  rm -Rf ~/.vimbackup/*
-  echo "Cleaning ~/.vimswap/"
-  rm -Rf ~/.vimswap/*
-  echo "Cleaning ~/.vimviews/"
-  rm -Rf ~/.vimviews/*
-  echo "Cleaning ~/.vimundo/"
-  rm -Rf ~/.vimundo/*
-  echo "All done!"
+    echo "Cleaning ~/.vimbackup/"
+    rm -Rf ~/.vimbackup/*
+    echo "Cleaning ~/.vimswap/"
+    rm -Rf ~/.vimswap/*
+    echo "Cleaning ~/.vimviews/"
+    rm -Rf ~/.vimviews/*
+    echo "Cleaning ~/.vimundo/"
+    rm -Rf ~/.vimundo/*
+    echo "All done!"
 }
 
 export PATH="/usr/local/bin:$PATH"
