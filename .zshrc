@@ -29,7 +29,7 @@ zplug "srijanshetty/zsh-pip-completion"
 zplug "Tarrasch/zsh-bd"
 
 zplug load
-if [ "$zplugInstalled" == "false" ] ; then
+if [[ "$zplugInstalled" == "false" ]] ; then
     zplug install
     zplug update
 fi
