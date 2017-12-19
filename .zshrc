@@ -79,7 +79,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*' '+r:|[._-ABCDEFGHIJKLMNOPQRSTUVWXYZ]=** r:|=**'
 zstyle ':completion:*' substitute 1
-zstyle :compinstall filename '/home/patrickn/.zshrc'
 
 
 autoload -Uz compinit
@@ -101,7 +100,6 @@ unsetopt beep
 bindkey -v
 
 # Easier pacman
-
 if [ -f "/etc/arch-release" ] ; then
     function y()
     {
