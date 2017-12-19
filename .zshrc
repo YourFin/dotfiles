@@ -45,7 +45,7 @@ source ~/.profile
 source <(cat ~/.aliases | sed -e 's/\(.*\)#.*/\1/' | sed -e '/^$/d' | sed -e 's/^/alias /') > /dev/null
 
 HISTFILE=~/.histfile
-eval $(thefuck --alias)
+which thefuck >/dev/null 2>/dev/null && eval $(thefuck --alias)
 
 #-------------------------------------------------#
 #-------------------Normal Zsh--------------------#
