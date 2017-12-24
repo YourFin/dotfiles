@@ -7,7 +7,8 @@ firefox='firefox --new-window'
 sudo='sudo '
 ls='ls --color=auto'
 la='ls --color=auto --block-size=M -la'
-xcp="xclip -selection c"
+xcopy="xclip -selection c"
+xpaste="xclip -o"
 wifimenu="sudo wifi-menu"
 aux="ps aux | grep"
 
