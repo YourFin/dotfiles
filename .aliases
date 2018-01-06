@@ -11,5 +11,6 @@ xcopy="xclip -selection c"
 xpaste="xclip -o"
 wifimenu="sudo wifi-menu"
 aux="ps aux | grep"
+restart-emacs="while pkill emacs; do ; done && emacs --daemon"
 
 vim="emacsclient -nw --alternate-editor=\"nvim\""
