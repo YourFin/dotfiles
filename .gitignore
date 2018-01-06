@@ -48,3 +48,4 @@ config/transmission/
 config/unity3d/
 config/QtProject.conf
 /config/vlc/*
+/config/Gitter/*
