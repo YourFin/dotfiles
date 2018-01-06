@@ -1,6 +1,0 @@
-noremap l gt
-noremap h gT
-noremap zi zI 
-noremap zo zO 
-
-nnoremap <ESC> :noh<CR><ESC>
