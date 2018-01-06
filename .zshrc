@@ -38,7 +38,7 @@ fi
 #-------------------Sources-----------------------#
 #-------------------------------------------------#
 
-export PATH="$PATH:$HOME/lib/bin"
+export PATH="$PATH:$HOME/lib/bin:$HOME/.local/bin"
 source ~/.profile
 
 #Aliases
