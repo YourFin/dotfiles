@@ -1,7 +1,5 @@
 startmsf="sudo systemctl start postgresql.service & msfconsole --quiet -x \"db_connect ${USER}@msf\""
 
-#thefuck alias
-eval "$(thefuck --alias)"
 gdb='gdb -tui'
 firefox='firefox --new-window'
 sudo='sudo '

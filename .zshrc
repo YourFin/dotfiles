@@ -177,6 +177,9 @@ else
     export EDITOR='vim'
 fi
 
+#thefuck alias
+eval "$(thefuck --alias)"
+
 #ruby
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 
