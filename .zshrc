@@ -38,7 +38,6 @@ fi
 #-------------------Sources-----------------------#
 #-------------------------------------------------#
 
-export PATH="$PATH:$HOME/lib/bin:$HOME/.local/bin"
 source ~/.profile
 
 #Aliases
@@ -177,13 +176,23 @@ else
     export EDITOR='vim'
 fi
 
-#thefuck alias
-eval "$(thefuck --alias)"
+### Path additions
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="/usr/local/bin:$PATH"
+if $(which cargo > /dev/null 2>/dev/null) ; then
+    export PATH="$PATH:$HOME/.cargo/bin"
+fi
 
-#ruby
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+if $(which ruby > /dev/null 2>/dev/null) ; then
+    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+fi
 
 autoload -U promptinit; promptinit
+
+#thefuck alias
+if $(which thefuck > /dev/null 2>/dev/null) ; then
+    eval "$(thefuck --alias)"
+fi
 
 function cleanVIM()
 {
@@ -197,5 +206,3 @@ function cleanVIM()
     rm -Rf ~/.vimundo/*
     echo "All done!"
 }
-
-export PATH="/usr/local/bin:$PATH"
