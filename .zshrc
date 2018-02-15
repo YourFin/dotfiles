@@ -149,7 +149,9 @@ fi
 if [ -f "/etc/arch-release" ] ; then
     function y()
     {
-	if ! [ -z $(which pacaur) ] ; then
+	if ! [ -z $(which trizen) ] ; then
+	    pacfunc="trizen"
+	elif ! [ -z $(which pacaur) ] ; then
 	    pacfunc="pacaur"
 	elif ! [ $(which yaourt) ] ; then
 	    pacfunc="yaourt"
