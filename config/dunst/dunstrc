@@ -173,7 +173,7 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
+    dmenu = /usr/bin/rofi -p dunst || /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
     browser = /usr/bin/firefox -new-tab
@@ -234,7 +234,7 @@
     history = ctrl+grave
 
     # Context menu.
-    context = ctrl+shift+period
+    context = ctrl+alt+space
 
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
@@ -298,6 +298,7 @@
     appname = Spotify
     urgency = low
     history_ignore = yes
+    timeout = 0.3
 
 #[signed_on]
 #    appname = Pidgin
