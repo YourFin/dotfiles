@@ -105,7 +105,9 @@ SAVEHIST=1000
 
 setopt appendhistory extendedglob
 
+# Turn off the terminal bell in every way possible
 unsetopt beep
+[[ "$osType" == "Linux" ]] && xset -b
 
 bindkey -v
 
@@ -133,78 +135,78 @@ function annoyTrash()
 	echo "Ignoring input"
     fi
 }
-if $(which trash-rm > /dev/null 2>/dev/null) ; then
-    alias del="trash-put"
-elif [[ "$osType" == "OSx" ]] && $(which trash > /dev/null 2>/dev/null) ; then
-    alias del="trash"
-else
-    [[ "$osType" == "Linux" ]] &&
-	$(which git >/dev/null 2>/dev/null) &&
-	$(which python >/dev/null 2>/dev/null) &&
-	alias installTrash="installTrashLinux"
-    alias del="annoyTrash"
-fi
+   if $(which trash-rm > /dev/null 2>/dev/null) ; then
+       alias del="trash-put"
+   elif [[ "$osType" == "OSx" ]] && $(which trash > /dev/null 2>/dev/null) ; then
+       alias del="trash"
+   else
+       [[ "$osType" == "Linux" ]] &&
+	   $(which git >/dev/null 2>/dev/null) &&
+	   $(which python >/dev/null 2>/dev/null) &&
+	   alias installTrash="installTrashLinux"
+       alias del="annoyTrash"
+   fi
 
-# Easier pacman
-if [ -f "/etc/arch-release" ] ; then
-    function y()
-    {
-	if ! [ -z $(which trizen) ] ; then
-	    pacfunc="trizen"
-	elif ! [ -z $(which pacaur) ] ; then
-	    pacfunc="pacaur"
-	elif ! [ $(which yaourt) ] ; then
-	    pacfunc="yaourt"
-	else
-	    pacfunc="sudo pacman"
-	fi
-	if [ -z "$1" ]; then
-	    eval "$pacfunc -Syu"
-	else
-	    eval "$pacfunc -S $@"
-	fi &&
-	    # remove to 3 versions of old packages
-	    sudo paccache -r &&
-	    # remove all cached uninstalled packages
-	    sudo paccache -ruk0
-    }
-fi
+   # Easier pacman
+   if [ -f "/etc/arch-release" ] ; then
+       function y()
+       {
+	   if ! [ -z $(which trizen) ] ; then
+	       pacfunc="trizen"
+	   elif ! [ -z $(which pacaur) ] ; then
+	       pacfunc="pacaur"
+	   elif ! [ $(which yaourt) ] ; then
+	       pacfunc="yaourt"
+	   else
+	       pacfunc="sudo pacman"
+	   fi
+	   if [ -z "$1" ]; then
+	       eval "$pacfunc -Syu"
+	   else
+	       eval "$pacfunc -S $@"
+	   fi &&
+	       # remove to 3 versions of old packages
+	       sudo paccache -r &&
+	       # remove all cached uninstalled packages
+	       sudo paccache -ruk0
+       }
+   fi
 
-if $(hash nvim); then
-    export VISUAL='nvim'
-    export EDITOR='nvim'
-else
-    export VISUAL='vim'
-    export EDITOR='vim'
-fi
+   if $(hash nvim); then
+       export VISUAL='nvim'
+       export EDITOR='nvim'
+   else
+       export VISUAL='vim'
+       export EDITOR='vim'
+   fi
 
-### Path additions
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="/usr/local/bin:$PATH"
-if $(which cargo > /dev/null 2>/dev/null) ; then
-    export PATH="$PATH:$HOME/.cargo/bin"
-fi
+   ### Path additions
+   export PATH="$PATH:$HOME/.local/bin"
+   export PATH="/usr/local/bin:$PATH"
+   if $(which cargo > /dev/null 2>/dev/null) ; then
+       export PATH="$PATH:$HOME/.cargo/bin"
+   fi
 
-if $(which ruby > /dev/null 2>/dev/null) ; then
-    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-fi
+   if $(which ruby > /dev/null 2>/dev/null) ; then
+       PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+   fi
 
-autoload -U promptinit; promptinit
+   autoload -U promptinit; promptinit
 
-#thefuck alias
-if $(which thefuck > /dev/null 2>/dev/null) ; then
-    eval "$(thefuck --alias)"
-fi
+   #thefuck alias
+   if $(which thefuck > /dev/null 2>/dev/null) ; then
+       eval "$(thefuck --alias)"
+   fi
 
-function cleanVIM()
-{
-    echo "Cleaning ~/.vimbackup/"
-    rm -Rf ~/.vimbackup/*
-    echo "Cleaning ~/.vimswap/"
-    rm -Rf ~/.vimswap/*
-    echo "Cleaning ~/.vimviews/"
-    rm -Rf ~/.vimviews/*
-    echo "Cleaning ~/.vimundo/"
-    rm -Rf ~/.vimundo/*
-    echo "All done!"
-}
+   function cleanVIM()
+   {
+       echo "Cleaning ~/.vimbackup/"
+       rm -Rf ~/.vimbackup/*
+       echo "Cleaning ~/.vimswap/"
+       rm -Rf ~/.vimswap/*
+       echo "Cleaning ~/.vimviews/"
+       rm -Rf ~/.vimviews/*
+       echo "Cleaning ~/.vimundo/"
+       rm -Rf ~/.vimundo/*
+       echo "All done!"
+   }
