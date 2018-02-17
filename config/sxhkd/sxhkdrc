@@ -58,7 +58,7 @@ XF86AudioMute
 
 #Media Player Keys
 XF86Audio{Play,Pause,Next,Prev}
-	playerctl {play,pause,next,previous}
+	playerctl {play-pause,play-pause,next,previous}
 
 #Brightness
 XF86MonBrightness{Up,Down}
