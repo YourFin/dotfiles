@@ -83,9 +83,6 @@ if empty(glob(expand(vimDir . '/bundle/Vundle.vim'))) && has("unix")
 	call system(expand('git clone https://github.com/VundleVim/Vundle.vim.git ' . vimDir . '/bundle/Vundle.vim'))
 endif
 
-
-
-
 " set the runtime path to include Vundle and initialize
 call vundle#rc(g:vimDir . '/bundle')
 call vundle#begin(g:vimDir . '/bundle')
@@ -97,41 +94,29 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'L9'
 
 "Visual
-Plugin 'airblade/vim-gitgutter'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ctrlpvim/ctrlp.vim.git'
 " only if ctags is installed
-if has('unix') && system('hash ctags')
-	Plugin 'majutsushi/tagbar'
-endif
 Plugin 'chrisbra/recover.vim'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'dodie/vim-disapprove-deep-indentation'
 
 " Only include in Full install
 if ! empty(glob(expand(vimDir . '/full.conf')))
 	Plugin 'valloric/youcompleteme'
 	Plugin 'vim-syntastic/syntastic'
 	"Individual Filetypes
-	Plugin 'lervag/vimtex'
-	Plugin 'derekwyatt/vim-scala'
-	Plugin 'dansomething/vim-eclim'
 	Plugin 'rust-lang/rust.vim'
 
 endif
 
 "Editing
-Plugin 'easymotion/vim-easymotion'
-Plugin 'sjl/gundo.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'terryma/vim-expand-region'
 Plugin 'tpope/vim-sleuth'
 Plugin 'sts10/vim-zipper'
 Plugin 'vim-scripts/gitignore'
-Plugin 'matze/vim-move'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -200,6 +185,8 @@ autocmd GUIEnter * set visualbell t_vb=
 
 "Remap Control-c to its default behavior AND turn off highlighting
 nnoremap <silent><C-c> :noh <CR><silent><C-c>
+
+nmap <silent><C-c> <esc>
 
 "turn off insert at the bottom of the screen
 set noshowmode
@@ -274,6 +261,7 @@ noremap cc "_cc
 """Space remapping stuff
 nnoremap <space>sa :%s//g<left><left>
 nnoremap <space>sc :%s//gc<left><left><left>
+nnoremap <space>bb :w<CR>
 
 """Persistant Undo
 " Keep undo history across sessions by storing it in a file
@@ -366,9 +354,6 @@ endfunction
 """Gundo
 noremap <F9> :GundoToggle<CR>
 
-"""Tagbar
-noremap <F8> :TagbarToggle<CR>
-
 """Easymotion
     "Remap J & K to leader J K
     noremap <Leader>j J
@@ -381,24 +366,6 @@ noremap <F8> :TagbarToggle<CR>
     
     let g:EasyMotion_keys='aoeuihd,.k'
 
-""""Eclim
-    "Make eclim and ycm play nice
-    let g:EclimCompletionMethod = 'omnifunc'
-
-
-"""Fugative
-    nnoremap <space>ga :Git add %:p<CR><CR>
-    nnoremap <space>gs :Gstatus<CR>
-    nnoremap <space>gg :sp<bar>Ggrep 
-    vnoremap <space>gb :Gblame<CR>
-    nnoremap <space>gc :Gcommit -v -q<CR>
-    nnoremap <space>gt :Gcommit -v -q %:p<CR>
-    nnoremap <space>gw :Gwrite<CR><CR>
-    nnoremap <space>gps :Git push<CR>
-    nnoremap <space>gpl :Git pull<CR>
-    nnoremap <space>gd :Gdiff<CR>
-    nnoremap <space>go :exec DmenuOpen("badd")<CR>
-    nnoremap <space>gp :exec DmenuOpen("split")<CR>
 
 
 """Multiple Cursors
@@ -428,13 +395,13 @@ if system('hostname') =~# ".*firecakes.*"
 
 	let g:airline_mode_map = {
 	      \ '__' : '-',
-	      \ 'n' : "\ue7a7",
+	      \ 'n' : "N",
 	      \ 'i'  : 'I',
 	      \ 'R'  : 'R',
 	      \ 'c'  : 'C',
 	      \ 'v'  : 'V',
 	      \ 'V'  : 'V',
-	      \ '' : "\ue7aa",
+	      \ '' : "VB",
 	      \ 's'  : 'S',
 	      \ 'S'  : 'S',
 	      \ '' : 'S',
@@ -479,7 +446,7 @@ endif
 
 """colorscheme 
 if system('hostname') =~# ".*firecakes.*"
-	colorscheme elrond
+	colorscheme desertink
 	hi Search ctermbg=grey term=bold
 else 
 	colorscheme desertink
