@@ -151,7 +151,9 @@ function annoyTrash()
    if [ -f "/etc/arch-release" ] ; then
        function y()
        {
-	   if ! [ -z $(which trizen) ] ; then
+	   if ! [ -z $(which yay) ] ; then
+	       pacfunc="yay"
+	   elif ! [ -z $(which trizen) ] ; then
 	       pacfunc="trizen"
 	   elif ! [ -z $(which pacaur) ] ; then
 	       pacfunc="pacaur"
