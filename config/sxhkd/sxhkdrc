@@ -4,7 +4,7 @@
 
 # new terminal emulator
 super + Return
-      konsole 
+      kitty
 	
 # drop down terminal emulator
 ~super + alt + Return
