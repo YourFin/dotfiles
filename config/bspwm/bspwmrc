@@ -51,11 +51,14 @@ xset -b
 #start sxhkd
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 
+# Theme
+export QT_QPA_PLATFORMTHEME=gtk2
+
 # Other autostart programs
 which emacs >/dev/null 2>/dev/null && emacs --daemon 					&
 which compton >/dev/null 2>/dev/null && compton --config ~/.config/compton.conf		&
 which dropbox >/dev/null 2>/dev/null && dropbox 					&
 which libinput-gestures-setup >/dev/null 2>/dev/null && libinput-gestures-setup start   &
-which feh >/dev/null 2>/dev/null && feh --randomize --bg-scale ~/.config/desktopBgs/*	&
+which feh >/dev/null 2>/dev/null && feh --randomize --bg-fill ~/.config/desktopBgs/*	&
 which redshift >/dev/null 2>/dev/null && redshift                                       &
 which tilda >/dev/null 2>/dev/null && sleep 4 && tilda 					&
