@@ -197,7 +197,7 @@ noremap <F1> <nop>
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 
-let mapleader = "-"
+let mapleader = "<space>"
 
 " Turn on fancy ex mode tab completion
 set wildmenu
@@ -262,6 +262,11 @@ noremap cc "_cc
 nnoremap <space>sa :%s//g<left><left>
 nnoremap <space>sc :%s//gc<left><left><left>
 nnoremap <space>bb :w<CR>
+nnoremap <space>ww <C-w><C-w>
+nnoremap <space>wl <C-w><C-l>
+nnoremap <space>wh <C-w><C-h>
+nnoremap <space>wj <C-w><C-j>
+nnoremap <space>wk <C-w><C-k>
 
 """Persistant Undo
 " Keep undo history across sessions by storing it in a file
