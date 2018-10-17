@@ -10,5 +10,6 @@ xpaste="xclip -o"
 wifimenu="sudo wifi-menu"
 aux="ps aux | grep"
 restart-emacs="while pkill emacs; do ; done && emacs --daemon"
+linear="bash -c 'nohup google-chrome-stable --new-window ~/Documents/books/LinearAlgebra.pdf >/dev/null 2>/dev/null &' &"
 
 vim="emacsclient -nw --alternate-editor=\"nvim\""
