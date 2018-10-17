@@ -185,6 +185,7 @@ function annoyTrash()
    ### Path additions
    export PATH="$PATH:$HOME/.local/bin"
    export PATH="/usr/local/bin:$PATH"
+   export PATH="$HOME/.yarn/bin:$PATH"
    if $(which cargo > /dev/null 2>/dev/null) ; then
        export PATH="$PATH:$HOME/.cargo/bin"
    fi
@@ -212,3 +213,10 @@ function annoyTrash()
        rm -Rf ~/.vimundo/*
        echo "All done!"
    }
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh
