@@ -152,7 +152,7 @@ function annoyTrash()
        function y()
        {
 	   if ! [ -z $(which yay) ] ; then
-	       pacfunc="yay"
+	       pacfunc="yay --combinedupgrade"
 	   elif ! [ -z $(which trizen) ] ; then
 	       pacfunc="trizen"
 	   elif ! [ -z $(which pacaur) ] ; then
