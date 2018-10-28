@@ -182,14 +182,6 @@ function annoyTrash()
        export EDITOR='vim'
    fi
 
-   ### Path additions
-   export PATH="$PATH:$HOME/.local/bin"
-   export PATH="/usr/local/bin:$PATH"
-   export PATH="$HOME/.yarn/bin:$PATH"
-   if $(which cargo > /dev/null 2>/dev/null) ; then
-       export PATH="$PATH:$HOME/.cargo/bin"
-   fi
-
    if $(which ruby > /dev/null 2>/dev/null) ; then
        PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
    fi
