@@ -159,9 +159,8 @@
     max_icon_size = 200
 
     # Paths to default icons.
-    icon_folders = /usr/share/icons/Numix-Circle/48/apps:/usr/share/icons/Numix-Circle/24/panel/
-
-    ### History ###
+    icon_path = /usr/share/icons/Numix-Circle/48/apps:/usr/share/icons/Paper/48x48/actions:/usr/share/icons/Paper/48x48/apps:/usr/share/icons/Paper/48x48/categories:/usr/share/icons/Paper/48x48/devices:/usr/share/icons/Paper/48x48/emblems:/usr/share/icons/Paper/48x48/emotes:/usr/share/icons/Paper/48x48/mimetypes:/usr/share/icons/Paper/48x48/notifications:/usr/share/icons/Paper/48x48/places:/usr/share/icons/Paper/48x48/status:/usr/share/icons/Paper/48x48/web
+### History ###
 
     # Should a notification popped up from history be sticky or timeout
     # as if it would normally do.
