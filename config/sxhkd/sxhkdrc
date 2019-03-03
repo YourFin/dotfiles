@@ -5,7 +5,7 @@
 # new terminal emulator
 super + Return
       kitty
-	
+
 # drop down terminal emulator
 ~super + alt + Return
       if ! [ -z "$(ps | grep tilda)" ] tilda -w ~/
@@ -39,9 +39,12 @@ super + alt + c
 
 # program launcher
 super + space
-	rofi -show drun
+  rofi -show window
 
 super + shift + space
+	rofi -show drun
+
+super + alt + shift + space
         rofi -show run
 
 # make sxhkd reload its configuration files:

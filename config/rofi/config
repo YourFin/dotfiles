@@ -15,3 +15,8 @@ rofi.separator-style:                solid
 ! "Font to use" Set from: Default
 rofi.font:                           ConsolasHacked4 22
 ! "Ssh command to execute" Set from: Default
+
+
+rofi.sort:                           True
+rofi.sorting-method:                 fzf
+rofi.terminal:                       kitty
