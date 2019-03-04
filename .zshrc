@@ -7,8 +7,8 @@ zplugInstalled="true"
 if hash git 2> /dev/null; then
     # Install zplug with curl if curl installed
     if $(! [[ -d ~/.zplug ]]) && which curl >/dev/null 2> /dev/null; then
-	zplugInstalled="false"
-	curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+        zplugInstalled="false"
+        curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
     fi
 else
     echo "Why isn\'t git installed. Weirdo."
@@ -119,96 +119,104 @@ bindkey -v
 function installTrashLinux()
 {
     mkdir -p ~/.local/src &&
-	git clone https://github.com/andreafrancia/trash-cli.git ~/.local/src/trash-cli &&
-	cd ~/.local/src/trash-cli/ &&
-	python setup.py install --user &&
-	cd -
+        git clone https://github.com/andreafrancia/trash-cli.git ~/.local/src/trash-cli &&
+        cd ~/.local/src/trash-cli/ &&
+        python setup.py install --user &&
+        cd -
 }
 function annoyTrash()
 {
     echo "WARNING: Trash-cli program not found; use rm -rv instead?"
     [[ "$osType" == "Linux" ]] &&
-	$(which git >/dev/null 2>/dev/null) &&
-	$(which python >/dev/null 2>/dev/null) &&
-	echo "trash-cli can be installed with installTrash"
+        $(which git >/dev/null 2>/dev/null) &&
+        $(which python >/dev/null 2>/dev/null) &&
+        echo "trash-cli can be installed with installTrash"
     echo "(y/N)"
     read userinput
     if [[ "$userinput" == "y" ]] ; then
-	rm -rv $@
+        rm -rv $@
     else
-	echo "Ignoring input"
+        echo "Ignoring input"
     fi
 }
-   if $(which trash-rm > /dev/null 2>/dev/null) ; then
-       alias del="trash-put"
-   elif [[ "$osType" == "OSx" ]] && $(which trash > /dev/null 2>/dev/null) ; then
-       alias del="trash"
-   else
-       [[ "$osType" == "Linux" ]] &&
-	   $(which git >/dev/null 2>/dev/null) &&
-	   $(which python >/dev/null 2>/dev/null) &&
-	   alias installTrash="installTrashLinux"
-       alias del="annoyTrash"
-   fi
+if $(which trash-rm > /dev/null 2>/dev/null) ; then
+    alias del="trash-put"
+elif [[ "$osType" == "OSx" ]] && $(which trash > /dev/null 2>/dev/null) ; then
+    alias del="trash"
+else
+    [[ "$osType" == "Linux" ]] &&
+        $(which git >/dev/null 2>/dev/null) &&
+        $(which python >/dev/null 2>/dev/null) &&
+        alias installTrash="installTrashLinux"
+    alias del="annoyTrash"
+fi
 
-   # Easier pacman
-   if [ -f "/etc/arch-release" ] ; then
-       function y()
-       {
-	   if ! [ -z $(which yay) ] ; then
-	       pacfunc="yay --combinedupgrade"
-	   elif ! [ -z $(which trizen) ] ; then
-	       pacfunc="trizen"
-	   elif ! [ -z $(which pacaur) ] ; then
-	       pacfunc="pacaur"
-	   elif ! [ $(which yaourt) ] ; then
-	       pacfunc="yaourt"
-	   else
-	       pacfunc="sudo pacman"
-	   fi
-	   if [ -z "$1" ]; then
-	       eval "$pacfunc -Syu"
-	   else
-	       eval "$pacfunc -S $@"
-	   fi &&
-	       # remove to 3 versions of old packages
-	       sudo paccache -r &&
-	       # remove all cached uninstalled packages
-	       sudo paccache -ruk0
-       }
-   fi
+# Easier pacman
+if [ -f "/etc/arch-release" ] ; then
+    function y()
+    {
+        if ! [ -z $(which yay) ] ; then
+            pacfunc="yay --combinedupgrade"
+        elif ! [ -z $(which trizen) ] ; then
+            pacfunc="trizen"
+        elif ! [ -z $(which pacaur) ] ; then
+            pacfunc="pacaur"
+        elif ! [ $(which yaourt) ] ; then
+            pacfunc="yaourt"
+        else
+            pacfunc="sudo pacman"
+        fi
+        if [ -z "$1" ]; then
+            eval "$pacfunc -Syu"
+        else
+            eval "$pacfunc -S $@"
+        fi &&
+            # remove to 3 versions of old packages
+            sudo paccache -r &&
+            # remove all cached uninstalled packages
+            sudo paccache -ruk0
+    }
+fi
 
-   if $(hash nvim); then
-       export VISUAL='nvim'
-       export EDITOR='nvim'
-   else
-       export VISUAL='vim'
-       export EDITOR='vim'
-   fi
+if $(hash nvim); then
+    export VISUAL='nvim'
+    export EDITOR='nvim'
+else
+    export VISUAL='vim'
+    export EDITOR='vim'
+fi
 
-   if $(which ruby > /dev/null 2>/dev/null) ; then
-       PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-   fi
+if $(which ruby > /dev/null 2>/dev/null) ; then
+    PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+fi
 
-   autoload -U promptinit; promptinit
+autoload -U promptinit; promptinit
 
-   #thefuck alias
-   if $(which thefuck > /dev/null 2>/dev/null) ; then
-       eval "$(thefuck --alias)"
-   fi
+#thefuck alias
+if $(which thefuck > /dev/null 2>/dev/null) ; then
+    eval "$(thefuck --alias)"
+fi
 
-   function cleanVIM()
-   {
-       echo "Cleaning ~/.vimbackup/"
-       rm -Rf ~/.vimbackup/*
-       echo "Cleaning ~/.vimswap/"
-       rm -Rf ~/.vimswap/*
-       echo "Cleaning ~/.vimviews/"
-       rm -Rf ~/.vimviews/*
-       echo "Cleaning ~/.vimundo/"
-       rm -Rf ~/.vimundo/*
-       echo "All done!"
-   }
+function cleanVIM()
+{
+    echo "Cleaning ~/.vimbackup/"
+    rm -Rf ~/.vimbackup/*
+    echo "Cleaning ~/.vimswap/"
+    rm -Rf ~/.vimswap/*
+    echo "Cleaning ~/.vimviews/"
+    rm -Rf ~/.vimviews/*
+    echo "Cleaning ~/.vimundo/"
+    rm -Rf ~/.vimundo/*
+    echo "All done!"
+}
+
+### Rfkill warning:
+if which rfkill >/dev/null 2>/dev/null ; then
+    [ -z "$(rfkill | grep wlan | grep blocked)" ] &&
+        echo "WARNING: RFkill enabled for wifi"
+fi
+
+
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
