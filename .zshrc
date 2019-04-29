@@ -153,8 +153,7 @@ fi
 
 # Easier pacman
 if [ -f "/etc/arch-release" ] ; then
-    function y()
-    {
+    function y() {
         if ! [ -z $(which yay) ] ; then
             pacfunc="yay --combinedupgrade"
         elif ! [ -z $(which trizen) ] ; then
@@ -175,6 +174,13 @@ if [ -f "/etc/arch-release" ] ; then
             sudo paccache -r &&
             # remove all cached uninstalled packages
             sudo paccache -ruk0
+    }
+fi
+
+# Kitty terminal emulator ssh fix:
+if [[ "$TERM" == "xterm-kitty" ]] ; then
+    function ssh() {
+        kitty +kitten ssh $@
     }
 fi
 
