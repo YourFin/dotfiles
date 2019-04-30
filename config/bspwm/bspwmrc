@@ -61,4 +61,5 @@ which dropbox >/dev/null 2>/dev/null && dropbox 					&
 which libinput-gestures-setup >/dev/null 2>/dev/null && libinput-gestures-setup start   &
 which feh >/dev/null 2>/dev/null && feh --randomize --bg-fill ~/.config/desktopBgs/*	&
 which redshift >/dev/null 2>/dev/null && redshift                                       &
+which nextcloud >/dev/null 2>/dev/null && nextcloud --background  &
 which tilda >/dev/null 2>/dev/null && sleep 4 && tilda 					&
