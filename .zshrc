@@ -192,9 +192,16 @@ else
     export EDITOR='vim'
 fi
 
+export GOPATH="$HOME/gitprojects/go"
+if type go >/dev/null 2>/dev/null ; then
+	export PATH="$GOPATH/bin:$PATH"
+fi
+
 if $(which ruby > /dev/null 2>/dev/null) ; then
     PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
 fi
+
+export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
 
 autoload -U promptinit; promptinit
 
