@@ -1,0 +1,71 @@
+set wildmenu
+set incsearch
+set ignorecase
+set smartcase
+set wrap linebreak nolist
+syntax on
+set number
+
+" set system clipboard to the un-named one
+" set clipboard=unnamedplus
+
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" remap Y to copy to end of line (as opposed to another way of doing yy)
+nnoremap Y "+y$
+nnoremap yy "+yy
+nnoremap yY mz0"+y$`a
+nnoremap p "+p
+nnoremap P "+P
+vonremap y "+y
+
+"" Delete keys by default going into blackhole register, with 'cut' rebound to m
+"noremap gm m
+"noremap mm dd
+"noremap mM 0D
+"noremap m d
+"noremap M D
+"push deletes we don't care about to the d register
+"" delete line contents
+"noremap dD 0"dD
+"noremap dd "ddd
+noremap x "dx
+noremap X "dX
+"noremap d "dd
+"noremap D "dD
+"noremap c "dc
+"noremap C "dC
+nnoremap J :action EditorJoinLines<CR>
+
+let mapleader = "<space>"
+
+nnoremap gd :action VimGotoDeclaration<CR>
+nnoremap gr :action FindUsagesInFile<CR>
+nnoremap gR :action FindUsages<CR>
+vnoremap gd :action VimGotoDeclaration<CR>
+vnoremap gr :action FindUsagesInFile<CR>
+vnoremap gR :action FindUsages<CR>
+
+nnoremap -j :action EditorJoinLines<CR>
+nnoremap -d :action QuickJavaDoc<CR>
+nnoremap -r :action RenameElement<CR>
+vnoremap -c :action CommentByBlockComment<CR>
+vnoremap -C :action CommentByLineComment<CR>
+nnoremap -c :action CommentByLineComment<CR>
+nnoremap -C :action CommentByBlockComment<CR>
+
+nnoremap <space>ww <C-w><C-w>
+nnoremap <space>wl <C-w><C-l>
+nnoremap <space>wh <C-w><C-h>
+nnoremap <space>wj <C-w><C-j>
+nnoremap <space>wk <C-w><C-k>
+
+inoremap <C-R> <C-r>
+inoremap <C-r> <C-r>+
+
+"ideavim Specific
+set surround
+set multiple-cursors
