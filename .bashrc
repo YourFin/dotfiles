@@ -8,24 +8,18 @@
 #prevents wm stalling
 alias bspwm='bspc'
 
-#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
-stty -ixon
-
 alias startmsf="sudo systemctl start postgresql.service & msfconsole --quiet -x \"db_connect ${USER}@msf\""
 
 #thefuck alias
 eval "$(thefuck --alias)"
 alias gdb='gdb -tui'
 alias firefox='firefox --new-window'
-alias y='yaourt -Syua'
 alias sudo='sudo '
 alias ls='ls --color=auto'
 alias la='ls --color=auto --block-size=M -la'
 alias lock='/opt/scripts/fancyi3lock.sh'
 alias xclipcp="xclip -selection c"
 alias wifimenu="sudo wifi-menu"
-
-set -o vi
 
 #prevent duplicates in the bash history, ie pwd followed by ls by ls, hitting up twice will get pwd
 export HISTCONTROL=ignoredups
@@ -42,11 +36,9 @@ export HISTTIMEFORMAT="%h %d %H:%M:%S> "
 #saner bash history for multiple shells
 #PROMPT_COMMAND="PEN_BASH_THROWAWAY=$BASH_COMMAND; date | xargs echo '>' $PEN_BASH_THROWAWAY >> ~/.bash_pen_history"
 
-LS_COLORS=$LS_COLORS:'di=1;36:' ; export LS_COLORS
-
 nc ()
 {
-	if [ "$1" == "l" -o "$1" == "list" ] ; then 
+	if [ "$1" == "l" -o "$1" == "list" ] ; then
 		netctl-auto list
 	else
 		netctl-auto switch-to $1
@@ -63,7 +55,7 @@ cpfancy ()
 	while [[ $# -gt 1 ]]
 	do
 	key="$1"
-	
+
 	case $key in
 	    -[^-]*[I,u,d,f][^-]*|--attributes-only|--copy-contents)
 	    EXTENSION="$2"
@@ -86,7 +78,7 @@ cpfancy ()
 	esac
 	shift # past argument or value
 	done
-       		
+
 }
 
 mkcdir ()
