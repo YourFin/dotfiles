@@ -35,6 +35,8 @@ IFS=$'\n\t'
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 OLD_DOTFILES_DIR="$HOME/.local/opt/yf-old"
 
+source "$SCRIPTPATH/install/general_functions.sh"
+
 strip_home () {
     echo -En "$@" | sed "s:^$HOME/*::"
 }
@@ -71,29 +73,9 @@ mkdir -p "$HOME/.local/opt"
 mkdir -p "$HOME/.local/usr"
 mkdir -p "$HOME/.local/bin"
 
-# Try to install git
-if [ ! type git &>/dev/null ] ; then
-    read -r -p 'Warning: git not installed; try to install it? [Y/n]'
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]] ; then
-       if type apt &>/dev/null ; then
-           echo "Attempting to install with apt..."
-           sudo apt update
-           sudo apt install git
-       elif type apt-get &>/dev/null ; then
-           echo "Attempting to install with apt-get..."
-           sudo apt-get update
-           sudo apt-get install git
-       elif type pacman &>/dev/null ; then
-           echo "Attempting to install with pacman..."
-           sudo pacman -Syu git
-       elif type yum &>/dev/null ; then
-           echo "Attempting to install with yum..."
-           sudo yum install git
-       fi
-    fi
-fi
+try_install git
 
-if [ type git &>/dev/null] ; then
+if exists git ; then
     # Install scripts if not installed
     yf_scripts_dir="$HOME/.local/opt/yf-scripts"
     if [ ! -d "$yf_scripts_dir" ] ; then
