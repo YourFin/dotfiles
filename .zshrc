@@ -56,7 +56,19 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:]}={[:upper:]}' '+l:|=* r:|=*' '+r:|[._-ABCDEFGHIJKLMNOPQRSTUVWXYZ]=** r:|=**'
 zstyle ':completion:*' substitute 1
+
+# Add zfuncs directory
+fpath=(
+    ~/.zfunc
+    ~/.zfunc/**/*~*/(CVS)#(/N)
+    ~/.local/opt/yf-scripts/zfunc
+    ~/.local/opt/yf-scripts/zfunc/**/*~*/(CVS)#(/N)
+    "${fpath[@]}"
+)
+
 autoload -Uz compinit
+autoload -Uz up
+
 compinit
 # End of lines added by compinstall
 
