@@ -1,9 +1,11 @@
 [user]
-	name = Patrick Nuckolls
+	name = YourFin
+	email = d.junkpobox+github@gmail.com
 [color]
 	ui = auto
 [core]
-	pager = less -FMRiX
+  pager = less -FMRiX
+  excludesfile = ~/.config/git/global.gitignore
 [alias]
 	root = !pwd
 	root = !cd $(pwd)

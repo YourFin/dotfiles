@@ -1,0 +1,5 @@
+# Tends to contain things that shouldn't be committed
+**/.env
+
+# Ignore emacs autosave files
+**/.\#*
