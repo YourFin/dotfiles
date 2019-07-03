@@ -4,7 +4,7 @@ filetype off                  " required
 """""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""Neovim""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""""""
-if has("win32") 
+if has("win32")
 	let b:neoVimDir = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 endif
 function! ConfigNeovimSetup ()
@@ -12,7 +12,7 @@ function! ConfigNeovimSetup ()
 		let s:uname = system("uname")
 		let g:python_host_prog='/usr/bin/python'
 		if s:uname == "Darwin\n"
-			let g:python_host_prog='/usr/local/bin/python' 
+			let g:python_host_prog='/usr/local/bin/python'
 		endif
 
 		"deal with arch's python mapping to python3 stupidity
@@ -145,7 +145,7 @@ function! FullInstall()
 	"Note that this touch function is further up my vimrc
 	call Touch('full.conf')
 	echom 'restart vim, and then run YcmCompile to finish'
-	return	
+	return
 endfunction
 command InstallFull :call FullInstall()
 
@@ -316,12 +316,12 @@ endfunction
 
 
 """Spellcheck
-    " Creates a spellcheck mode, akin to word and the like 
+    " Creates a spellcheck mode, akin to word and the like
     " instead of having weird-ass bindings like [s to find
     " the next one and keeps annoying spellcheck highlighting
     " off your screen when you don't care about it
     function! MySpellCheck ()
-    
+
     	if &spell
     		set spell!
     		unmap <buffer> n
@@ -343,9 +343,9 @@ endfunction
     		nnoremap <buffer> y zug
     		nnoremap <buffer> <silent> l :spellrepall <CR>
     	endif
-    
+
     endfunction
-    
+
     nnoremap <silent> <F7> :call MySpellCheck() <CR>
     set spelllang=en
     let spellfile=s:spfle
@@ -363,12 +363,12 @@ noremap <F9> :GundoToggle<CR>
     "Remap J & K to leader J K
     noremap <Leader>j J
     noremap <Leader>k K
-    
+
     map <silent> L <Plug>(easymotion-lineforward)
     map <silent> J <Plug>(easymotion-j)
     map <silent> K <Plug>(easymotion-k)
     map <silent> H <Plug>(easymotion-linebackward)
-    
+
     let g:EasyMotion_keys='aoeuihd,.k'
 
 
@@ -416,7 +416,7 @@ endif
 "line items
 
 
-"""syntastic 
+"""syntastic
 let g:syntastic_check_on_open = 1
 
 """vimtex
@@ -447,13 +447,13 @@ if has("autocmd") && exists("+omnifunc")
 	    \		setlocal omnifunc=syntaxcomplete#Complete |
 	    \	endif
 endif
-		    
 
-"""colorscheme 
+
+"""colorscheme
 if system('hostname') =~# ".*firecakes.*"
 	colorscheme desertink
 	hi Search ctermbg=grey term=bold
-else 
+else
 	colorscheme desertink
 endif
 
