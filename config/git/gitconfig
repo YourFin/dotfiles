@@ -1,0 +1,12 @@
+[user]
+	name = Patrick Nuckolls
+[color]
+	ui = auto
+[core]
+	pager = less -FMRiX
+[alias]
+	root = !pwd
+	root = !cd $(pwd)
+	root = !pwd
+[include]
+  path = local/local.inc

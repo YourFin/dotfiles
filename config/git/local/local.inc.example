@@ -1,0 +1,11 @@
+# The file local.inc is meant to be machine local, and is ignored by the repo
+# Typically just setting email
+[includeIf "gitdir:~/gitprojects/work/"]
+	path = work.inc
+
+# work.inc:
+#[user]
+#        name = Patrick Nuckolls
+#        email = totally_my_email@example.com
+#[core]
+#        excludesfile = work.gitignore
