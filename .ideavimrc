@@ -16,11 +16,14 @@ vnoremap k gk
 
 " remap Y to copy to end of line (as opposed to another way of doing yy)
 nnoremap Y "+y$
-nnoremap yy "+yy
-nnoremap yY mz0"+y$`a
+" nnoremap yy "+yy
+" nnoremap yY mz0"+y$`a
 nnoremap p "+p
 nnoremap P "+P
 vonremap y "+y
+nnoremap mm "+dd
+nnoremap M "+D
+vnoremap m "+d
 
 "" Delete keys by default going into blackhole register, with 'cut' rebound to m
 "noremap gm m
