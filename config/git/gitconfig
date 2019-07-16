@@ -10,6 +10,7 @@
 	root = !pwd
 	root = !cd $(pwd)
 	root = !pwd
-	tree = log --graph --all --decorate --oneline
+	#see: https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs/9074343#9074343
+	tree = log --graph --abbrev-commit --decorate --all --format='%C(bold green)%h%C(reset)%C(cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
 [include]
   path = local/local.inc
