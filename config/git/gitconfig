@@ -10,5 +10,6 @@
 	root = !pwd
 	root = !cd $(pwd)
 	root = !pwd
+	tree = log --graph --all --decorate --oneline
 [include]
   path = local/local.inc
