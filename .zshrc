@@ -1,7 +1,15 @@
 #-------------------------------------------------#
 #-----------------Zplug---------------------------#
 #-------------------------------------------------#
-source ~/.zplug/init.zsh
+export ZPLUG_HOME=$HOME/.local/usr/zplug
+if ! [ -d $ZPLUG_HOME ] ; then
+    mkdir -p $(dirname $ZPLUG_HOME)
+    git clone https://github.com/zplug/zplug $ZPLUG_HOME
+    pushd $ZPLUG_HOME
+    git checkout $(git describe --tags)
+    popd
+fi
+source $ZPLUG_HOME/init.zsh
 
 zplug "EslamElHusseiny/aws_manager_plugin"
 zplug "zpm-zsh/dropbox"
@@ -26,7 +34,13 @@ source ~/.profile
 #Aliases
 source <(cat ~/.aliases | sed -e 's/\(.*\)#.*/\1/' | sed -e '/^$/d' | sed -e 's/^/alias /') > /dev/null
 
+
 HISTFILE=~/.local/usr/zsh/histfile
+if ! [ -f "$HISTFILE" ] ; then
+    mkdir -p "$(dirname $HISTFILE)"
+    touch $HISTFILE
+fi
+
 which thefuck >/dev/null 2>/dev/null && eval $(thefuck --alias)
 
 # --------------------------- OS-specific entries ---------------------------- #
@@ -93,7 +107,6 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt appendhistory extendedglob
-HISTFILE=~/.local/usr/zsh/histfile
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
