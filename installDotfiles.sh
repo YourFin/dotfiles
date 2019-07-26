@@ -107,3 +107,4 @@ done
 for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do
     linkFile $file $file
 done
+linkFile .gitconfig .gitconfig # As it is explicitly ignored otherwise
