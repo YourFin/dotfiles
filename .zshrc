@@ -90,7 +90,9 @@ compinit
 unsetopt beep
 [[ "$osType" == "Linux" ]] && xset -b
 
+### Keybinds ###
 bindkey -v
+bindkey '^r' history-incremental-pattern-search-backward
 
 autoload -U promptinit; promptinit
 
