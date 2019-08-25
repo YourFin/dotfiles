@@ -172,4 +172,4 @@ super + alt + shift + {h,j,k,l}
 	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
 
 # move a floating window
-	xdo move {-x -20,-y +20,-y -20,-x +20}
+#	xdo move {-x -20,-y +20,-y -20,-x +20}
