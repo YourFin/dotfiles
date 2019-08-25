@@ -39,10 +39,12 @@ bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
 
-bspc rule -a mplayer2 state=floating
-bspc rule -a Tilda manage=on state=floating follow=on focus=on border=off
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
+bspc rule --add mplayer2 state=floating
+bspc rule --add Tilda manage=on state=floating follow=on focus=on border=off
+bspc rule --add Kupfer.py focus=on
+bspc rule --add Screenkey manage=off
+bspc rule --add emacs state=tiled
+bspc rule --add Emacs state=tiled
 
 # Turn off the fucking terminal bell
 # that insists on working even if sound is off
