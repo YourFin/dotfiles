@@ -12,6 +12,8 @@ bspc config gapless_monocle      true
 bspc config focus_by_distance    true
 bspc config history_aware_focus  true
 
+source ~/.config/bspwm/hidpi.sh
+
 monitors="$(xrandr --listactivemonitors | awk '{if (NR!=1) {print}}' | sed -e 's/^.* //')"
 nonPrimaryMonitors="$(xrandr --listactivemonitors --noprimary | awk '{if (NR!=1) {print}}' | sed -e 's/^.* //')"
 for monitor in $monitors ; do
