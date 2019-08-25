@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 #Java fix to allow jetbrains IDE's to run
 wmname LG3D
