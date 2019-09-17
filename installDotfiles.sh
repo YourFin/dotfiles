@@ -98,11 +98,20 @@ if exists git ; then
     fi
 fi
 
+# Copy over files in .config
 mkdir -p "$HOME/.config"
 for file in $(ls "$SCRIPTPATH/config"); do
     linkFile config/$file .config/$file
 done
 
+# Copy over files in desktop-files
+DESKTOP_FILES_DIR="$HOME/.local/share/applications"
+mkdir -p $DESKTOP_FILES_DIR
+for file in $(ls "$SCRIPTPATH/desktop-files"); do
+    linkFile desktop-files/$file $DESKTOP_FILES_DIR/$file
+done
+
+# Link dotfiles to home directory
 for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do
     linkFile $file $file
 done
