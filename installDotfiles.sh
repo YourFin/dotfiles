@@ -18,7 +18,6 @@ do
             # Clobber everything
             FORCE_CLOBBER=true
             shift # past argument
-            shift # past value
             ;;
         *)    # unknown option
             POSITIONAL+=("$1") # save it in an array for later
