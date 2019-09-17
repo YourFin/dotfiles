@@ -15,6 +15,9 @@ if [ ! type git &>/dev/null ] ; then
         elif type pacman &>/dev/null ; then
             echo "Attempting to install with pacman..."
             sudo pacman -Syu git
+        elif type dnf &>/dev/null ; then
+            echo "Attempting to install with dnf..."
+            sudo dnf install git
         elif type yum &>/dev/null ; then
             echo "Attempting to install with yum..."
             sudo yum install git
