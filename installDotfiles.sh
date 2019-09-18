@@ -105,13 +105,13 @@ for file in $(ls "$SCRIPTPATH/config"); do
 done
 
 # Copy over files in desktop-files
-DESKTOP_FILES_DIR="$HOME/.local/share/applications"
-mkdir -p $DESKTOP_FILES_DIR
+DESKTOP_FILES_DIR=".local/share/applications"
+mkdir -p $HOME/$DESKTOP_FILES_DIR
 for file in $(ls "$SCRIPTPATH/desktop-files"); do
     linkFile desktop-files/$file $DESKTOP_FILES_DIR/$file
 done
 
-# Link dotfiles to home directory
+
 for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do
     linkFile $file $file
 done
