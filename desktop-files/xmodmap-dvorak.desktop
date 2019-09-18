@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Custom dvorak XModMap
+GenericName=Keyboard Layout Manager
+Comment=Turn on dvorak and caps lock
+MimeType=
+Exec=xmodmap ~/.Xmodmap
+Icon=preferences-desktop-keyboard
+Type=Application
+Terminal=false
+Categories=Settings;Keyboard
