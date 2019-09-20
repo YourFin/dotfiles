@@ -1,6 +1,6 @@
 # The file local.inc is meant to be machine local, and is ignored by the repo
 # Typically just setting email
-[includeIf "gitdir:~/gitprojects/work/"]
+[includeIf "gitdir:~/g/work/"]
 	path = work.inc
 
 # work.inc:

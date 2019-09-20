@@ -50,6 +50,6 @@ fi
 type bash &>/dev/null || (echo "No bash installed, exiting" && exit 1)
 type git &>/dev/null || (echo "No git installed, exiting" && exit 1)
 
-mkdir -p "$HOME/gitprojects/" || exit 1
-git clone https://github.com/yourfin/dotfiles "$HOME/gitprojects/dotfiles" || exit 1
-bash "$HOME/gitprojects/dotfiles/installDotfiles.sh"
+mkdir -p "$HOME/g/" || exit 1
+git clone https://github.com/yourfin/dotfiles "$HOME/g/dotfiles" || exit 1
+bash "$HOME/g/dotfiles/installDotfiles.sh"
