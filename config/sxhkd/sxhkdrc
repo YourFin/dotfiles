@@ -23,7 +23,7 @@ super + shift + c
 
 # chrome
 super + shift + g
-	google-chrome-stable
+	chromium-browser
 
 # spotify
 super + shift + s
