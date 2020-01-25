@@ -31,6 +31,7 @@
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
 (setq display-line-numbers-type t)
+(+global-word-wrap-mode 1)
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
