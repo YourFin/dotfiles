@@ -3,3 +3,4 @@
 
 # Ignore emacs autosave files
 **/.\#*
+/.ccls-cache/
