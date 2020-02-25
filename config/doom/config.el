@@ -49,6 +49,27 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+
+(after! hydra
+  (defun get-face-with-mouse (event)
+    (interactive "@e")
+    (let ((clicked-point (posn-point (event-start event))))
+      ;; Posn-area will return non-nil if given a non-buffer area
+      (if (and clicked-point (not (posn-area (event-start event))))
+          (let ((face (or (get-char-property clicked-point 'read-face-name)
+                          (get-char-property clicked-point 'face))))
+            (if face
+                (describe-face face)
+              (message "Could not find face at point")))
+        (message "Clicked elsewhere"))))
+
+  (defhydra hydra-get-face-with-mouse (nil nil :hint nil)
+    "
+Right or middle click to see the face at a given point in a buffer"
+    ("<mouse-2>" get-face-with-mouse)
+    ("<mouse-3>" get-face-with-mouse)))
+
+
 ;;;; TODO
 ;; (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
 ;; ;;; custom lib
