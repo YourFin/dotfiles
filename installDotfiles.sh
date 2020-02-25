@@ -34,6 +34,7 @@ IFS=$'\n\t'
 SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
 OLD_DOTFILES_DIR="$HOME/.local/opt/yf-old"
 
+# shellcheck source=install/general_functions.sh
 source "$SCRIPTPATH/install/general_functions.sh"
 
 strip_home () {
@@ -41,9 +42,9 @@ strip_home () {
 }
 
 move_to_old () {
-    if [ -e $1 ] ; then
-        mkdir -p "$(dirname $OLD_DOTFILES_DIR/$(strip_home $1))"
-        mv $1 "$OLD_DOTFILES_DIR/$(strip_home $1)"
+    if [ -e "$1" ] ; then
+        mkdir -p "$(dirname "$OLD_DOTFILES_DIR"/"$(strip_home "$1")")"
+        mv "$1" "$OLD_DOTFILES_DIR/$(strip_home "$1")"
     fi
 }
 
@@ -53,18 +54,18 @@ linkFile ()
 {
 	  first="$SCRIPTPATH/$1"
 	  second="$HOME/$2"
-	  if  [ -e $second ] ; then
+	  if  [ -e "$second" ] ; then
         userInput="n"
         if ! $NO_CLOBBER && ! $FORCE_CLOBBER ; then
             echo "$second already exists; replace it? (Y/n):"
-            read userInput
+            read -r userInput
         fi
 		    if [ ! "$userInput" = "n" ] || $FORCE_CLOBBER ; then
-            move_to_old $second
-			      ln -sf $first $second
+            move_to_old "$second"
+			      ln -sf "$first" "$second"
 		    fi
 	  else
-		    ln -sf $first $second
+		    ln -sf "$first" "$second"
 	  fi
 }
 
@@ -78,7 +79,7 @@ if exists git ; then
     # Install scripts if not installed
     yf_scripts_dir="$HOME/.local/opt/yf-scripts"
     if [ ! -d "$yf_scripts_dir" ] ; then
-        git clone https://github.com/YourFin/Scripts.git $yf_scripts_dir
+        git clone https://github.com/YourFin/Scripts.git "$yf_scripts_dir"
     fi
 
     # Install spacemacs if not installed
@@ -100,19 +101,19 @@ fi
 
 # Copy over files in .config
 mkdir -p "$HOME/.config"
-for file in $(ls "$SCRIPTPATH/config"); do
-    linkFile config/$file .config/$file
+for file in "$SCRIPTPATH/config"/*; do
+    linkFile "config/$file" ".config/$file"
 done
 
 # Copy over files in desktop-files
 DESKTOP_FILES_DIR=".local/share/applications"
-mkdir -p $HOME/$DESKTOP_FILES_DIR
-for file in $(ls "$SCRIPTPATH/desktop-files"); do
-    linkFile desktop-files/$file $DESKTOP_FILES_DIR/$file
+mkdir -p "$HOME/$DESKTOP_FILES_DIR"
+for file in "$SCRIPTPATH/desktop-files"/*; do
+    linkFile "desktop-files/$file" "$DESKTOP_FILES_DIR/$file"
 done
 
 
-for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do
-    linkFile $file $file
+for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do # all files not starting with git
+    linkFile "$file" "$file"
 done
 linkFile .gitconfig .gitconfig # As it is explicitly ignored otherwise
