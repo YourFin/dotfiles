@@ -11,6 +11,7 @@ do
 
     case $key in
         -n|--no-clobber)
+            # Don't copy over anything
             NO_CLOBBER=true
             shift # past argument
             ;;
@@ -93,9 +94,8 @@ if exists git ; then
         if ([ -e "$HOME/.spacemacs.d" ] || $FORCE_CLOBBER) && ! $NO_CLOBBER ; then
             move_to_old "$HOME/.spacemacs.d"
         fi
-        echo 'Installing spacemacs...'
-        git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
-        git clone https://github.com/yourfin/.spacemacs.d ~/.spacemacs.d
+        echo 'Installing doom...'
+        git clone https://github.com/hlissner/doom-emacs.git ~/.emacs.d
     fi
 fi
 
