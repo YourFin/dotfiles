@@ -9,30 +9,6 @@
 (setq user-full-name "Patrick Nuckolls"
       user-mail-address "d.junkpobox+git@gmail.com")
 
-;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
-;; are the three important ones:
-;;
-;; + `doom-font'
-;; + `doom-variable-pitch-font'
-;; + `doom-big-font' -- used for `doom-big-font-mode'
-;;
-;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
-;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Fira Mono" :size 28))
-
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. These are the defaults.
-(setq doom-theme 'doom-one)
-
-;; If you intend to use org, it is recommended you change this!
-(setq org-directory "~/org/")
-
-;; If you want to change the style of line numbers, change this to `relative' or
-;; `nil' to disable it:
-(setq display-line-numbers-type t)
-(+global-word-wrap-mode 1)
-
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -49,7 +25,21 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+;;; Load the other damn files
+(load! "./apperance.el")
+(load! "./editing.el")
+(load! "./space-binds.el")
+(load! "./yatemplate.el")
 
+;;; "Languages". This was called major modes in previous iterations
+;;; of my emacs config. That was more confusing than languages, even though
+;;; major modes is technically more correct
+(load! "./langs/elm.el")
+(load! "./langs/git.el")
+(load! "./langs/latex.el")
+(load! "./langs/org.el")
+
+;; TODO: Find somewhere to put this
 (after! hydra
   (defun get-face-with-mouse (event)
     (interactive "@e")
@@ -68,16 +58,3 @@
 Right or middle click to see the face at a given point in a buffer"
     ("<mouse-2>" get-face-with-mouse)
     ("<mouse-3>" get-face-with-mouse)))
-
-
-;;;; TODO
-;; (add-to-list 'load-path (expand-file-name "lisp" dotspacemacs-directory))
-;; ;;; custom lib
-;; (require 'custom-commands)
-;; (require 'heretic-evil-clipboard-mode)
-;; (require 'apperance)
-;; (require 'major-modes)
-;; (require 'editing-file)
-;; ;;(require 'evil-bindings)
-;; (require 'evil-space-binds)
-;; (require 'global-bindings)

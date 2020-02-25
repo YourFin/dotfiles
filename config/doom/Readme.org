@@ -1,0 +1,24 @@
+#+TITLE:   Doom emacs configuration
+
+* Table of Contents :TOC_3:noexport:
+- [[#what-is-this][What is this?]]
+  - [[#random-things-to-install][Random things to install:]]
+- [[#how-do-i-read-this][How do I read this?]]
+
+* What is this?
+My private configuration for [[https://github.com/hlissner/doom-emacs][doom emacs]]. It's pretty cool. Fast loading emacs
+for vim people, with auto complete, tabs, etc. Requires emacs >= 26.
+
+** Random things to install:
+- A c build toolchain with cmake
+- ripgrep
+- Make sure emacs has [[https://github.com/hlissner/doom-emacs/tree/develop/modules/term/vterm][been compiled with dynamic module support]]. Vterm makes
+  emacs terminals not crap, and this is important.
+
+* How do I read this?
+The code here has three entry points from doom proper: [[./init.el][init.el]], [[./packages.el][packages.el]], and
+[[config.el][config.el]]. Init is loaded pretty early, config pretty late. Packages is for
+packages.
+
+The rest of the files in this directory are attempts at organizing config.el,
+and are loaded by it.
