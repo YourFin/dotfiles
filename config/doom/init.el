@@ -31,7 +31,7 @@
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
-       ;;hydra
+       hydra
        indent-guides     ; highlighted indent columns
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
@@ -41,7 +41,7 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
-       ;;tabs              ; an tab bar for Emacs
+       tabs              ; an tab bar for Emacs
        ;;treemacs          ; a project drawer, like neotree but cooler
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -74,7 +74,7 @@
        ;;eshell            ; a consistent, cross-platform shell (WIP)
        ;;shell             ; a terminal REPL for Emacs
        ;;term              ; terminals in Emacs
-       ;;vterm             ; another terminals in Emacs
+       vterm             ; another terminals in Emacs
 
        :checkers
        syntax              ; tasing you for every semicolon you forget
@@ -102,12 +102,12 @@
        ;;rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
-       ;;upload            ; map local to remote projects via ssh/ftp
+       upload            ; map local to remote projects via ssh/ftp
 
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       cc                ; C/C++/Obj-C madness
+       (cc +lsp)                ; C/C++/Obj-C madness
        ;;clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -117,7 +117,7 @@
        ;;elixir            ; erlang done right
        elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
-       ;;erlang            ; an elegant language for a more civilized age
+       erlang            ; an elegant language for a more civilized age
        ;;ess               ; emacs speaks statistics
        ;;faust             ; dsp, but you get to keep your soul
        ;;fsharp           ; ML stands for Microsoft's Language
@@ -142,7 +142,7 @@
         +dragndrop       ; drag & drop files/images into org buffers
         ;;+hugo            ; use Emacs for hugo blogging
         ;;+jupyter        ; ipython/jupyter support for babel
-        ;;+pandoc          ; export-with-pandoc support
+        +pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
