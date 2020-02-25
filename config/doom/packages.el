@@ -53,5 +53,9 @@
 
 (package! latex-preview-pane)
 
+(package! evil-better-visual-line)
+
 (package! evil-deliberate-clipboard
   :recipe (:host github :repo "YourFin/evil-deliberate-clipboard"))
+
+(package! yatemplate)
