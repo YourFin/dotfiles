@@ -36,3 +36,6 @@
 (setq web-mode-css-indent-offset 2)
 (setq web-mode-code-indent-offset 2)
 (setq css-indent-offset 2)
+
+;; Allow which-key to use the right side if there's room
+(which-key-setup-side-window-right-bottom)
