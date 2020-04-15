@@ -37,7 +37,7 @@
 (load! "./langs/elm.el")
 (load! "./langs/git.el")
 (load! "./langs/latex.el")
-(load! "./langs/org.el")
+;;(load! "./langs/org.el")
 
 ;; TODO: Find somewhere to put this
 (after! hydra
