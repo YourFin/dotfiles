@@ -1,3 +1,22 @@
+# ---------------------------------------------------------------------------- #
+# ---------------------- Pre-Powerlevel10k Instant load----------------------- #
+# ---------------------------------------------------------------------------- #
+
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon
+
+# ---------------------------------------------------------------------------- #
+# ------------------------ Prompt instant load ------------------------------- #
+# ---------------------------------------------------------------------------- #
+ 
+export ZDOTDIR="$HOME/.config/zdotdir"
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 #-------------------------------------------------#
 #-----------------Zplug---------------------------#
 #-------------------------------------------------#
@@ -11,47 +30,12 @@ if ! [ -d $ZPLUG_HOME ] ; then
 fi
 source $ZPLUG_HOME/init.zsh
 
-zplug "EslamElHusseiny/aws_manager_plugin"
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "zpm-zsh/dropbox"
 zplug "djui/alias-tips"
-zplug "desyncr/auto-ls"
-zplug "mafredri/zsh-async", from:github
-zplug "YourFin/pure-agnoster", use:pure-agnoster.zsh, from:github, as:theme
-zplug "zsh-users/zsh-autosuggestions"
-zplug "srijanshetty/zsh-pip-completion"
-zplug "Tarrasch/zsh-bd"
+zplug "zsh-autosuggestions/users-zsh"
 
 zplug load
-
-#-------------------------------------------------#
-#-------------------Sources-----------------------#
-#-------------------------------------------------#
-
-source ~/.local/opt/yf-scripts/common-shell-rc.sh
-
-source ~/.profile
-
-#Aliases
-source <(cat ~/.aliases | sed -e 's/\(.*\)#.*/\1/' | sed -e '/^$/d' | sed -e 's/^/alias /') > /dev/null
-
-
-HISTFILE=~/.local/usr/zsh/histfile
-if ! [ -f "$HISTFILE" ] ; then
-    mkdir -p "$(dirname $HISTFILE)"
-    touch $HISTFILE
-fi
-
-which thefuck >/dev/null 2>/dev/null && eval $(thefuck --alias)
-
-# --------------------------- OS-specific entries ---------------------------- #
-unameOut="$(uname -s)"
-case "${unameOut}" in
-    Linux*)     osType=Linux;;
-    Darwin*)    osType=OSx;;
-    CYGWIN*)    osType=Cygwin;;
-    MINGW*)     osType=MinGw;;
-    *)          osType="UNKNOWN:${unameOut}"
-esac
 
 #-------------------------------------------------#
 #-------------------Normal Zsh--------------------#
@@ -116,3 +100,6 @@ setopt appendhistory extendedglob
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
