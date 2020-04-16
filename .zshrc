@@ -33,7 +33,8 @@ source $ZPLUG_HOME/init.zsh
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "zpm-zsh/dropbox"
 zplug "djui/alias-tips"
-zplug "zsh-autosuggestions/users-zsh"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 zplug load
 
