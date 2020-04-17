@@ -17,9 +17,9 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#-------------------------------------------------#
-#-----------------Zplug---------------------------#
-#-------------------------------------------------#
+# ---------------------------------------------------------------------------- #
+# ------------------------------ Zplug --------------------------------------- #
+# ---------------------------------------------------------------------------- #
 export ZPLUG_HOME=$HOME/.local/usr/zplug
 if ! [ -d $ZPLUG_HOME ] ; then
     mkdir -p $(dirname $ZPLUG_HOME)
@@ -37,6 +37,39 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
 zplug load
+
+# ---------------------------------------------------------------------------- #
+# ------------------------- Further Aesthetics ------------------------------- #
+# ---------------------------------------------------------------------------- #
+
+# See config/zdotdir/.p10k.zsh for prompt things
+
+# Syntax highlighting
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]='none'
+ZSH_HIGHLIGHT_STYLES[builtin]='none'
+
+# Draw a line between commands
+DRAW_LINE_FIRST_RUN=true
+MAX_SEPERATOR_WIDTH=60
+draw_line () {
+    if (( DRAW_LINE_FIRST_RUN ))
+    then
+        DRAW_LINE_FIRST_RUN=false
+        return
+    fi
+    local line_char="\u2501"
+    print -Pn "%B%F{249}"
+    repeat $(( COLUMNS < MAX_SEPERATOR_WIDTH ? COLUMNS : MAX_SEPERATOR_WIDTH ))
+    do
+        echo -n "\u2501"
+    done
+    print -Pn "%F{reset}%b\n"
+}
+
+typeset -a preexec_functions
+
+preexec_functions+=("draw_line")
 
 #-------------------------------------------------#
 #-------------------Normal Zsh--------------------#
@@ -94,6 +127,36 @@ setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history 
 setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt appendhistory extendedglob
+
+#-------------------------------------------------#
+#-------------------Sources-----------------------#
+#-------------------------------------------------#
+
+source ~/.local/opt/yf-scripts/common-shell-rc.sh
+
+source ~/.profile
+
+#Aliases
+source <(cat ~/.aliases | sed -e 's/\(.*\)#.*/\1/' | sed -e '/^$/d' | sed -e 's/^/alias /') > /dev/null
+
+
+HISTFILE=~/.local/usr/zsh/histfile
+if ! [ -f "$HISTFILE" ] ; then
+    mkdir -p "$(dirname $HISTFILE)"
+    touch $HISTFILE
+fi
+
+which thefuck >/dev/null 2>/dev/null && eval $(thefuck --alias)
+
+# --------------------------- OS-specific entries ---------------------------- #
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     osType=Linux;;
+    Darwin*)    osType=OSx;;
+    CYGWIN*)    osType=Cygwin;;
+    MINGW*)     osType=MinGw;;
+    *)          osType="UNKNOWN:${unameOut}"
+esac
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
