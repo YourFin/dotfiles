@@ -50,8 +50,14 @@ ZSH_HIGHLIGHT_STYLES[command]='none'
 ZSH_HIGHLIGHT_STYLES[builtin]='none'
 
 # Draw a line between commands
+DRAW_LINE_FIRST_RUN=true
 MAX_SEPERATOR_WIDTH=60
 draw_line () {
+    if (( DRAW_LINE_FIRST_RUN ))
+    then
+        DRAW_LINE_FIRST_RUN=false
+        return
+    fi
     local line_char="\u2501"
     print -Pn "%B%F{249}"
     repeat $(( COLUMNS < MAX_SEPERATOR_WIDTH ? COLUMNS : MAX_SEPERATOR_WIDTH ))
