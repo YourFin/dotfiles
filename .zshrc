@@ -126,9 +126,9 @@ setopt appendhistory extendedglob
 #-------------------Sources-----------------------#
 #-------------------------------------------------#
 
-source ~/.local/opt/yf-scripts/common-shell-rc.sh
+[[ -e ~/.local/opt/yf-scripts/common-shell-rc.sh ]] && source ~/.local/opt/yf-scripts/common-shell-rc.sh
 
-source ~/.profile
+[[ -e ~/.profile ]] && source ~/.profile
 
 #Aliases
 source <(cat ~/.aliases | sed -e 's/\(.*\)#.*/\1/' | sed -e '/^$/d' | sed -e 's/^/alias /') > /dev/null
