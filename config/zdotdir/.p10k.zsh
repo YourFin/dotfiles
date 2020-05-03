@@ -34,9 +34,9 @@
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
     # =========================[ Line #1 ]=========================
     # os_icon               # os identifier
-    background_jobs         # presence of background jobs
-    dir                     # current directory
     context                 # user@hostname
+    dir                     # current directory
+    background_jobs         # presence of background jobs
     vcs                     # git status
     nix_shell               # nix shell (https://nixos.org/nixos/nix-pills/developing-with-nix-shell.html)
     direnv                  # direnv status (https://direnv.net/)
