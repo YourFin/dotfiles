@@ -13,5 +13,22 @@
 	exec = "!exec "
 	#see: https://stackoverflow.com/questions/1057564/pretty-git-branch-graphs/9074343#9074343
 	tree = log --graph --abbrev-commit --decorate --all --format='%C(bold green)%h%C(reset)%C(cyan)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+  # Define the shell function f and immediately execute it
+  # Stupid workaround for git not supporting multi-line commands
+  nuke = "!f() {\
+        cd $(git rev-parse --show-toplevel) ; \
+        git status ; \
+        echo 'This will delete ALL uncommited changes,\nare you sure you want to continue? (y/N)' ; \
+        read -n 1 should_continue; \
+        echo ""; \
+        if [ \"$should_continue\" == \"y\" ] || [ \"$should_continue\" == \"Y\" ]; then \
+            git reset --hard ; \
+            git clean -fd ; \
+            echo 'Done.' ; \
+        else \
+              echo 'Aborting...' ; \
+        fi; \
+     }; \
+     f"
 [include]
   path = local/local.inc
