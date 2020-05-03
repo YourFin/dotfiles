@@ -25,6 +25,9 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
+;;; Tell tramp to set its TERM to 'tramp'
+(setq tramp-terminal-type "tramp")
+
 ;;; Load the other damn files
 (load! "./apperance.el")
 (load! "./editing.el")
