@@ -53,7 +53,7 @@ move_to_old () {
 # Second argument: destination relative to $HOME
 linkFile ()
 {
-	  first="$SCRIPTPATH/$1"
+	  first="$1"
 	  second="$HOME/$2"
 	  if  [ -e "$second" ] ; then
         userInput="n"
@@ -102,18 +102,18 @@ fi
 # Copy over files in .config
 mkdir -p "$HOME/.config"
 for file in "$SCRIPTPATH/config"/*; do
-    linkFile "config/$file" ".config/$file"
+    linkFile "$file" ".config/${file#"$SCRIPTPATH"}"
 done
 
 # Copy over files in desktop-files
 DESKTOP_FILES_DIR=".local/share/applications"
 mkdir -p "$HOME/$DESKTOP_FILES_DIR"
 for file in "$SCRIPTPATH/desktop-files"/*; do
-    linkFile "desktop-files/$file" "$DESKTOP_FILES_DIR/$file"
+    linkFile "$file" "$DESKTOP_FILES_DIR/${file#"$SCRIPTPATH"}"
 done
 
 
 for file in $(ls -a | grep -e '^\.[a-zA-Z0-9]' | grep -v git) ; do # all files not starting with git
-    linkFile "$file" "$file"
+    linkFile "$SCRIPTPATH/$file" "$file"
 done
-linkFile .gitconfig .gitconfig # As it is explicitly ignored otherwise
+linkFile "$SCRIPTPATH/.gitconfig" .gitconfig # As it is explicitly ignored otherwise
