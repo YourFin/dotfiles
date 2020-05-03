@@ -102,14 +102,14 @@ fi
 # Copy over files in .config
 mkdir -p "$HOME/.config"
 for file in "$SCRIPTPATH/config"/*; do
-    linkFile "$file" ".config/${file#"$SCRIPTPATH"}"
+    linkFile "$file" ".config/${file#"$SCRIPTPATH/config"}"
 done
 
 # Copy over files in desktop-files
 DESKTOP_FILES_DIR=".local/share/applications"
 mkdir -p "$HOME/$DESKTOP_FILES_DIR"
 for file in "$SCRIPTPATH/desktop-files"/*; do
-    linkFile "$file" "$DESKTOP_FILES_DIR/${file#"$SCRIPTPATH"}"
+    linkFile "$file" "$DESKTOP_FILES_DIR/${file#"$SCRIPTPATH/desktop-files"}"
 done
 
 
