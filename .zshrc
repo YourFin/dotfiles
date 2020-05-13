@@ -167,10 +167,10 @@ esac
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
+[[ -f ~/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh ]] && . ~/.config/yarn/global/node_modules/tabtab/.completions/serverless.zsh
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . /home/pen/gitprojects/dotfiles/config/yarn/global/node_modules/tabtab/.completions/sls.zsh
+[[ -f ~/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh ]] && . ~/.config/yarn/global/node_modules/tabtab/.completions/sls.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
