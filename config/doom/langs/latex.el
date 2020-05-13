@@ -5,3 +5,5 @@
  :nv "")
 
 (setq pdf-latex-command "lualatex")
+
+(setq +latex-viewers '(pdf-tools))
