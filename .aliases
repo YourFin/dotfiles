@@ -14,3 +14,4 @@ linear="bash -c 'nohup google-chrome-stable --new-window ~/Documents/books/Linea
 ll='ls -lh'
 la='ls -lah'
 ec='emacsclient'
+nix-shell="nix-shell --command zsh"
