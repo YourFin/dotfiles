@@ -20,6 +20,7 @@ in
     # Graphical applications
     chromium
     discord
+    flameshot
     keepass
     nextcloud-client
     pdfarranger
