@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 NO_CLOBBER=false
 FORCE_CLOBBER=false
