@@ -76,14 +76,30 @@ in
       "ctrl+shift+u" =        "input_unicode_character";
     };
     settings = {
+      allow_remote_control = "no";
       enable_audio_bell = false;
-      font_family = "FiraCode Nerd Font";
-      font_size = "11.0";
+      strip_trailing_spaces = "smart";
+
       # Visuals
       background = "#000000";
       background_opacity = "0.8";
-      
-      allow_remote_control = "no";
+      font_family = "FiraCode Nerd Font";
+      font_size = "11.0";
+      tab_bar_edge = "top";
+      tab_bar_style = "separator";
+    };
+  };
+
+  programs.broot = {
+    enable = true;
+    enableZshIntegration = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    verbs = {
+      "line_downmeow" = { key = "ctrl-j"; execution = ":line_down"; };
+      "line_upmeow" = { key = "ctrl-k"; execution = ":line_up"; };
+      "quitmeow" = { key = "ctrl-g"; execution = ":quit"; };
+      "vim" = { invocation = "vim"; execution = "vim {file}"; };
     };
   };
 
