@@ -7,6 +7,7 @@ in
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # pull in these and export in current context
   imports = [ ./kitty.nix ];
 
   fonts.fontconfig.enable = true;
@@ -22,6 +23,9 @@ in
     spotify
     vlc
 
+    # Gamey games
+    steam
+
     # Fonts
     unstable.nerdfonts
 
@@ -33,7 +37,14 @@ in
     fzf
     ncdu
     git
+    ripgrep
     ripgrep-all
+
+    ruby
+    python
+
+    # Less-standard cli tools
+    clang
     youtube-dl
 
     # Networking
@@ -41,16 +52,19 @@ in
    
     # TUI
     htop
+    aspell
     
     # Required programming langs
-    ruby
-    python
-    clang
   ];
 
   programs.emacs.enable = true;
 
   programs.firefox.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    #enableNixDirenvIntegration = true;
+  };
 
   programs.broot = {
     enable = true;
