@@ -40,6 +40,7 @@
 (load! "./langs/elm.el")
 (load! "./langs/git.el")
 (load! "./langs/latex.el")
+(load! "./langs/haskell.el")
 ;;(load! "./langs/org.el")
 
 ;; TODO: Find somewhere to put this
