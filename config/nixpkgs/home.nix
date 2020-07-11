@@ -14,6 +14,7 @@ in
 
   home.packages = with pkgs; [
     # Graphical applications
+    plasma5.bluedevil
     chromium
     discord
     flameshot
@@ -22,9 +23,6 @@ in
     pdfarranger
     spotify
     vlc
-
-    # Gamey games
-    steam
 
     # Fonts
     unstable.nerdfonts
@@ -53,8 +51,16 @@ in
     # TUI
     htop
     aspell
+    aspellDicts.en
+    aspellDicts.en-computers
     
-    # Required programming langs
+    # Haskell
+    cabal2nix
+    ormolu
+
+    # Emacs deps:
+    shfmt
+    nixfmt
   ];
 
   programs.emacs.enable = true;
