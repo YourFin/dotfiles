@@ -62,14 +62,19 @@ typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[command]='none'
 ZSH_HIGHLIGHT_STYLES[builtin]='none'
 
+# Check if \u2501 is printable
+if [ -z "$({ echo -n "\u2501" >/dev/null; } 2>&1)" ] ; then
+    export DRAW_LINE_CHAR="\u2501"
+else
+    export DRAW_LINE_CHAR="-"
+fi
 # Draw a line between commands
 MAX_SEPERATOR_WIDTH=60
 draw_line () {
-    local line_char="\u2501"
     print -Pn "%B%F{249}"
     repeat $(( COLUMNS < MAX_SEPERATOR_WIDTH ? COLUMNS : MAX_SEPERATOR_WIDTH ))
     do
-        echo -n "\u2501"
+        echo -n "$DRAW_LINE_CHAR"
     done
     print -Pn "%F{reset}%b\n"
 }
