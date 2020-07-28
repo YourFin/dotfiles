@@ -78,10 +78,22 @@ in
     enableBashIntegration = false;
     enableFishIntegration = false;
     verbs = {
-      "line_downmeow" = { key = "ctrl-j"; execution = ":line_down"; };
-      "line_upmeow" = { key = "ctrl-k"; execution = ":line_up"; };
-      "quitmeow" = { key = "ctrl-g"; execution = ":quit"; };
-      "vim" = { invocation = "vim"; execution = "vim {file}"; };
+      "line_downmeow" = {
+        key = "ctrl-j";
+        execution = ":line_down";
+      };
+      "line_upmeow" = {
+        key = "ctrl-k";
+        execution = ":line_up";
+      };
+      "quitmeow" = {
+        key = "ctrl-g";
+        execution = ":quit";
+      };
+      "vim" = {
+        invocation = "vim";
+        execution = "vim {file}";
+      };
     };
   };
 
