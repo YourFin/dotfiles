@@ -1,2 +1,4 @@
 [include]
 	path = ~/.config/git/gitconfig
+[pull]
+	ff = only
