@@ -1,14 +1,11 @@
 { config, pkgs, ... }:
 
-let 
-  unstable = import <unstable> {};
-in
 {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
   # pull in these and export in current context
-  imports = [ ./kitty.nix ];
+  imports = [ ./kitty.nix ./zsh-config.nix ];
 
   fonts.fontconfig.enable = true;
 
@@ -36,24 +33,25 @@ in
     ncdu
     git
     ripgrep
-    ripgrep-all
+    zsh
 
     ruby
     python
 
     # Less-standard cli tools
     clang
+    unison
     youtube-dl
 
     # Networking
     nmap
-   
+
     # TUI
     htop
     aspell
     aspellDicts.en
     aspellDicts.en-computers
-    
+
     # Haskell
     cabal2nix
     ormolu
