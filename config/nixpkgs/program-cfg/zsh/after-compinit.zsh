@@ -49,5 +49,5 @@ test -r /home/pen/.local/usr/opam/opam-init/init.zsh && . /home/pen/.local/usr/o
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
 ################################
-# End before-compinit.sh
+# End after-compinit.sh
 ################################
