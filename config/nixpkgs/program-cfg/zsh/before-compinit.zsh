@@ -10,6 +10,19 @@ if [[ "$TERM" == "tramp" ]] ; then
 	return
 fi
 
+# Make sure that we're using the zsh that nix installed, not some
+# other one
+ZSH=`which zsh`
+if test x$SHELL != x$ZSH && test -e $ZSH && $ZSH -c true
+then
+  SHELL=$ZSH
+  # The cryptic -$- passes all the options in effect for this current shell
+  # to the replacement shell we are exec'ing.  This ensures a login shell
+  # stays a login shell, etc.  See man zshparam, section "Parameters Set By
+  # The Shell".
+  exec $ZSH -$- "$@"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
