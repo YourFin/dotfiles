@@ -26,7 +26,8 @@ if command -v go >/dev/null 2>/dev/null; then
 	export PATH="$PATH:$GOPATH/bin"
 fi
 
-if command -v ruby >/dev/null 2>/dev/null; then
+if command -v ruby >/dev/null 2>/dev/null &&
+	ruby -e 'print Gem.user_dir' >/dev/null 2>/dev/null; then
 	export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
 fi
 
