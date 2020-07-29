@@ -3,9 +3,14 @@
 #########################
 # This file gets executed later in the shell load process;
 # notably, after compinit in zsh and the interactive check in bash
+
 # Turn off the terminal bell in every way possible
-unsetopt beep
-[[ "$osType" == "Linux" ]] && xset -b &
+if command -v unsetopt >/dev/null 2>/dev/null; then
+	unsetopt beep
+fi
+if [[ "$osType" == "Linux" ]]; then
+	xset -b &
+fi
 >/dev/null || true
 
 ###########
