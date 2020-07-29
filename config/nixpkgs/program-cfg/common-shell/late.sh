@@ -21,8 +21,10 @@ if command -v "exa" >/dev/null 2>/dev/null; then
 fi
 alias sudo="sudo " # allows sudo to be used in aliases
 if command -v "bat" >/dev/null 2>/dev/null; then
-	alias cat="bat"
-	alias bat="cat"
+	# The backslashes here prevent recursion. See:
+	# https://stackoverflow.com/questions/18862777/how-can-i-swap-as-in-alias-command-names-in-zsh
+	alias cat="\bat"
+	alias bat="\cat"
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 if command -v firefox >/dev/null 2>/dev/null; then
