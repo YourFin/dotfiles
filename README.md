@@ -1,9 +1,5 @@
 # dotfiles
-My *nix dotfiles
-
-## POSIX compatible lazy install
-
-    download=false ; if type curl >/dev/null 2>/dev/null ; then download='curl' ; elif type wget >/dev/null ; then download='wget -O -' ; else ; echo "No way to download dotfiles; please install curl or wget with your package manager" ; fi ; eval "$download https://raw.githubusercontent.com/YourFin/dotfiles/master/install.sh" | sh
+My *nix dotfiles, managed with home-manager
 
 ## Screenshot
 
