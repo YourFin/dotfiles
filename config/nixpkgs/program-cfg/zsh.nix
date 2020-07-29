@@ -8,8 +8,10 @@
     enableAutosuggestions = true;
     initExtraBeforeCompInit = builtins.readFile ./zsh/before-compinit.zsh
       + builtins.readFile ./common-shell/early.sh;
+    # Note that we inline p10k.zsh instead of sourcing it
     initExtra = builtins.readFile ./common-shell/late.sh
-      + builtins.readFile ./zsh/after-compinit.zsh;
+      + builtins.readFile ./zsh/after-compinit.zsh
+      + builtins.readFile ./zsh/p10k.zsh;
 
     history.ignoreSpace = true;
     history.extended = true;
