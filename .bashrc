@@ -10,14 +10,11 @@ alias bspwm='bspc'
 
 alias startmsf="sudo systemctl start postgresql.service & msfconsole --quiet -x \"db_connect ${USER}@msf\""
 
-#thefuck alias
-eval "$(thefuck --alias)"
 alias gdb='gdb -tui'
 alias firefox='firefox --new-window'
 alias sudo='sudo '
 alias ls='ls --color=auto'
 alias la='ls --color=auto --block-size=M -la'
-alias lock='/opt/scripts/fancyi3lock.sh'
 alias xclipcp="xclip -selection c"
 alias wifimenu="sudo wifi-menu"
 
