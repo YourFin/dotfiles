@@ -1,5 +1,4 @@
 { config, pkgs, ... }: {
-  xdg.configFile."zsh/.p10k.zsh".text = builtins.readFile ./zsh/p10k.zsh;
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
