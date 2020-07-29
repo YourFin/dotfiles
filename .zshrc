@@ -44,10 +44,9 @@ fi
 source $ZPLUG_HOME/init.zsh
 
 zplug "romkatv/powerlevel10k", as:theme, depth:1
-zplug "zpm-zsh/dropbox"
 zplug "djui/alias-tips"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplug "zdharma/fast-syntax-highlighting"
 
 zplug load
 
