@@ -1,5 +1,5 @@
 # dotfiles
-My *nix dotfiles, managed with home-manager
+My *nix dotfiles, managed with [home-manager](https://github.com/rycee/home-manager)
 
 ## Screenshot
 
