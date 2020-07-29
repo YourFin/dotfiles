@@ -1,7 +1,6 @@
-# Turn off the terminal bell in every way possible
-unsetopt beep
-[[ "$osType" == "Linux" ]] && xset -b &>/dev/null || true
-
+################################
+# Begin after-compinit.sh
+################################
 # More history options
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 
@@ -40,7 +39,15 @@ if which "direnv" &>/dev/null ; then
   eval "$(direnv hook zsh)"
 fi
 
+# Ocaml
+export OPAMROOT="$HOME/.local/usr/opam"
+test -r /home/pen/.local/usr/opam/opam-init/init.zsh && . /home/pen/.local/usr/opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
+
+
 [[ -e ~/.profile ]] && source ~/.profile
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f "$ZDOTDIR/.p10k.zsh" ]] || source "$ZDOTDIR/.p10k.zsh"
+################################
+# End before-compinit.sh
+################################

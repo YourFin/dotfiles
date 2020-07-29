@@ -6,8 +6,10 @@
     defaultKeymap = "viins";
     enableCompletion = true;
     enableAutosuggestions = true;
-    initExtraBeforeCompInit = builtins.readFile ./zsh/before-compinit.zsh;
-    initExtra = builtins.readFile ./zsh/after-compinit.zsh;
+    initExtraBeforeCompInit = builtins.readFile ./zsh/before-compinit.zsh
+      + builtins.readFile ./common-shell/early.sh;
+    initExtra = builtins.readFile ./common-shell/late.sh
+      + builtins.readFile ./zsh/after-compinit.zsh;
 
     history.ignoreSpace = true;
     history.extended = true;

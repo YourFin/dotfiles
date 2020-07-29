@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ../program-cfg/zsh.nix ];
+  imports = [ ../program-cfg/zsh.nix ../program-cfg/bash.nix ];
   home.packages = with pkgs; [
     bat
     exa

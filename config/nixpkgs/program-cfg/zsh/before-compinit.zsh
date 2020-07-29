@@ -1,3 +1,6 @@
+################################
+# Begin before-compinit.sh
+################################
 # Allows tramp to work by setting the terminal to be as boring as possible
 # Requires (setq tramp-terminal-type "tramp") somewhere in the emacs
 # load chain
@@ -32,3 +35,6 @@ if [[ -t 0 && $- = *i* ]]
 then
     stty -ixon
 fi
+################################
+# End before-compinit.sh
+################################
