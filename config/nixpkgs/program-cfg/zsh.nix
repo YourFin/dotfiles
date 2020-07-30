@@ -20,14 +20,8 @@
     plugins = [
       {
         name = "p10k";
-        file = "powerlevel10k.zsh-theme";
-        src = pkgs.fetchFromGitHub {
-          owner = "romkatv";
-          repo = "powerlevel10k";
-          rev = "v1.12.0"; # Last updated 8/2020
-          sha256 = "08zg4in70h3kray6lazszzy26gvil9w2cr6xmkbgjsv3k6w3k0jg";
-          fetchSubmodules = true;
-        };
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+        src = pkgs.zsh-powerlevel10k;
       }
       {
         name = "alias-tips";
