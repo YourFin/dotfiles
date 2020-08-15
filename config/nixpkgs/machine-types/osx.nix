@@ -9,5 +9,4 @@
     nerdfonts
   ];
   fonts.fontconfig.enable = true;
-  programs.emacs.enable = true;
 }

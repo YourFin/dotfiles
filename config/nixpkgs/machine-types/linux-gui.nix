@@ -19,7 +19,5 @@
   ];
   fonts.fontconfig.enable = true;
 
-  programs.emacs.enable = true;
-
   programs.firefox.enable = true;
 }

@@ -22,7 +22,12 @@
     # Emacs deps:
     shfmt
     nixfmt
+    cmake # For vterm
+    libvterm
   ];
+
+  programs.emacs.enable = true;
+
   programs.broot = {
     enable = true;
     enableZshIntegration = true;
