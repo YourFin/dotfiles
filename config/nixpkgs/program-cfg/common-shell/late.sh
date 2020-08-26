@@ -41,6 +41,9 @@ fi
 if command -v nix-shell >/dev/null 2>/dev/null; then
 	alias nix-shell="nix-shell --command zsh"
 fi
+if command -v rsync >/dev/null 2>/dev/null; then
+	alias rsync="rsync --progress"
+fi
 if command -v emacs >/dev/null 2>/dev/null &&
 	command -v pkill >/dev/null 2>/dev/null; then
 	alias restart-emacs="pushd ~ >/dev/null; while pkill emacs; do ; done && emacs --daemon ; popd >/dev/null"
