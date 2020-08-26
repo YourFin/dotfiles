@@ -7,6 +7,7 @@
     awscli
     nix-index
     nmap
+    lnav
 
     clang
     nodejs
