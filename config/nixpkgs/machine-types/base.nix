@@ -15,8 +15,6 @@
     vim
     zsh
 
-    python
-
     htop
   ];
 

@@ -21,11 +21,13 @@
     cabal2nix
     ormolu
 
+    python3
+
     # Emacs deps:
     shfmt
     nixfmt
     cmake # For vterm
-    libvterm
+    # libvterm
   ];
 
   programs.emacs.enable = true;
