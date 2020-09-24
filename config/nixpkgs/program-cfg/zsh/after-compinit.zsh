@@ -43,8 +43,6 @@ fi
 export OPAMROOT="$HOME/.local/usr/opam"
 test -r /home/pen/.local/usr/opam/opam-init/init.zsh && . /home/pen/.local/usr/opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
 
-
-[[ -e ~/.profile ]] && source ~/.profile
 ################################
 # End after-compinit.sh
 ################################
