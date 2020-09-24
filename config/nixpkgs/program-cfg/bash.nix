@@ -24,10 +24,10 @@ let
     export BASH_SILENCE_DEPRECATION_WARNING=1
 
     ## Prompt
-    # Make prompt part white, all comands green
-    WHITE="\[$(tput setaf 1)\]"
-    RESET="\[$(tput setaf 10)\]"
-    PROMPTLINE='[\u@\h \W]\$ '
+    # Make prompt part cyan, all comands white
+    WHITE="\[$(tput setaf 6)\]"
+    RESET="\[$(tput setaf 7)\]"
+    PROMPTLINE='[\u@\h \w]\n\$ '
     export PS1="''${WHITE}''${PROMPTLINE}''${RESET}"
 
     # Vi mode
