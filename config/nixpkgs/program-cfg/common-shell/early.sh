@@ -4,7 +4,9 @@
 # This file gets executed early in the shell load process;
 # notably, before compinit in zsh and before the interactive check in
 # bash
-
+#
+# WARNING: ALL OPERATIONS IN THIS FILE *MUST* BE IDEMPOTENT, AS THERE IS A
+# GOOD CHANCE THEY WILL BE RUN MORE THAN ONCE DURING INIT
 #######
 # Nix #
 #######
@@ -27,8 +29,8 @@ if command -v go >/dev/null 2>/dev/null; then
 fi
 
 if command -v ruby >/dev/null 2>/dev/null &&
-	ruby -e 'print Gem.user_dir' >/dev/null 2>/dev/null; then
-	export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin"
+	GEM_USER_DIR=$(ruby -e 'print Gem.user_dir' 2>/dev/null); then
+	export PATH="$PATH:$GEM_USER_DIR/bin"
 fi
 
 # Npm
@@ -41,10 +43,19 @@ export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
 	export PATH="$HOME/.emacs.d/bin/:$PATH"
 
 export PATH="$PATH:$HOME/.yarn/bin"
-[ -e "/home/pen/.local/usr/cargo/bin:$PATH" ] &&
+[ -e "/home/pen/.local/usr/cargo/bin" ] &&
 	export PATH="/home/pen/.local/usr/cargo/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+local_machine_rc_location="$HOME/.config/localrc.sh"
+if [ -f "$local_machine_rc_location" ]; then
+	source "$local_machine_rc_location"
+	local_machine_custom_early_init
+	local_machine_rc_exists='true'
+else
+	local_machine_rc_exists='false'
+fi
 
 #########################
 # End early.sh
