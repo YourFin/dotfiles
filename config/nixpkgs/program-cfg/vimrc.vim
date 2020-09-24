@@ -2,6 +2,24 @@ set nocompatible              " be iMproved, required
 
 let s:this_file = expand('<sfile>')
 
+if has('nvim')
+   let g:vimDir = expand("~/.config/nvim")
+else
+   let g:vimDir = expand("~/.vim")
+endif
+
+""Touch relative to vim directory
+function! Touch(name)
+	let l:filepath = expand(g:vimDir . "/" . a:name)
+	if has('unix')
+		call system("touch " . l:filepath)
+	else
+		"create file on windows
+		call system("copy NUL " . l:filepath)
+	endif
+	return
+endfunction
+
 if empty(glob(expand(g:vimDir . '/spell')))
 	call mkdir(glob(expand(g:vimDir . '/spell')))
 endif
@@ -205,26 +223,6 @@ endfunction
 
 """Gundo
 noremap <F9> :GundoToggle<CR>
-
-"""Easymotion
-    "Remap J & K to leader J K
-    noremap <Leader>j J
-    noremap <Leader>k K
-
-    map <silent> L <Plug>(easymotion-lineforward)
-    map <silent> J <Plug>(easymotion-j)
-    map <silent> K <Plug>(easymotion-k)
-    map <silent> H <Plug>(easymotion-linebackward)
-
-    let g:EasyMotion_keys='aoeuihd,.k'
-
-
-
-"""Multiple Cursors
-
-" Have escape not leave multiple cursors unless in 'normal' mode
-let g:multi_cursor_exit_from_visual_mode = 0
-let g:multi_cursor_exit_from_insert_mode = 0
 
 
 if has("autocmd") && exists("+omnifunc")
