@@ -20,6 +20,8 @@ let
     export SAVEHIST=1000
     export HISTFILESIZE=1000
 
+    # Shut up osx deprication warning
+    export BASH_SILENCE_DEPRECATION_WARNING=1
 
     ## Prompt
     # Make prompt part white, all comands green
