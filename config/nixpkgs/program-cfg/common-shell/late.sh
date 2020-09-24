@@ -138,9 +138,11 @@ local_machine_custom_early_init () {
 	#
 	# Everything in this file /must/ be idempotent, as there is a decent chance
 	# it will get executed multiple times in the init process
+	: # Prevents bash from getting pissy about a syntax error
 }
 local_machine_custom_init () {
     # Put things in this function that can be run later in the init process.
+	: # Prevents bash from getting pissy about a syntax error
 }
 # Do /not/ anything to this file outside of the pre-defined functions
 EOF
