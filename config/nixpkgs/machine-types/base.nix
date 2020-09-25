@@ -12,6 +12,7 @@
     ncdu
     git
     ripgrep
+    telnet
     vim
     zsh
 
