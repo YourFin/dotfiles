@@ -20,10 +20,8 @@ fi
 MAX_SEPERATOR_WIDTH=60
 draw_line () {
     print -Pn "%B%F{249}"
-    repeat $(( COLUMNS < MAX_SEPERATOR_WIDTH ? COLUMNS : MAX_SEPERATOR_WIDTH ))
-    do
-        echo -n "$DRAW_LINE_CHAR"
-    done
+    # https://superuser.com/a/86342
+    printf "$DRAW_LINE_CHAR"'%.0s' {1..$(( COLUMNS < MAX_SEPERATOR_WIDTH ? COLUMNS : MAX_SEPERATOR_WIDTH ))}
     print -Pn "%F{reset}%b\n"
 }
 
