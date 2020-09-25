@@ -19,6 +19,14 @@
     htop
   ];
 
+  home.file.".config" = {
+    source = ../share/dot/config;
+    recursive = true;
+  };
+
+  home.file.".inputrc".source = ../share/dot/inputrc;
+  home.file.".gitconfig".source = ../share/dot/gitconfig;
+
   programs.direnv = {
     enable = true;
     #enableNixDirenvIntegration = true;

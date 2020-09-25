@@ -15,6 +15,7 @@ config/htop
 config/fontforge
 config/QDirStat
 config/blender
+local.nix
 
 config/.mono/
 config/.tmux/

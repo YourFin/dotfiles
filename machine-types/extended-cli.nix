@@ -30,6 +30,8 @@
     # libvterm
   ];
 
+  home.file.".npmrc".source = ../share/dot/npmrc;
+
   programs.emacs.enable = true;
 
   programs.broot = {
