@@ -81,7 +81,7 @@ if [ -f "/etc/arch-release" ]; then
 fi
 
 # Kitty terminal emulator ssh fix:
-if [[ "$TERM" == "xterm-kitty" ]]; then
+if [[ "$TERM" == "xterm-kitty" ]] && command -v kitty >/dev/null 2>/dev/null; then
 	ssh() {
 		kitty +kitten ssh "$@"
 	}
