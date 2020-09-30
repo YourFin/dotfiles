@@ -26,6 +26,7 @@
     # Emacs deps:
     shfmt
     nixfmt
+    poppler
     cmake # For vterm
     # libvterm
   ];
