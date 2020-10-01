@@ -3,33 +3,35 @@
 {
   imports = [ ./base.nix ];
 
-  home.packages = with pkgs; [
-    awscli
-    nix-index
-    nmap
-    lnav
+  home.packages = with pkgs;
+    [
+      awscli
+      nix-index
+      nmap
+      lnav
 
-    clang
-    nodejs
-    ruby
+      clang
+      nodejs
+      ruby
 
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
+      aspell
+      aspellDicts.en
+      aspellDicts.en-computers
 
-    # Haskell
-    cabal2nix
-    ormolu
+      # Haskell
+      cabal2nix
+      ormolu
 
-    python3
+      python3
 
-    # Emacs deps:
-    shfmt
-    nixfmt
-    poppler
-    cmake # For vterm
-    # libvterm
-  ];
+      # Emacs deps:
+      shfmt
+      nixfmt
+      poppler
+      cmake # For vterm
+      # libvterm
+    ]
+    ++ (if builtins.currentSystem == "x86_64-darwin" then [ ] else [ strace ]);
 
   home.file.".npmrc".source = ../share/dot/npmrc;
 
