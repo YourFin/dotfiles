@@ -3,7 +3,6 @@
 {
   imports = [ ../program-cfg/kitty.nix ./extended-cli.nix ];
   home.packages = with pkgs; [
-    plasma5.bluedevil
     chromium
     discord
     flameshot
