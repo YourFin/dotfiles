@@ -59,3 +59,5 @@
   :recipe (:host github :repo "YourFin/evil-deliberate-clipboard"))
 
 (package! yatemplate)
+
+(package! dhall-mode)
