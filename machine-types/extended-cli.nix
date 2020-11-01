@@ -21,6 +21,7 @@
       # Haskell
       cabal2nix
       ormolu
+      stack
 
       python3
 
