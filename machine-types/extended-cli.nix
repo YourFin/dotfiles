@@ -34,6 +34,7 @@
     ++ (if builtins.currentSystem == "x86_64-darwin" then [ ] else [ strace ]);
 
   home.file.".npmrc".source = ../share/dot/npmrc;
+  home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   programs.emacs.enable = true;
 
