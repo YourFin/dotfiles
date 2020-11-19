@@ -9,6 +9,7 @@
       nix-index
       nmap
       lnav
+      jq
 
       clang
       nodejs
