@@ -10,6 +10,8 @@
       nmap
       lnav
       jq
+      dhall
+      dhall-json
 
       clang
       nodejs
