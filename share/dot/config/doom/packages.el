@@ -61,3 +61,5 @@
 (package! yatemplate)
 
 (package! dhall-mode)
+
+(package! emojify)
