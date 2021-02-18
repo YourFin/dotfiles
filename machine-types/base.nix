@@ -16,6 +16,7 @@
     vim
     zsh
 
+    nixFlakes
     htop
   ];
 
