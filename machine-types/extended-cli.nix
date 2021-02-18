@@ -26,6 +26,10 @@
       ormolu
       stack
 
+      rustc
+      cargo
+      clippy
+
       python3
 
       # Emacs deps:
