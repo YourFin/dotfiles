@@ -48,6 +48,12 @@ if command -v emacs >/dev/null 2>/dev/null &&
 	command -v pkill >/dev/null 2>/dev/null; then
 	alias restart-emacs="pushd ~ >/dev/null; while pkill emacs; do ; done && emacs --daemon ; popd >/dev/null"
 fi
+if command -v python3 >/dev/null 2>/dev/null; then
+	alias urldecode='python3 -c "import sys, urllib.parse as ul; \
+    print(ul.unquote_plus(sys.argv[1]))"'
+	alias urlencode='python3 -c "import sys, urllib.parse as ul; \
+		print(ul.quote_plus(sys.argv[1]))"'
+fi
 
 ####################
 # Custom Functions #
