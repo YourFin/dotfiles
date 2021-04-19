@@ -31,6 +31,7 @@
      }; \
      f"
   dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)"%an" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+  detach = !git checkout "$(git rev-parse HEAD)"
 [init]
   defaultBranch = main
 [include]
