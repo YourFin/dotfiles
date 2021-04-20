@@ -24,14 +24,18 @@ export LANG=en_US.UTF-8
 # Path Setting #
 ################
 
-if command -v go >/dev/null 2>/dev/null; then
+export GOPATH="$HOME/g/go"
+[ -e "$GOPATH/bin" ] &&
 	export PATH="$PATH:$GOPATH/bin"
-fi
 
 if command -v ruby >/dev/null 2>/dev/null &&
 	GEM_USER_DIR=$(ruby -e 'print Gem.user_dir' 2>/dev/null); then
 	export PATH="$PATH:$GEM_USER_DIR/bin"
 fi
+
+export CARGO_HOME="$HOME/.local/cargo"
+[ -e "$CARGO_HOME/bin/" ] &&
+	export PATH="$PATH:$CARGO_HOME/bin"
 
 # Npm
 [[ -d "$HOME/.local/usr/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/usr/npm/global/bin/"
@@ -43,8 +47,6 @@ export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
 	export PATH="$HOME/.emacs.d/bin/:$PATH"
 
 export PATH="$PATH:$HOME/.yarn/bin"
-[ -e "/home/pen/.local/usr/cargo/bin" ] &&
-	export PATH="/home/pen/.local/usr/cargo/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
