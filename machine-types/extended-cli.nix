@@ -29,6 +29,7 @@
       rustc
       cargo
       clippy
+      nix-prefetch-scripts
 
       python3
 
