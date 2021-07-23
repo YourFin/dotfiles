@@ -39,7 +39,7 @@ fi
 
 # Ocaml
 export OPAMROOT="$HOME/.local/usr/opam"
-test -r /home/pen/.local/usr/opam/opam-init/init.zsh && . /home/pen/.local/usr/opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
+test -r "$HOME"/.local/usr/opam/opam-init/init.zsh && . "$HOME"/.local/usr/opam/opam-init/init.zsh >/dev/null 2>/dev/null || true
 
 ################################
 # End after-compinit.sh
