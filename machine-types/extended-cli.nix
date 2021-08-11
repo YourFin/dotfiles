@@ -39,8 +39,12 @@
       poppler
       cmake # For vterm
       # libvterm
-    ]
-    ++ (if builtins.currentSystem == "x86_64-darwin" then [ ] else [ strace ]);
+    ] ++ (if builtins.currentSystem == "x86_64-darwin" then
+      [ ]
+    else [
+      strace
+      wcc # Witchcraft compiler collection
+    ]);
 
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 

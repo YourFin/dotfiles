@@ -6,6 +6,10 @@
     [ ../program-cfg/zsh.nix ../program-cfg/bash.nix ../program-cfg/vim.nix ];
   home.packages = with pkgs; [
     bat
+    (import ../custom/bintools.nix {
+      bintools = bintools;
+      mkDerivation = stdenv.mkDerivation;
+    })
     exa
     fd
     fzf
