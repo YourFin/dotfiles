@@ -10,8 +10,9 @@
     exa
     fd
     fzf
-    ncdu
     git
+    mosh
+    ncdu
     ripgrep
     telnet
     vim
