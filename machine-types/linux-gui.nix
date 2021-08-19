@@ -12,7 +12,7 @@
     spotify
     vlc
 
-    nerdfonts
+    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
 
     youtube-dl
   ];

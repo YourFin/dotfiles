@@ -6,7 +6,7 @@
     coreutils
     youtube-dl
 
-    nerdfonts
+    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
   ];
   fonts.fontconfig.enable = true;
 }
