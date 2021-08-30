@@ -17,9 +17,7 @@
       nodejs
       ruby
 
-      aspell
-      aspellDicts.en
-      aspellDicts.en-computers
+      (aspellWithDicts (dicts: [ dicts.en dicts.en-computers ]))
 
       # Haskell
       cabal2nix
