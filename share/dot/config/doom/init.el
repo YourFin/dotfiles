@@ -82,6 +82,10 @@
        (spell +everywhere) ; tasing you for misspelling mispelling
        grammar           ; tasing grammar mistake every you make
 
+       :os
+       (:if IS-MAC macos)
+       tty
+
        :tools
        ;;ansible
        debugger          ; FIXME stepping through code, to help you add bugs
