@@ -14,6 +14,7 @@
       dhall-json
 
       clang
+      clang-tools
       nodejs
       ruby
 
@@ -36,6 +37,8 @@
       nixfmt
       poppler
       cmake # For vterm
+      shellcheck
+      editorconfig-core-c
       # libvterm
     ] ++ (if builtins.currentSystem == "x86_64-darwin" then
       [ ]
