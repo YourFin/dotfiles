@@ -43,9 +43,9 @@
 (load! "./langs/haskell.el")
 ;;(load! "./langs/org.el")
 
-;; TODO: Find somewhere to put this
+;; TODO: Find somewhere else to put this
 (after! hydra
-  (defun get-face-with-mouse (event)
+  (defun get-face-with-mouse--main (event)
     (interactive "@e")
     (let ((clicked-point (posn-point (event-start event))))
       ;; Posn-area will return non-nil if given a non-buffer area
@@ -58,10 +58,13 @@
         (message "Clicked elsewhere"))))
 
   (defhydra hydra-get-face-with-mouse (nil nil :hint nil)
-    "
-Right or middle click to see the face at a given point in a buffer"
-    ("<mouse-2>" get-face-with-mouse)
-    ("<mouse-3>" get-face-with-mouse)))
+    "Right or middle click to see the face at a given point in a buffer"
+    ("<mouse-2>" get-face-with-mouse--main)
+    ("<mouse-3>" get-face-with-mouse--main))
+  (defun get-face-with-mouse ()
+    "Find the the face of something by clicking"
+    (interactive)
+    (hydra-get-face-with-mouse/body)))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
