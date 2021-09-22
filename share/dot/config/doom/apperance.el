@@ -37,11 +37,6 @@
 (setq web-mode-code-indent-offset 2)
 (setq css-indent-offset 2)
 
-(use-package emojify
-  :hook (after-init . global-emojify-mode)
-  :custom
-  (emojify-emojy-styles '('unicode) "Only display unicode emojis")
-  (emojify-display-style 'image "Use image display"))
-
 ;; Allow which-key to use the right side if there's room
-(which-key-setup-side-window-right-bottom)
+(after! which-key
+        (which-key-setup-side-window-right-bottom))
