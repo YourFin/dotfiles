@@ -28,9 +28,9 @@
         src = pkgs.fetchFromGitHub {
           owner = "djui";
           repo = "alias-tips";
-          # Last updated 8/2020
-          rev = "40d8e206c6d6e41e039397eb455bedca578d2ef8";
-          sha256 = "17cifxi4zbzjh1damrwi2fyhj8x0y2m2qcnwgh4i62m1vysgv9xb";
+          # Last updated 11/2021
+          rev = "45e4e97ba4ec30c7e23296a75427964fc27fb029";
+          sha256 = "1br0gl5jishbgi7whq4kachlcw6gjqwrvdwgk8l39hcg6gwkh4ji";
         };
       }
       {
@@ -54,10 +54,10 @@
       {
         name = "fast-syntax-highlighting";
         src = pkgs.fetchFromGitHub {
-          owner = "zdharma";
+          owner = "zdharma-continuum";
           repo = "fast-syntax-highlighting";
-          rev = "865566ce48cfd9bb5cdbaf5b1a74b0a675f4ccd4";
-          sha256 = "00d6nssh73k26w69fdp8iff1xghyr8ziy5w5a2li0z9lvm6j0nik";
+          rev = "9a5a4a5199e7e480009e10433d0d8c5be91f31d4";
+          sha256 = "16vvmb18qny78sdrild4ksxp4776hlajps5al5b985x7zis7iqjd";
         };
       }
     ];
