@@ -18,5 +18,11 @@
   ];
   fonts.fontconfig.enable = true;
 
+  services.emacs = {
+    enable = true;
+    client.enable = true;
+  };
+  services.nextcloud-client.enable = true;
+
   programs.firefox.enable = true;
 }
