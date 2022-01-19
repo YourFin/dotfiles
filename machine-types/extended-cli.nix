@@ -12,6 +12,7 @@
       jq
       dhall
       dhall-json
+      diffoscope
 
       clang
       clang-tools
