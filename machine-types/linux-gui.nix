@@ -23,6 +23,7 @@
     client.enable = true;
   };
   services.nextcloud-client.enable = true;
+  services.lorri.enable = true;
 
   programs.firefox.enable = true;
 }
