@@ -13,6 +13,8 @@
       dhall
       dhall-json
       diffoscope
+      unzip
+      zip
 
       clang
       clang-tools
