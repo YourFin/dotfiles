@@ -6,6 +6,7 @@
   home.packages = with pkgs;
     [
       awscli
+      github-cli
       nix-index
       nmap
       lnav
