@@ -38,7 +38,7 @@ export CARGO_HOME="$HOME/.local/cargo"
 	export PATH="$PATH:$CARGO_HOME/bin"
 
 # Npm
-[[ -d "$HOME/.local/usr/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/usr/npm/global/bin/"
+[[ -d "$HOME/.local/share/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/share/npm/global/bin/"
 
 # Manually installed local stuff
 export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
