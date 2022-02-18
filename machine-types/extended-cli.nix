@@ -10,6 +10,7 @@
       nix-index
       nmap
       lnav
+      graphviz
       jq
       dhall
       dhall-json
