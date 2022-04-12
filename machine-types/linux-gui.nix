@@ -5,6 +5,7 @@
   home.packages = with pkgs; [
     chromium
     bitwarden
+    bitwarden-cli
     discord
     flameshot
     keepass

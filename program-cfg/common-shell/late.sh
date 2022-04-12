@@ -54,6 +54,9 @@ if command -v python3 >/dev/null 2>/dev/null; then
 	alias urlencode='python3 -c "import sys, urllib.parse as ul; \
 		print(ul.quote_plus(sys.argv[1]))"'
 fi
+if command -v bw >/dev/null 2>/dev/null; then
+	alias bitwarden-cli="bw"
+fi
 
 ####################
 # Custom Functions #
