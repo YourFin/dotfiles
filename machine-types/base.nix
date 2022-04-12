@@ -14,7 +14,7 @@
     mosh
     ncdu
     ripgrep
-    telnet
+    inetutils
     vim
     zsh
 
