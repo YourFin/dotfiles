@@ -32,7 +32,7 @@
 (load! "./apperance.el")
 (load! "./editing.el")
 (load! "./space-binds.el")
-(load! "./yatemplate.el")
+(load! "./snippets.el")
 
 ;;; "Languages". This was called major modes in previous iterations
 ;;; of my emacs config. That was more confusing than languages, even though
