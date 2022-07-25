@@ -21,6 +21,9 @@
 ;; `load-theme' function. These are the defaults.
 (setq doom-theme 'doom-one)
 
+(add-hook! vterm-mode
+           (buffer-face-set (font-spec :family "FiraMono Nerd Font Mono")))
+
 ;;; Scrolling
 ;; Make scrolling happen not quite at the bottom of the screen
 (setq scroll-margin 3)

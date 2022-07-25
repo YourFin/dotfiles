@@ -55,4 +55,5 @@
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   programs.emacs.enable = true;
+  programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
 }
