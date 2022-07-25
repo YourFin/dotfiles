@@ -56,4 +56,9 @@
 
   programs.emacs.enable = true;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
+  home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD ln -s $VERBOSE_ARG ${
+      builtins.toPath ../program-cfg/doom
+    } ${config.xdg.configHome}
+  '';
 }
