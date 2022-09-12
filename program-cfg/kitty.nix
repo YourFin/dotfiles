@@ -37,6 +37,7 @@
       font_size = "11.0";
       tab_bar_edge = "top";
       tab_bar_style = "separator";
+      shell_integration = "no-rc";
     };
   };
 }
