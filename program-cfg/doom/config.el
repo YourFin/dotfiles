@@ -28,6 +28,8 @@
 ;;; Tell tramp to set its TERM to 'tramp'
 (setq tramp-terminal-type "tramp")
 
+(setq org-roam-directory "~/n")
+
 ;;; Load the other damn files
 (load! "./apperance.el")
 (load! "./editing.el")
