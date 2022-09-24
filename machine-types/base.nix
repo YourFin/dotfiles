@@ -11,8 +11,10 @@
     fd
     fzf
     git
+    iftop
     mosh
     ncdu
+    nethogs
     ripgrep
     inetutils
     vim
