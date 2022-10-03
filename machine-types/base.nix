@@ -14,7 +14,6 @@
     iftop
     mosh
     ncdu
-    nethogs
     ripgrep
     inetutils
     vim

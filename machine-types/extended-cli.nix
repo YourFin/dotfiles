@@ -49,6 +49,7 @@
       [ ]
     else [
       strace
+      nethogs
       wcc # Witchcraft compiler collection
     ]);
 
