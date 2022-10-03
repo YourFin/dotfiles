@@ -14,7 +14,6 @@
       jq
       dhall
       dhall-json
-      diffoscope
       unzip
       zip
 
@@ -50,6 +49,7 @@
     else [
       strace
       nethogs
+      diffoscope
       wcc # Witchcraft compiler collection
     ]);
 
