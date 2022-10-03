@@ -8,10 +8,9 @@
 if command -v unsetopt >/dev/null 2>/dev/null; then
 	unsetopt beep
 fi
-if [[ "$osType" == "Linux" ]]; then
+if command -v xset >/dev/null 2>/dev/null; then
 	xset -b &
 fi
->/dev/null || true
 
 ###########
 # Aliases #
