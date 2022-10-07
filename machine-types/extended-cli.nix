@@ -9,6 +9,7 @@
       github-cli
       nix-index
       nmap
+      nix-prefetch-scripts
       lnav
       graphviz
       jq
@@ -19,8 +20,12 @@
 
       clang
       clang-tools
+      zig
+
       nodejs
+      python3
       ruby
+      swiProlog
 
       (aspellWithDicts (dicts: [ dicts.en dicts.en-computers ]))
 
@@ -32,11 +37,6 @@
       rustc
       cargo
       clippy
-      nix-prefetch-scripts
-
-      python3
-
-      zig
 
       # Emacs deps:
       shfmt
