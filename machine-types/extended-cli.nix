@@ -36,6 +36,8 @@
 
       python3
 
+      zig
+
       # Emacs deps:
       shfmt
       nixfmt
