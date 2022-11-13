@@ -190,3 +190,6 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+;; Per the evil docs, this needs to be set very early
+(setq evil-respect-visual-line-mode t)

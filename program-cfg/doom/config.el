@@ -30,6 +30,8 @@
 
 (setq org-roam-directory "~/n")
 
+(setq evil-want-fine-undo t)
+
 ;;; Load the other damn files
 (load! "./apperance.el")
 (load! "./editing.el")
