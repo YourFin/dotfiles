@@ -1,0 +1,20 @@
+# Locates the parent of the current directory $1 (the first argument).
+#
+# This script (or some permeutation of it) gets used a /lot/ in custom defined
+# brazil build systems, where you'll see a line like
+#   package_root="$(findup Config)"
+# or
+#   cd "$(findup Config)"
+# to try and find or move to (respectively) the root of the current brazil
+# package.
+
+pwd="$(pwd)"
+start="${pwd}"
+while [ ! "${pwd}" -ef .. ]; do
+	[ -e "$1" ] && echo -n "${pwd}" && exit
+	cd .. || exit 1
+	pwd="$(pwd)"
+done
+
+echo "Could not find '$1' in any sub-directory of '${start}'" 1>&2
+exit 1

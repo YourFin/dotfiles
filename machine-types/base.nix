@@ -18,6 +18,7 @@
     inetutils
     vim
     zsh
+    (callPackage ../scripts { })
 
     htop
   ];

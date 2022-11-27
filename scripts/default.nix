@@ -1,4 +1,4 @@
-{ stdenv, coreutils, pkgs, ... }:
+{ lib, stdenv, coreutils, pkgs }:
 
 let
   attrsToList = attrset:
@@ -16,8 +16,14 @@ let
   interpreterPathSet = with builtins;
     mapAttrs (k: v: (toString v.outPath) + "/bin/" + k) neededInterpreters;
 in stdenv.mkDerivation (interpreterPathSet // {
-  name = "yourfin-shell-scripts";
+  pname = "yourfin-shell-scripts";
+  version = "0.1";
   builder = ./builder.sh;
   src = ./.;
   coreutils = pkgs.coreutils.outPath;
+  meta = with lib; {
+    homepage = "https://github.com/yourfin/dotfiles/scripts";
+    description = "Throw away shell scripts";
+    license = licenses.unlicense;
+  };
 })
