@@ -38,6 +38,9 @@
       cargo
       clippy
 
+      # Scala lang server
+      metals
+
       # Emacs deps:
       shfmt
       nixfmt

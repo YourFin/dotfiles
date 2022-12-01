@@ -43,3 +43,5 @@
 ;; Allow which-key to use the right side if there's room
 (after! which-key
         (which-key-setup-side-window-right-bottom))
+
+(setq treemacs-collapse-dirs 50)

@@ -63,3 +63,4 @@
 (package! dhall-mode)
 
 (package! emojify)
+(package! straight :pin "3eca39d")
