@@ -1,0 +1,3 @@
+if ! test-cmd-installed "$1" ; then
+  echo "command $1 not installed; please install it before proceeding"
+fi

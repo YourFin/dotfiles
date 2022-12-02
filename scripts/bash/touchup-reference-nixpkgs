@@ -1,0 +1,29 @@
+set -euo pipefail
+if [ ! -d "$HOME/g" ]; then
+    echo "No ~/g directory; aborting"
+    exit 1
+fi
+dir="$HOME/g/.nixpkgs-reference"
+if [ ! -d "$dir" ]; then
+    echo "cloning nixpkgs..."
+    if
+        test-cmd-installed gh && gh auth status &>/dev/null
+    then
+        gh repo clone "NixOS/nixpkgs" "$dir" -- --filter=tree:0
+    else
+        git clone --filter=tree:0 "https://github.com/NixOS/nixpkgs.git" "$dir"
+    fi
+    pushd "$dir" &>/dev/null
+else
+    pushd "$dir" &>/dev/null
+    curtime=$(date +%s)
+    filetime=$(stat $dir -c %Y)
+    timediff=$(expr $curtime - $filetime)
+    if [ $timediff -gt $((2 * 60 * 60 * 24)) ] ; then
+        echo "updating reference nixpkgs"
+        git fetch || echo "unable to fetch fresh nixpkgs; will not try again for 2 days"
+        touch "$dir"
+    fi
+fi
+git reset --hard "${1:-master}"
+popd &>/dev/null

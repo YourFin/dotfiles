@@ -1,0 +1,7 @@
+set -euo pipefail
+
+touchup-reference-nixpkgs
+dir="$HOME/g/.nixpkgs-reference"
+pushd $dir &>/dev/null
+rg "$@"
+popd &>/dev/null
