@@ -48,3 +48,4 @@ cat << EOF > "$script_dir/hosts/$(hostname).nix"
   system = "$system";
 }
 EOF
+ln -s "./hosts/$(hostname).nix" "$script_dir/localhost.nix"
