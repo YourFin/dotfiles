@@ -45,3 +45,21 @@
         (which-key-setup-side-window-right-bottom))
 
 (setq treemacs-collapse-dirs 50)
+
+(after! rainbow-delimiters
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (setq rainbow-delimiters-max-face-count 8)
+  ;;more rainbow-ey rainbow delimiters. they cycle around the
+  ;;color wheel approximately every three colors with a bit of offset. 256 color
+  ;;term compatible
+  (set-face-foreground 'rainbow-delimiters-depth-1-face "#5fd7ff")
+  (set-face-foreground 'rainbow-delimiters-depth-2-face "#ffaf00")
+  (set-face-foreground 'rainbow-delimiters-depth-3-face "#d75fff")
+  (set-face-foreground 'rainbow-delimiters-depth-4-face "#87ff00")
+  (set-face-foreground 'rainbow-delimiters-depth-5-face "#ff5f00")
+  (set-face-foreground 'rainbow-delimiters-depth-6-face "#0087ff")
+  (set-face-foreground 'rainbow-delimiters-depth-7-face "#ffff00")
+  (set-face-foreground 'rainbow-delimiters-depth-8-face "#ff87ff"))
+
+;; Prevent show-paren-mode from clobbering the rainbow color
+(custom-set-faces! '(show-paren-match :foreground unspecified))
