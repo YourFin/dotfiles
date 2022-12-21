@@ -7,6 +7,7 @@ let
     lib = "${prefix}/lib"; # npm gets pissy about this folder not existing
     logs = "${npm}/logs";
     store = "${npm}/store";
+    cache = "${npm}/cache";
   };
 in {
   home.activation.initNpmFolders = lib.hm.dag.entryAfter [ "writeBoundary" ] (''
@@ -24,6 +25,7 @@ in {
     prefix=${dirs.prefix}
     store=${dirs.store}
     logs-dir=${dirs.logs}
+    cache=${dirs.cache}
     shell=zsh
   '';
 }
