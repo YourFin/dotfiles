@@ -3,9 +3,10 @@
 let
   dirs = rec {
     npm = "${config.xdg.cacheHome}/npm";
-    prefix = "${npm}/global/";
-    logs = "${npm}/logs/";
-    store = "${npm}/store/";
+    prefix = "${npm}/global";
+    lib = "${prefix}/lib"; # npm gets pissy about this folder not existing
+    logs = "${npm}/logs";
+    store = "${npm}/store";
   };
 in {
   home.activation.initNpmFolders = lib.hm.dag.entryAfter [ "writeBoundary" ] (''
