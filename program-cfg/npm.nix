@@ -9,7 +9,9 @@ let
   };
 in {
   home.activation.initNpmFolders = lib.hm.dag.entryAfter [ "writeBoundary" ] (''
-    if [ ''${VERBOSE_ARG+x} ]; then
+    # Purposely not differentiating between unset arg
+    # and empty, as they're the same here
+    if ! [ -z "$VERBOSE_ARG" ]; then
       VERBOSE_ARG="-v"
     fi
 
