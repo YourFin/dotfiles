@@ -6,15 +6,16 @@
   home.packages = with pkgs;
     [
       awscli
-      github-cli
-      nix-index
-      nmap
-      nix-prefetch-scripts
-      lnav
-      graphviz
-      jq
       dhall
       dhall-json
+      github-cli
+      graphviz
+      jq
+      lnav
+      nix-index
+      nix-prefetch-scripts
+      nmap
+      pandoc
       unzip
       syncthing
       zip
