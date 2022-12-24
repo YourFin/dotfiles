@@ -16,6 +16,7 @@
       dhall
       dhall-json
       unzip
+      syncthing
       zip
 
       clang
