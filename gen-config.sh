@@ -48,4 +48,6 @@ cat << EOF > "$script_dir/hosts/$(hostname).nix"
   system = "$system";
 }
 EOF
+
+# Set up default symlink
 ln -s "./hosts/$(hostname).nix" "$script_dir/localhost.nix"
