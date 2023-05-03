@@ -8,6 +8,7 @@
     bitwarden-cli
     discord
     flameshot
+    gimp
     keepass
     nextcloud-client
     pdfarranger
