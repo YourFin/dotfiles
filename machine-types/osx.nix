@@ -5,6 +5,8 @@
   home.packages = with pkgs; [
     coreutils
     youtube-dl
+    swiftdefaultapps
+    rectangle
 
     (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
   ];
