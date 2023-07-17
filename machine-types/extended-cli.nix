@@ -51,7 +51,7 @@
       shellcheck
       editorconfig-core-c
       # libvterm
-    ] ++ (if builtins.currentSystem == "x86_64-darwin" then
+    ] ++ (if (lib.systems.elaborate builtins.currentSystem).isDarwin then
       [ ]
     else [
       strace
