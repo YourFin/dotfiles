@@ -11,7 +11,13 @@
 # Nix #
 #######
 
+# Single user mode
 if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# Multi user
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+	. '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
 
 export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
