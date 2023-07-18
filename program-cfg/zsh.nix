@@ -5,6 +5,7 @@
     defaultKeymap = "viins";
     enableCompletion = true;
     enableAutosuggestions = true;
+    enableVteIntegration = true;
     initExtraBeforeCompInit = builtins.readFile ./common-shell/early.sh
       + builtins.readFile ./zsh/before-compinit.zsh;
     # Note that we inline p10k.zsh instead of sourcing it
