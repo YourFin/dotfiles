@@ -36,4 +36,10 @@
     #enableNixDirenvIntegration = true;
   };
 
+  programs.mcfly = {
+    enable = true;
+    fuzzySearchFactor = 4;
+    keyScheme = "vim";
+  };
+
 }
