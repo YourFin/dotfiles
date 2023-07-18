@@ -19,7 +19,7 @@
     vim
     zsh
     (callPackage ../scripts { })
-
+    (callPackage ../program-cfg/path-extractor { })
     htop
   ];
 
