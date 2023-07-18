@@ -68,5 +68,7 @@
       builtins.toPath ../program-cfg/doom
     } ${config.xdg.configHome}
   '';
+
+  programs.man.generateCaches = true;
   programs.nix-index.enable = true;
 }
