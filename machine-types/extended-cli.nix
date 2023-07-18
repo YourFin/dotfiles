@@ -12,7 +12,6 @@
       graphviz
       jq
       lnav
-      nix-index
       nix-prefetch-scripts
       nmap
       pandoc
@@ -69,4 +68,5 @@
       builtins.toPath ../program-cfg/doom
     } ${config.xdg.configHome}
   '';
+  programs.nix-index.enable = true;
 }
