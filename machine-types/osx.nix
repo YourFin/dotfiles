@@ -10,5 +10,6 @@
 
     (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
   ];
+  services.emacs = { client.enable = true; };
   fonts.fontconfig.enable = true;
 }
