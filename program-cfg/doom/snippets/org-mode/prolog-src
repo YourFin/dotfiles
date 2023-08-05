@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: Org mode prolog snippet
+# key: .prolog
+# expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
+# condition: (not (string-match "[ \t]" (buffer-substring-no-properties (line-beginning-position) (point))))
+# --
+
+#+BEGIN_SRC prolog
+$0
+#+END_SRC
