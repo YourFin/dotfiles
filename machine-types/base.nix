@@ -17,6 +17,7 @@
     ripgrep
     inetutils
     vim
+    screen
     zsh
     (callPackage ../scripts { })
     (callPackage ../program-cfg/path-extractor { })
