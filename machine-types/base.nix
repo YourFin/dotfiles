@@ -45,4 +45,10 @@
     keyScheme = "vim";
   };
 
+  home.activation."remove temporary .config/nixpkgs/config.nix file" =
+    let fp = "${config.xdg.configHome}/nixpkgs/config.nix";
+    in lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+      [[ -f "${fp}" ]] && ! [[ -L "${fp}" ]] &&
+        $DRY_RUN_CMD rm $VERBOSE_ARG ${config.xdg.configHome}/nixpkgs/config.nix
+    '';
 }
