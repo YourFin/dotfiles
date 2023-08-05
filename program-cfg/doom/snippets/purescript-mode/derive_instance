@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: derive_instance
+# uuid: __derive_instance_purescript
+# key: derive
+# condition: t
+# expand-env: ((yas-indent-line nil) (indent-according-to-mode nil))
+# condition: (not (string-match "[ \t]" (buffer-substring-no-properties (line-beginning-position) (point))))
+# --
+
+derive instance $2$1 :: ${2:Eq} ${1:Foo}

@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: derive_show
+# uuid: __derive_show_purescript
+# key: derive_show
+# condition: t
+# expand-env: ((yas-indent-line nil) (indent-according-to-mode nil))
+# condition: (not (string-match "[ \t]" (buffer-substring-no-properties (line-beginning-position) (point))))
+# --
+derive instance generic$1 :: Generic ${1:Foo} _
+instance show$1 :: Show $1 where
+  show = genericShow
+$0

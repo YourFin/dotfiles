@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: derive_data
+# uuid: __derive_data_purescript
+# key: derive_data
+# condition: t
+# expand-env: ((yas-indent-line nil) (indent-according-to-mode nil))
+# condition: (not (string-match "[ \t]" (buffer-substring-no-properties (line-beginning-position) (point))))
+# --
+
+derive instance eq$1 :: Eq ${1:Foo}
+derive instance ord$1 :: Ord $1
+derive instance generic$1 :: Generic $1 _
+${2:derive instance functor$1 :: Functor $1 _
+}instance show$1 :: Show $1 where
+  show = genericShow
+$0
