@@ -9,6 +9,7 @@
     discord
     flameshot
     gimp
+    gnome-multi-writer
     keepass
     nextcloud-client
     pdfarranger
