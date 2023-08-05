@@ -20,7 +20,9 @@
     zsh
     (callPackage ../scripts { })
     (callPackage ../program-cfg/path-extractor { })
+
     htop
+    btop
   ];
 
   home.file.".config" = {
