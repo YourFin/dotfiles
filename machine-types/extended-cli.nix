@@ -19,6 +19,8 @@
       syncthing
       zip
 
+      parallel
+
       clang
       clang-tools
       zig
