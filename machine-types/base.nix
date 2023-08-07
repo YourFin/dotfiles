@@ -9,7 +9,6 @@
     (lib.setPrio 100 binutils)
     exa
     fd
-    fzf
     git
     iftop
     mosh
@@ -43,6 +42,22 @@
     enable = true;
     fuzzySearchFactor = 4;
     keyScheme = "vim";
+  };
+  programs.fzf = {
+    enable = true;
+    colors = {
+      #      "bg+" = "#1b1720"; # from doom emacs
+      "bg+" = "#27212e"; # Rasin black
+      fg = "#91889b"; # Old Lavender
+      "fg+" = "#ffffff"; # White
+      "hl+" = "#eb64b9"; # Hot Pink
+      prompt = "#b4dce7"; # Powder Blue
+      spinner = "#b381c5"; # African Violet
+      header = "#ffe261"; # Mustard
+      marker = "#7b6995"; # Roman Silver
+      pointer = "#eb64b9"; # Hot Pink
+      info = "#74dfc4"; # Pearl Aqua
+    };
   };
 
   home.activation."remove temporary .config/nixpkgs/config.nix file" =
