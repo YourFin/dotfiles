@@ -7,7 +7,7 @@
   home.packages = with pkgs; [
     bat
     (lib.setPrio 100 binutils)
-    exa
+    eza
     fd
     git
     iftop
