@@ -23,6 +23,7 @@
 
       clang
       clang-tools
+      gnumake
       zig
 
       nodejs
