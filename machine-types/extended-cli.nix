@@ -64,6 +64,7 @@
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   programs.emacs.enable = true;
+  programs.emacs.package = pkgs.emacs29;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
   home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${
