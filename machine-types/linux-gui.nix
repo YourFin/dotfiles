@@ -11,7 +11,6 @@
     gimp
     gnome-multi-writer
     keepass
-    nextcloud-client
     pdfarranger
     spotify
     signal-desktop
@@ -27,7 +26,7 @@
     enable = true;
     client.enable = true;
   };
-  services.nextcloud-client.enable = true;
+  services.syncthing.enable = true;
   services.lorri.enable = true;
 
   programs.firefox.enable = true;

@@ -8,7 +8,9 @@
     swiftdefaultapps
     rectangle
     (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
+    (callPackage ../program-cfg/serious-sans { })
   ];
+  services.syncthing.enable = true;
   services.emacs = { client.enable = true; };
   fonts.fontconfig.enable = true;
 
