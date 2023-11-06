@@ -15,8 +15,23 @@
     spotify
     signal-desktop
     vlc
+    (callPackage ../program-cfg/serious-sans { })
 
-    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
+    (nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "FiraMono"
+        "NerdFontsSymbolsOnly"
+        "AnonymousPro"
+        "ShareTechMono"
+        "ProFont"
+        "Monofur"
+        "Inconsolata"
+        "IntelOneMono"
+        "Gohu"
+        "3270"
+      ];
+    })
 
     youtube-dl
   ];
