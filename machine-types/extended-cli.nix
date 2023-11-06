@@ -58,7 +58,7 @@
     else [
       strace
       nethogs
-      diffoscope
+      # diffoscope
       wcc # Witchcraft compiler collection
     ]);
 
