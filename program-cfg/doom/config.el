@@ -24,7 +24,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
-
+(after! evil-collection-help
+  (evil-set-initial-state 'help-mode 'motion))
 ;;; Tell tramp to set its TERM to 'tramp'
 (setq tramp-terminal-type "tramp")
 
