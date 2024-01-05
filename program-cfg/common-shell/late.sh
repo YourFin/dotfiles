@@ -90,9 +90,10 @@ fi
 
 # Kitty terminal emulator ssh fix:
 if [[ "$TERM" == "xterm-kitty" ]] && command -v kitty >/dev/null 2>/dev/null; then
-	ssh() {
-		kitty +kitten ssh "$@"
+	sshraw() {
+		TERM=xterm-256color ssh "$@"
 	}
+	alias ssh="kitty +kitten ssh"
 fi
 
 if command -v netctl-auto >/dev/null 2>&1; then
