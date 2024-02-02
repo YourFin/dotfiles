@@ -29,6 +29,7 @@ if command -v "bat" >/dev/null 2>/dev/null; then
 	# https://stackoverflow.com/questions/18862777/how-can-i-swap-as-in-alias-command-names-in-zsh
 	alias cat="\bat"
 	alias bat="\cat"
+	export MANROFFOPT='-c'
 	export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 if command -v firefox >/dev/null 2>/dev/null; then
