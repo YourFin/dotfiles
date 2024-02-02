@@ -7,8 +7,10 @@
     youtube-dl
     swiftdefaultapps
     rectangle
-    (nerdfonts.override { fonts = [ "FiraCode" "FiraMono" ]; })
     (callPackage ../program-cfg/serious-sans { })
+    (nerdfonts.override {
+      fonts = [ "FiraCode" "FiraMono" "NerdFontsSymbolsOnly" ];
+    })
   ];
   services.syncthing.enable = true;
   services.emacs = { client.enable = true; };
