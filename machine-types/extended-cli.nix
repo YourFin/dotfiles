@@ -21,8 +21,8 @@
 
       parallel
 
-      clang
-      clang-tools
+      clang_17
+      clang-tools_17
       gnumake
       zig
 
