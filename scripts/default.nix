@@ -14,7 +14,7 @@ let
   neededInterpreters = with builtins;
     intersectAttrs (listToAttrs scriptDirPairs) pkgs;
   interpreterPathSet = with builtins;
-    mapAttrs (k: v: (toString v.outPath) + "/bin/" + k) neededInterpreters;
+    mapAttrs (k: v: (toString v.outPath) + "/bin/") neededInterpreters;
 in stdenv.mkDerivation (interpreterPathSet // {
   pname = "yourfin-shell-scripts";
   version = "0.1";

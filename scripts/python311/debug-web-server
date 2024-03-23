@@ -1,0 +1,20 @@
+import http.server
+import socketserver
+import logging
+import argparse
+
+parser = argparse.ArgumentParser("debug-http-server")
+parser.add_argument("-p", "--port", dest='port', default=8080, type=int)
+args = parser.parse_args()
+
+class ServerHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        logging.error(self.headers)
+        # whatever else you would like to log here
+        http.server.SimpleHTTPRequestHandler.do_GET(self)
+
+Handler = ServerHandler
+
+with socketserver.TCPServer(("", args.port), Handler) as httpd:
+    print("serving at port", args.port)
+    httpd.serve_forever()
