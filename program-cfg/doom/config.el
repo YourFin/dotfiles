@@ -85,6 +85,12 @@
    (quote
     ("2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" default)))
  '(package-selected-packages (quote (dhall-mode vimrc-mode))))
+
+(after! apheleia
+  "Toggle apheleia mode (auto format on save)"
+  (defun yf-toggle-format-on-save ()
+    (interactive)
+    (apheleia-mode 'toggle)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
