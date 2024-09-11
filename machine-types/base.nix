@@ -14,6 +14,7 @@
     mosh
     ncdu
     ripgrep
+    gum
     inetutils
     vim
     screen
@@ -36,6 +37,12 @@
   programs.direnv = {
     enable = true;
     #enableNixDirenvIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = false;
+    options = [ "--cmd j" ];
   };
 
   programs.mcfly = {
