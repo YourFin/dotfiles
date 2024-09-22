@@ -4,7 +4,7 @@
   imports = [ ../program-cfg/kitty.nix ./extended-cli.nix ];
   home.packages = with pkgs; [
     coreutils
-    youtube-dl
+    yt-dlp
     swiftdefaultapps
     rectangle
     (callPackage ../program-cfg/serious-sans { })

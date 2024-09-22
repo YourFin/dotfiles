@@ -33,7 +33,7 @@
       ];
     })
 
-    youtube-dl
+    yt-dlp
   ];
   fonts.fontconfig.enable = true;
 
