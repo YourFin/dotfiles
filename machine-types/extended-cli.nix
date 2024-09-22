@@ -47,7 +47,7 @@
 
       # Emacs deps:
       shfmt
-      nixfmt
+      nixfmt-rfc-style
       poppler
       cmake # For vterm
       shellcheck
