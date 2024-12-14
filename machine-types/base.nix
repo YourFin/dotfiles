@@ -1,9 +1,18 @@
 # All other machine configurations inherit from this one
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ ../program-cfg/zsh.nix ../program-cfg/bash.nix ../program-cfg/vim.nix ];
+  imports = [
+    ../program-cfg/zsh.nix
+    ../program-cfg/nushell.nix
+    ../program-cfg/bash.nix
+    ../program-cfg/vim.nix
+  ];
   home.packages = with pkgs; [
     bat
     (lib.setPrio 100 binutils)
@@ -68,8 +77,10 @@
   };
 
   home.activation."remove temporary .config/nixpkgs/config.nix file" =
-    let fp = "${config.xdg.configHome}/nixpkgs/config.nix";
-    in lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+    let
+      fp = "${config.xdg.configHome}/nixpkgs/config.nix";
+    in
+    lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
       [[ -f "${fp}" ]] && ! [[ -L "${fp}" ]] &&
         $DRY_RUN_CMD rm $VERBOSE_ARG ${config.xdg.configHome}/nixpkgs/config.nix
     '';

@@ -1,7 +1,15 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ ../program-cfg/kitty.nix ./extended-cli.nix ];
+  imports = [
+    ../program-cfg/kitty.nix
+    ./extended-cli.nix
+  ];
   home.packages = with pkgs; [
     chromium
     bitwarden
@@ -17,21 +25,18 @@
     vlc
     (callPackage ../program-cfg/serious-sans { })
 
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "NerdFontsSymbolsOnly"
-        "AnonymousPro"
-        "ShareTechMono"
-        "ProFont"
-        "Monofur"
-        "Inconsolata"
-        "IntelOneMono"
-        "Gohu"
-        "3270"
-      ];
-    })
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.symbols-only
+
+    # nerd-fonts."AnonymousPro"
+    # nerd-fonts."ShareTechMono"
+    # nerd-fonts."ProFont"
+    # nerd-fonts."Monofur"
+    # nerd-fonts."Inconsolata"
+    # nerd-fonts."IntelOneMono"
+    # nerd-fonts."Gohu"
+    # nerd-fonts."3270"
 
     yt-dlp
   ];
