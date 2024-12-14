@@ -38,7 +38,7 @@
       nodejs
       python3
       ruby
-      swiProlog
+      swi-prolog
 
       (aspellWithDicts (dicts: [
         dicts.en
