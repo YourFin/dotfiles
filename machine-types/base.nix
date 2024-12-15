@@ -46,6 +46,7 @@
   programs.direnv = {
     enable = true;
     #enableNixDirenvIntegration = true;
+    enableNushellIntegration = true;
   };
 
   programs.zoxide = {
