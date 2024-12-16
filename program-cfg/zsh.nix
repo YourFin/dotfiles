@@ -1,4 +1,5 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -6,10 +7,11 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     enableVteIntegration = true;
-    initExtraBeforeCompInit = builtins.readFile ./common-shell/early.sh
-      + builtins.readFile ./zsh/before-compinit.zsh;
+    initExtraBeforeCompInit =
+      builtins.readFile ./common-shell/early.sh + builtins.readFile ./zsh/before-compinit.zsh;
     # Note that we inline p10k.zsh instead of sourcing it
-    initExtra = builtins.readFile ./common-shell/late.sh
+    initExtra =
+      builtins.readFile ./common-shell/late.sh
       + builtins.readFile ./zsh/after-compinit.zsh
       + builtins.readFile ./zsh/p10k.zsh;
 
