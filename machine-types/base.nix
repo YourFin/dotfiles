@@ -35,6 +35,12 @@
     btop
   ];
 
+  home.preferXdgDirectories = true;
+  home.sessionVariables = {
+    LANG = "en_US.UTF-8";
+    EDITOR = "vim";
+  };
+
   home.file.".config" = {
     source = ../share/dot/config;
     recursive = true;

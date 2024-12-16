@@ -28,4 +28,7 @@ in {
     cache=${dirs.cache}
     shell=zsh
   '';
+  home.sessionPath = [
+    "${dirs.prefix}/bin"
+  ];
 }

@@ -23,9 +23,6 @@ export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-# Set lang
-export LANG=en_US.UTF-8
-
 ################
 # Path Setting #
 ################
@@ -40,11 +37,6 @@ fi
 
 # Manually installed local stuff
 export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
-
-[ -e "$HOME/.emacs.d/bin/" ] &&
-	export PATH="$HOME/.emacs.d/bin/:$PATH"
-
-export PATH="$PATH:$HOME/.yarn/bin"
 
 export PATH="$HOME/.local/bin:$PATH"
 

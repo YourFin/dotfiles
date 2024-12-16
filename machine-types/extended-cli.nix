@@ -80,6 +80,8 @@
   programs.emacs.enable = true;
   programs.emacs.package = pkgs.emacs29;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
+  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+
   home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${builtins.toPath ../program-cfg/doom} ${config.xdg.configHome}
   '';
