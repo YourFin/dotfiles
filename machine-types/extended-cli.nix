@@ -9,6 +9,7 @@
   imports = [
     ./base.nix
     ../program-cfg/npm.nix
+    ../program-cfg/rust.nix
   ];
 
   home.packages =
@@ -49,10 +50,6 @@
       cabal2nix
       ormolu
       stack
-
-      rustc
-      cargo
-      clippy
 
       # Scala lang server
       metals

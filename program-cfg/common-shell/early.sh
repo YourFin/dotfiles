@@ -39,10 +39,6 @@ if command -v ruby >/dev/null 2>/dev/null &&
 	export PATH="$PATH:$GEM_USER_DIR/bin"
 fi
 
-export CARGO_HOME="$HOME/.local/cargo"
-[ -e "$CARGO_HOME/bin/" ] &&
-	export PATH="$PATH:$CARGO_HOME/bin"
-
 # Npm
 [[ -d "$HOME/.local/share/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/share/npm/global/bin/"
 
