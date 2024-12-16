@@ -27,11 +27,6 @@ export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 # Path Setting #
 ################
 
-if command -v ruby >/dev/null 2>/dev/null &&
-	GEM_USER_DIR=$(ruby -e 'print Gem.user_dir' 2>/dev/null); then
-	export PATH="$PATH:$GEM_USER_DIR/bin"
-fi
-
 # Npm
 [[ -d "$HOME/.local/share/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/share/npm/global/bin/"
 
