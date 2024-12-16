@@ -30,10 +30,6 @@ export LANG=en_US.UTF-8
 # Path Setting #
 ################
 
-export GOPATH="$HOME/g/go"
-[ -e "$GOPATH/bin" ] &&
-	export PATH="$PATH:$GOPATH/bin"
-
 if command -v ruby >/dev/null 2>/dev/null &&
 	GEM_USER_DIR=$(ruby -e 'print Gem.user_dir' 2>/dev/null); then
 	export PATH="$PATH:$GEM_USER_DIR/bin"
