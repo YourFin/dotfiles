@@ -4,7 +4,7 @@
     dotDir = ".config/zsh";
     defaultKeymap = "viins";
     enableCompletion = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableVteIntegration = true;
     initExtraBeforeCompInit = builtins.readFile ./common-shell/early.sh
       + builtins.readFile ./zsh/before-compinit.zsh;
