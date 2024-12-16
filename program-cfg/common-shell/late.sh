@@ -62,33 +62,6 @@ fi
 # Custom Functions #
 ####################
 
-# Easier pacman
-if [ -f "/etc/arch-release" ]; then
-	y() {
-		if command -v yay >/dev/null 2>/dev/null; then
-			pacfunc="yay --combinedupgrade"
-		elif command -v trizen >/dev/null 2>/dev/null; then
-			pacfunc="trizen"
-		elif command -v pacaur >/dev/null 2>/dev/null; then
-			pacfunc="pacaur"
-		elif command -v yaourt >/dev/null 2>/dev/null; then
-			pacfunc="yaourt"
-		else
-			pacfunc="sudo pacman"
-		fi
-
-		if [ -z "$1" ]; then
-			eval "$pacfunc -Syu"
-		else
-			eval "$pacfunc -S $*"
-		fi &&
-			# remove to 3 versions of old packages
-			sudo paccache -r &&
-			# remove all cached uninstalled packages
-			sudo paccache -ruk0
-	}
-fi
-
 # Kitty terminal emulator ssh fix:
 if [[ "$TERM" == "xterm-kitty" ]] && command -v kitty >/dev/null 2>/dev/null; then
 	sshraw() {
