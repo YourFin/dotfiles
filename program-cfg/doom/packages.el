@@ -64,4 +64,6 @@
 
 (package! emojify)
 (package! straight :pin "3eca39d")
+
+(package! gptel)
 (package! with-editor)

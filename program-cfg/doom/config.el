@@ -69,6 +69,15 @@
 (load! "./langs/haskell.el")
 ;;(load! "./langs/org.el")
 
+(use-package! gptel
+  :ensure t
+  :defer t
+  :config
+  (after! f
+    (setq gptel-model 'gemini-1.5-flash)
+    (setq gptel-backend
+          (gptel-make-gemini "Gemini" :key (lambda () (string-trim (f-read-text "~/.local/share/gemini-key.txt"))) :stream t))))
+
 ;; TODO: Find somewhere else to put this
 (after! hydra
   (defun get-face-with-mouse--main (event)
