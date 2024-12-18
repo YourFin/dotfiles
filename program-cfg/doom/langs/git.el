@@ -2,7 +2,7 @@
 
 ;; Who the fuck uses macros in git commits
 
-(after! (magit evil)
+(after! (magit evil with-editor)
   (evil-define-minor-mode-key 'normal 'git-commit-mode
     "q" 'with-editor-finish
     "Q" 'with-editor-cancel)
