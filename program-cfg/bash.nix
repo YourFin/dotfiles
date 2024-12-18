@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   bashrcHeader = ''
@@ -34,8 +39,11 @@ let
     set -o vi
   '';
 
-in {
-  home.file.".bashrc".text = bashrcHeader
-    + builtins.readFile ./common-shell/early.sh + bashrcText
+in
+{
+  home.file.".bashrc".text =
+    bashrcHeader
+    + builtins.readFile ./common-shell/early.sh
+    + bashrcText
     + builtins.readFile ./common-shell/late.sh;
 }

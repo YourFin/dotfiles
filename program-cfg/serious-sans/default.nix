@@ -9,8 +9,7 @@ let
   };
 
   nerdFontPatcherRelease = pkgs.fetchzip {
-    url =
-      "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FontPatcher.zip";
+    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/FontPatcher.zip";
     stripRoot = false;
     hash = "sha256-ZJpF/Q5lfcW3srb2NbJk+/QEuwaFjdzboa+rl9L7GGE=";
   };
@@ -19,14 +18,20 @@ let
     name = "nerdfont-patch-current-dir";
     runtimeInputs = with pkgs; [
       fontforge
-      (python311.withPackages (ps: with ps; [ argparse fontforge ]))
+      (python311.withPackages (
+        ps: with ps; [
+          argparse
+          fontforge
+        ]
+      ))
       parallel
     ];
     text = ''
       find ./*.otf | parallel -j 8 python ${nerdFontPatcherRelease}/font-patcher '{}'
     '';
   };
-in pkgs.runCommand "serious-sans nerd font" { } ''
+in
+pkgs.runCommand "serious-sans nerd font" { } ''
   mkdir -p $out/share/fonts/opentype/NerdFonts/
   cp ${seriousSansRepo}/SeriousSans/otf/* $out/share/fonts/opentype/NerdFonts/
   cd $out/share/fonts/opentype/NerdFonts/

@@ -1,5 +1,10 @@
 # All other machine configurations inherit from this one
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
@@ -8,7 +13,8 @@
     ../program-cfg/bash.nix
     ../program-cfg/vim.nix
   ];
-  home.packages = with pkgs;
+  home.packages =
+    with pkgs;
     [
       bat
       (lib.setPrio 100 binutils)
@@ -28,10 +34,8 @@
 
       htop
       btop
-    ] ++ (if (lib.systems.elaborate builtins.currentSystem).isDarwin then
-      [ ]
-    else
-      [ mosh ]);
+    ]
+    ++ (if (lib.systems.elaborate builtins.currentSystem).isDarwin then [ ] else [ mosh ]);
 
   home.preferXdgDirectories = true;
   home.sessionVariables = {
@@ -82,8 +86,10 @@
   };
 
   home.activation."remove temporary .config/nixpkgs/config.nix file" =
-    let fp = "${config.xdg.configHome}/nixpkgs/config.nix";
-    in lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
+    let
+      fp = "${config.xdg.configHome}/nixpkgs/config.nix";
+    in
+    lib.hm.dag.entryBefore [ "checkLinkTargets" ] ''
       [[ -f "${fp}" ]] && ! [[ -L "${fp}" ]] &&
         $DRY_RUN_CMD rm $VERBOSE_ARG ${config.xdg.configHome}/nixpkgs/config.nix
     '';

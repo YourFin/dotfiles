@@ -1,13 +1,22 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   isMac = (lib.systems.elaborate builtins.currentSystem).isDarwin;
   baseNix = if isMac then ./machine-types/osx.nix else ./machine-types/base.nix;
-  imports = if builtins.pathExists ./local.nix then [
-    baseNix
-    ./local.nix
-  ] else
-    [ baseNix ];
-in {
+  imports =
+    if builtins.pathExists ./local.nix then
+      [
+        baseNix
+        ./local.nix
+      ]
+    else
+      [ baseNix ];
+in
+{
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
