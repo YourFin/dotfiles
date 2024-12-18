@@ -23,6 +23,9 @@ if command -v "exa" >/dev/null 2>/dev/null; then
 	alias la="exa -la"
 	alias tree="exa --tree"
 fi
+if command -v "z" >/dev/null 2>/dev/null; then
+	alias d="z"
+fi
 alias sudo="sudo " # allows sudo to be used in aliases
 if command -v "bat" >/dev/null 2>/dev/null; then
 	# The backslashes here prevent recursion. See:
