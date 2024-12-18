@@ -64,3 +64,4 @@
 
 (package! emojify)
 (package! straight :pin "3eca39d")
+(package! with-editor)
