@@ -3,6 +3,18 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; refresh' after modifying this file!
 
+;; Make sure to use login shell, not the shell that happened to be used when
+;; 'doom sync' was called. Context: I am experimenting with Nushell, which is
+;; very nice, but not compatible with most scripts.
+;;
+;; From: https://gitlab.com/tad-lispy/nixos-configuration/-/blob/e28770e95ad686bd73372bd342e66a41ee121c95/doom-emacs/config.el#L6-15
+
+(defun yf/get-login-shell ()
+  "Get the path of the login shell of the current user."
+  (string-trim (shell-command-to-string
+                "/bin/sh -c 'getent passwd ${USER} | cut -d: -f7'")))
+
+(setq shell-file-name (yf/get-login-shell))
 
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
