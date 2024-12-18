@@ -18,6 +18,7 @@
     [
       bat
       (lib.setPrio 100 binutils)
+      file
       eza
       fd
       git
