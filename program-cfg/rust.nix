@@ -14,6 +14,7 @@ in
     rustc
     cargo
     clippy
+    rust-analyzer
   ];
   home.sessionPath = [ "${CARGO_HOME}/bin" ];
   home.sessionVariables = {
