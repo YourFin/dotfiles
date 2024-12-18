@@ -16,6 +16,11 @@
 
 (setq shell-file-name (yf/get-login-shell))
 
+
+(setq evil-respect-visual-line-mode t)
+(setq evil-want-C-u-scroll nil)
+(setq evil-want-Y-yank-to-eol t)
+
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
 (setq user-full-name "Patrick Nuckolls"
