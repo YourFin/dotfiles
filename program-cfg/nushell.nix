@@ -5,7 +5,12 @@
   ...
 }:
 {
-  programs.nushell.enable = true;
+  programs.nushell = {
+    enable = true;
+    extraEnv = builtins.readFile ./nushell/env.nu;
+    extraConfig = builtins.readFile ./nushell/config.nu;
+  };
+
   programs.oh-my-posh = {
     enable = true;
     enableNushellIntegration = true;
