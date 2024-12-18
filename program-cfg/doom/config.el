@@ -38,6 +38,9 @@
                             "#+title: %<%Y-%m-%d>\n"))))
 
 (setq evil-want-fine-undo t)
+(after! ac-ispell
+  (ispell-change-dictionary "en_US"))
+
 
 ;;; Load the other damn files
 (load! "./apperance.el")
