@@ -1,19 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./base.nix
-    ../program-cfg/npm.nix
-    ../program-cfg/rust.nix
-  ];
+  imports = [ ./base.nix ../program-cfg/npm.nix ../program-cfg/rust.nix ];
 
-  home.packages =
-    with pkgs;
+  home.packages = with pkgs;
     [
       awscli
       dhall
@@ -41,10 +31,7 @@
       ruby
       swi-prolog
 
-      (aspellWithDicts (dicts: [
-        dicts.en
-        dicts.en-computers
-      ]))
+      (aspellWithDicts (dicts: [ dicts.en dicts.en-computers ]))
 
       # Haskell
       cabal2nix
@@ -62,18 +49,15 @@
       shellcheck
       editorconfig-core-c
       # libvterm
-    ]
-    ++ (
-      if (lib.systems.elaborate builtins.currentSystem).isDarwin then
-        [ ]
-      else
-        [
-          strace
-          nethogs
-          # diffoscope
-          wcc # Witchcraft compiler collection
-        ]
-    );
+    ] ++ (if (lib.systems.elaborate builtins.currentSystem).isDarwin then
+      [ ]
+    else [
+      strace
+      plocate
+      nethogs
+      # diffoscope
+      wcc # Witchcraft compiler collection
+    ]);
 
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
@@ -83,7 +67,9 @@
   home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${builtins.toPath ../program-cfg/doom} ${config.xdg.configHome}
+    $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${
+      builtins.toPath ../program-cfg/doom
+    } ${config.xdg.configHome}
   '';
 
   programs.man.generateCaches = true;
