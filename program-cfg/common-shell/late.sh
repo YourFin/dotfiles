@@ -80,6 +80,17 @@ if command -v netctl-auto >/dev/null 2>&1; then
 	}
 fi
 
+_jnixpkgs() {
+	local choice
+	choice="$(fd-nixpkgs "$@" | gum choose)"
+	if [ -d "$choice" ]; then
+		pushd "$choice"
+	else
+		pushd "$HOME/g/.nixpkgs-reference/$(dirname "$choice")"
+	fi
+}
+alias j-nixpkgs="_jnixpkgs"
+
 clean_vim() {
 	echo "Cleaning ~/.vimbackup/"
 	rm -Rf ~/.vimbackup/*
