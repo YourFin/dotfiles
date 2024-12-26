@@ -12,6 +12,7 @@ in
 {
   home.packages = with pkgs; [
     rustc
+    rustfmt
     cargo
     clippy
     rust-analyzer
