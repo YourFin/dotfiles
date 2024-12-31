@@ -20,8 +20,6 @@
         "blocks": [
           {
             "alignment": "left",
-            "leading_diamond": " ",
-            "trailing_diamond": "",
             "segments": [
               {
                 "background": "#f1184c",
@@ -105,18 +103,10 @@
                 "leading_powerline_symbol": "",
                 "style": "powerline",
                 "type": "status"
-              }
-            ],
-            "type": "prompt"
-          },
-          {
-            "alignment": "left",
-            "newline": true,
-            "segments": [
+              },
               {
-                "foreground": "#f1184c",
                 "style": "plain",
-                "template": "\u232A",
+                "template": "\n",
                 "type": "text"
               }
             ],
