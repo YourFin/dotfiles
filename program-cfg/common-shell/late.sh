@@ -4,72 +4,29 @@
 # This file gets executed later in the shell load process;
 # notably, after compinit in zsh and the interactive check in bash
 
-# Turn off the terminal bell in every way possible
-if command -v unsetopt >/dev/null 2>/dev/null; then
-	unsetopt beep
-fi
-if command -v xset >/dev/null 2>/dev/null; then
-	xset -b &
-fi
-
 ###########
 # Aliases #
 ###########
 
 # Prevents being an idiot and stalling the wm
 alias bspwm='bspc'
-if command -v "exa" >/dev/null 2>/dev/null; then
-	alias ls="exa"
-	alias la="exa -la"
-	alias tree="exa --tree"
-fi
-if command -v "z" >/dev/null 2>/dev/null; then
-	alias d="z"
-fi
+alias ls="exa"
+alias la="exa -la"
+alias tree="exa --tree"
 alias sudo="sudo " # allows sudo to be used in aliases
-if command -v "bat" >/dev/null 2>/dev/null; then
-	# The backslashes here prevent recursion. See:
-	# https://stackoverflow.com/questions/18862777/how-can-i-swap-as-in-alias-command-names-in-zsh
-	alias cat="\bat"
-	alias bat="\cat"
-fi
-if command -v firefox >/dev/null 2>/dev/null; then
-	alias firefox="firefox --new-window"
-fi
-if command -v wifimenu >/dev/null 2>/dev/null; then
-	alias wifimenu="sudo wifimenu"
-fi
-if command -v nix-shell >/dev/null 2>/dev/null; then
-	alias nix-shell="nix-shell --command zsh"
-fi
-if command -v rsync >/dev/null 2>/dev/null; then
-	alias rsync="rsync --progress"
-fi
-if command -v emacs >/dev/null 2>/dev/null &&
-	command -v pkill >/dev/null 2>/dev/null; then
-	alias restart-emacs="pushd ~ >/dev/null; while pkill emacs; do ; done && emacs --daemon ; popd >/dev/null"
-fi
-if command -v python3 >/dev/null 2>/dev/null; then
-	alias urldecode='python3 -c "import sys, urllib.parse as ul; \
-    print(ul.unquote_plus(sys.argv[1]))"'
-	alias urlencode='python3 -c "import sys, urllib.parse as ul; \
-		print(ul.quote_plus(sys.argv[1]))"'
-fi
-if command -v bw >/dev/null 2>/dev/null; then
-	alias bitwarden-cli="bw"
-fi
+# The backslashes here prevent recursion. See:
+# https://stackoverflow.com/questions/18862777/how-can-i-swap-as-in-alias-command-names-in-zsh
+alias cat="\bat"
+alias bat="\cat"
+alias nix-shell="nix-shell --command zsh"
 
 ####################
 # Custom Functions #
 ####################
 
-# Kitty terminal emulator ssh fix:
-if [[ "$TERM" == "xterm-kitty" ]] && command -v kitty >/dev/null 2>/dev/null; then
-	sshraw() {
-		TERM=xterm-256color ssh "$@"
-	}
-	alias ssh="kitty +kitten ssh"
-fi
+sshraw() {
+	TERM=xterm-256color ssh "$@"
+}
 
 if command -v netctl-auto >/dev/null 2>&1; then
 	nc() {

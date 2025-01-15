@@ -42,6 +42,10 @@
   ];
   fonts.fontconfig.enable = true;
 
+  home.shellAliases = {
+    firefox = "firefox --new-window";
+  };
+
   services.emacs = {
     enable = true;
     client.enable = true;

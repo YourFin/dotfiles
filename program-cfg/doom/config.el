@@ -72,7 +72,6 @@
 (load! "./langs/git.el")
 (load! "./langs/latex.el")
 (load! "./langs/haskell.el")
-;;(load! "./langs/org.el")
 
 (use-package! gptel
   :ensure t

@@ -7,6 +7,9 @@
 #
 # WARNING: ALL OPERATIONS IN THIS FILE *MUST* BE IDEMPOTENT, AS THERE IS A
 # GOOD CHANCE THEY WILL BE RUN MORE THAN ONCE DURING INIT
+
+# Profile zsh load
+#zmodload zsh/zprof
 #######
 # Nix #
 #######
@@ -26,12 +29,6 @@ export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 ################
 # Path Setting #
 ################
-
-# Npm
-[[ -d "$HOME/.local/share/npm/global/bin/" ]] && export PATH="$PATH:$HOME/.local/share/npm/global/bin/"
-
-# Manually installed local stuff
-export PATH="$HOME/.local/opt/yf-scripts/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 

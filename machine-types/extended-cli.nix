@@ -82,6 +82,15 @@
   programs.emacs.enable = true;
   programs.emacs.package = pkgs.emacs29;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
+  home.shellAliases = {
+    restart-emacs = "pushd ~ >/dev/null; while pkill emacs; do ; done && emacs --daemon ; popd >/dev/null";
+    urldecode = ''
+      python3 -c "import sys, urllib.parse as ul; \
+          print(ul.unquote_plus(sys.argv[1]))"'';
+    urlencode = ''
+      "python3 -c "import sys, urllib.parse as ul; \
+      		print(ul.quote_plus(sys.argv[1]))"'';
+  };
   home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   services.pueue = {
@@ -108,6 +117,9 @@
     ]
   );
 
+  home.sessionVariables = {
+    OPAMROOT = "$HOME/.local/usr/opam";
+  };
   home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${builtins.toPath ../program-cfg/doom} ${config.xdg.configHome}
   '';

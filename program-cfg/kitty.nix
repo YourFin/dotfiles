@@ -8,6 +8,7 @@
 {
   programs.kitty = {
     enable = true;
+    shellIntegration.enableZshIntegration = false;
     keybindings = {
       "ctrl+shift+v" = "paste_from_clipboard";
       "ctrl+shift+s" = "paste_from_selection";
@@ -44,5 +45,8 @@
       tab_bar_style = "separator";
       shell_integration = "no-rc";
     };
+  };
+  home.shellAliases = {
+    ssh = "kitty +kitten ssh";
   };
 }

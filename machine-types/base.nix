@@ -49,6 +49,9 @@
     MCFLY_PROMPT = "❯";
     GEM_HOME = "${config.home.homeDirectory}/.local/gems";
   };
+  home.shellAliases = {
+    rsync = "rsync --progress";
+  };
 
   home.file.".config" = {
     source = ../share/dot/config;

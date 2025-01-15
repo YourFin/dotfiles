@@ -23,6 +23,8 @@ in
   };
   programs.oh-my-posh = {
     enable = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
     enableNushellIntegration = true;
     settings = builtins.fromJSON ''
       {
