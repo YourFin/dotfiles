@@ -30,6 +30,7 @@
       zip
 
       parallel
+      pueue
 
       clang_17
       clang-tools_17
@@ -82,6 +83,30 @@
   programs.emacs.package = pkgs.emacs29;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
   home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
+
+  services.pueue = {
+    enable = true;
+  };
+  launchd.agents = (
+    lib.mkMerge [
+      (lib.mkIf pkgs.stdenv.isDarwin {
+        pueue = {
+          enable = true;
+          config = {
+            ProgramArguments = [
+              "${pkgs.pueue}/bin/pueued"
+              "-vv"
+            ];
+            RunAtLoad = true;
+            KeepAlive = {
+              Crashed = true;
+              SuccessfulExit = false;
+            };
+          };
+        };
+      })
+    ]
+  );
 
   home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${builtins.toPath ../program-cfg/doom} ${config.xdg.configHome}
