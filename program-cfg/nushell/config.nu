@@ -4,3 +4,5 @@ alias bat = ^cat
 alias firefox = firefox --new-window
 alias rsync = rsync --progress
 $env.config.edit_mode = 'vi';
+
+use yf-commands.nu *

@@ -4,13 +4,23 @@
   pkgs,
   ...
 }:
+let
+  isMac = (lib.systems.elaborate builtins.currentSystem).isDarwin;
+in
 {
   programs.nushell = {
     enable = true;
-    extraEnv = builtins.readFile ./nushell/env.nu;
+    extraEnv = ''${builtins.readFile ./nushell/env.nu}${
+      if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
+    }'';
     extraConfig = builtins.readFile ./nushell/config.nu;
   };
-
+  home.file.".config/nushell" = {
+    recursive = true;
+    source = builtins.filterSource (
+      path: _type: (builtins.match ".*/(config|env)\\.nu$" path) == null
+    ) ./nushell;
+  };
   programs.oh-my-posh = {
     enable = true;
     enableNushellIntegration = true;
