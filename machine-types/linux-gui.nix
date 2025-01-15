@@ -12,9 +12,8 @@
   ];
   home.packages = with pkgs; [
     chromium
-    bitwarden
-    bitwarden-cli
     discord
+    proton-pass
     flameshot
     gimp
     gnome-multi-writer
