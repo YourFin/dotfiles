@@ -11,18 +11,15 @@
     ./extended-cli.nix
   ];
   home.packages = with pkgs; [
+    (hiPrio gcc)
     coreutils
     yt-dlp
     swiftdefaultapps
     rectangle
+    nerd-fonts.fira-code
+    nerd-fonts.fira-mono
+    nerd-fonts.symbols-only
     (callPackage ../program-cfg/serious-sans { })
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-        "FiraMono"
-        "NerdFontsSymbolsOnly"
-      ];
-    })
   ];
   services.syncthing.enable = true;
   services.emacs = {
