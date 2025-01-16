@@ -94,7 +94,7 @@
   home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   services.pueue = {
-    enable = true;
+    enable = (lib.systems.elaborate builtins.currentSystem).isLinux;
   };
   launchd.agents = (
     lib.mkMerge [
