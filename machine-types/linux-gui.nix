@@ -15,6 +15,7 @@
     discord
     proton-pass
     flameshot
+    showmethekey
     gimp
     gnome-multi-writer
     keepass
