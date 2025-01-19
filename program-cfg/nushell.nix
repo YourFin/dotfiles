@@ -6,14 +6,28 @@
 }:
 let
   isMac = (lib.systems.elaborate builtins.currentSystem).isDarwin;
+  yfnutool = pkgs.callPackage (pkgs.fetchFromGitHub {
+    # Regenerate with
+    # nix-prefetch-git --fetch-submodules https://github.com/YourFin/yfnutool.git
+    owner = "YourFin";
+    repo = "yfnutool";
+    rev = "6513fc591febe29d12efa97d28dcef055142a0cf";
+    hash = "sha256-8rDozCQWmj5x3yusZMasea1X0x0t0gWRJHD9FoYzGnk=";
+    fetchSubmodules = true;
+  }) { };
 in
 {
+  home.packages = with pkgs; [
+    yfnutool
+  ];
   programs.nushell = {
     enable = true;
-    extraEnv = ''${builtins.readFile ./nushell/env.nu}${
-      if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
-    }'';
-    extraConfig = builtins.readFile ./nushell/config.nu;
+    envFile.text = ''
+      ${builtins.readFile ./nushell/env.nu}${
+        if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
+      }$env.NU_LIB_DIRS ++= ['${yfnutool}/share/nushell/vendor/autoload/']
+    '';
+    configFile.source = ./nushell/config.nu;
   };
   home.file.".config/nushell" = {
     recursive = true;
