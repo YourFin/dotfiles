@@ -12,6 +12,7 @@
   ];
   home.packages = with pkgs; [
     (hiPrio gcc)
+    getent
     coreutils
     yt-dlp
     swiftdefaultapps
