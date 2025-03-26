@@ -4,7 +4,7 @@
 [color]
 	ui = auto
 [core]
-  pager = less -FMRiX
+  pager = delta
   excludesfile = ~/.config/git/global.gitignore
 [alias]
 	root = !pwd
@@ -37,3 +37,10 @@
   defaultBranch = main
 [include]
   path = local/local.inc
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+
+[merge]
+    conflictstyle = zdiff3

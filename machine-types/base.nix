@@ -22,6 +22,7 @@
       eza
       fd
       git
+      delta
       iftop
       ncdu
       ripgrep
