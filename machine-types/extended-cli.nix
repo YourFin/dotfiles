@@ -80,10 +80,9 @@
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   programs.emacs.enable = true;
-  programs.emacs.package = pkgs.emacs29;
+  programs.emacs.package = pkgs.emacs30;
   programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
   home.shellAliases = {
-    restart-emacs = "pushd ~ >/dev/null; while pkill emacs; do ; done && emacs --daemon ; popd >/dev/null";
     urldecode = ''
       python3 -c "import sys, urllib.parse as ul; \
           print(ul.unquote_plus(sys.argv[1]))"'';

@@ -33,7 +33,7 @@ def emacs-socket-file [] {
     [null, _] => (error make { msg: "Unsupported OS" }),
     [$it, _] => $it,
   }
-  $socket_dir | path join emacsserver.sock
+  $socket_dir | path join emacs | path join emacsserver.sock
 }
 
 export def restart-emacs [] {
@@ -41,8 +41,9 @@ export def restart-emacs [] {
   assert-pueue-group emacs-daemon --parallel 1
   let sock_file = emacs-socket-file
   mkdir (dirname $sock_file)
+  chmod 700 (dirname $sock_file)
   rm -f $sock_file
-  pueue add --group emacs-daemon -w ~ -- emacs --fg-daemon=(emacs-socket-file)
+  pueue add --group emacs-daemon -w ~ -- emacs --fg-daemon=($sock_file)
 }
 
 export def emacsclient-frame [file?: path] {
