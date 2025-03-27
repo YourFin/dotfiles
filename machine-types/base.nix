@@ -21,6 +21,7 @@
       file
       eza
       fd
+      fish
       git
       delta
       iftop
