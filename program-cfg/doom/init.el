@@ -111,6 +111,7 @@
        ;;tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
        lsp
+       tree-sitter
 
        :lang
        ;;agda              ; types of types of types of types...
@@ -191,5 +192,13 @@
        ;;literate
        (default +bindings +smartparens))
 
-;; Per the evil docs, this needs to be set very early
-(setq evil-respect-visual-line-mode t)
+;; (use-package-hook! evil
+;;   :pre-init
+;;   ;;(setq evil-magic nil)
+;;   (setq evil-respect-visual-line-mode t) ;; sane j and k behavior
+;;   (setq evil-want-C-u-scroll nil)
+;;   t)
+;; 
+;; (use-package-hook! evil
+;;   :pre-init
+;;   t)
