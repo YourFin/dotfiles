@@ -24,7 +24,7 @@
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
 (setq user-full-name "Patrick Nuckolls"
-      user-mail-address "d.junkpobox+git@gmail.com")
+      user-mail-address "src@patrickn.co")
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
