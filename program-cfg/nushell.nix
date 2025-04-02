@@ -26,6 +26,8 @@ in
       ${builtins.readFile ./nushell/env.nu}${
         if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
       }$env.NU_LIB_DIRS ++= ['${yfnutool}/share/nushell/vendor/autoload/']
+      # HM session vars
+      load-env ${builtins.toJSON config.home.sessionVariables}
     '';
     configFile.source = ./nushell/config.nu;
   };
