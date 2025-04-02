@@ -28,6 +28,7 @@
       unzip
       syncthing
       zip
+      zstd
 
       parallel
       pueue
