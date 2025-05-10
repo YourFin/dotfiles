@@ -8,10 +8,9 @@ let
   isMac = (lib.systems.elaborate builtins.currentSystem).isDarwin;
   baseNix = if isMac then ./machine-types/osx.nix else ./machine-types/base.nix;
   imports =
-    if builtins.pathExists ./local.nix then
+    if builtins.pathExists ./localhost.nix then
       [
-        baseNix
-        ./local.nix
+        ./localhost.nix
       ]
     else
       [ baseNix ];
