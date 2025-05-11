@@ -15,5 +15,6 @@
     ryujinx
     # platformio-core
     platformio
+    wl-clipboard
   ];
 }
