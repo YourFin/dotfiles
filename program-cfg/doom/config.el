@@ -70,6 +70,7 @@
 ;;; major modes is technically more correct
 (load! "./langs/elm.el")
 (load! "./langs/git.el")
+(load! "./langs/python.el")
 (load! "./langs/latex.el")
 (load! "./langs/haskell.el")
 
