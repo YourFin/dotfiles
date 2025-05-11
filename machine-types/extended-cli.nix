@@ -8,6 +8,7 @@
 {
   imports = [
     ./base.nix
+    ../program-cfg/emacs.nix
     ../program-cfg/npm.nix
     ../program-cfg/rust.nix
   ];
@@ -80,9 +81,6 @@
 
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
-  programs.emacs.enable = true;
-  programs.emacs.package = pkgs.emacs30;
-  programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
   home.shellAliases = {
     urldecode = ''
       python3 -c "import sys, urllib.parse as ul; \
@@ -91,7 +89,6 @@
       "python3 -c "import sys, urllib.parse as ul; \
       		print(ul.quote_plus(sys.argv[1]))"'';
   };
-  home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
   services.pueue = {
     enable = (lib.systems.elaborate builtins.currentSystem).isLinux;
@@ -120,9 +117,6 @@
   home.sessionVariables = {
     OPAMROOT = "$HOME/.local/usr/opam";
   };
-  home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD ln -sf $VERBOSE_ARG ${builtins.toPath ../program-cfg/doom} ${config.xdg.configHome}
-  '';
 
   programs.man.generateCaches = true;
   programs.nix-index.enable = true;

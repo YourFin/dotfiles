@@ -7,6 +7,7 @@
 {
   imports = [
     ../machine-types/linux-gui.nix
+    ../program-cfg/python.nix
   ];
   home.packages = with pkgs; [
     jetbrains.idea-community

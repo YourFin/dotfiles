@@ -13,6 +13,7 @@
 ;;
 ;;      Alternatively, press 'gd' (or 'C-c g d') on a module to browse its
 ;;      directory (for easy access to its source code).
+(doom-load (expand-file-name "~/.config/yf/emacs/features.el"))
 
 (doom! :input
        ;;chinese
@@ -160,7 +161,9 @@
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        purescript ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (:if (featurep 'yf-python) ; beautiful is better than ugly
+           (python +lsp +tree-sitter +pyright)
+         (python +tree-sitter))
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
