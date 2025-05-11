@@ -6,8 +6,7 @@
 }:
 {
   imports = [
-    ./machine-types/linux-gui.nix
-    ./localhost.nix
+    ../machine-types/linux-gui.nix
   ];
   home.packages = with pkgs; [
     jetbrains.idea-community
