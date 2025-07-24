@@ -13,6 +13,7 @@
   home.packages = with pkgs; [
     chromium
     discord
+    ghostty
     proton-pass
     flameshot
     showmethekey
