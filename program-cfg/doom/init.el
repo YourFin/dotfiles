@@ -100,7 +100,7 @@
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       lsp
+       (lsp +peek)
        ;;macos             ; MacOS-specific commands
        (magit +forge)            ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -162,7 +162,7 @@
        ;;plantuml          ; diagrams for confusing people more
        purescript ; javascript, but functional
        (:if (featurep 'yf-python) ; beautiful is better than ugly
-           (python +lsp +tree-sitter +pyright)
+           (python +tree-sitter +lsp +pyright)
          (python +tree-sitter))
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
