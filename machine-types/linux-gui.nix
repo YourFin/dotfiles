@@ -54,4 +54,36 @@
   services.lorri.enable = true;
 
   programs.firefox.enable = true;
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Orchis-Dark";
+      package = pkgs.orchis-theme;
+    };
+  };
+  programs.gnome-shell.theme = {
+    name = "Orchis-Dark";
+    package = pkgs.orchis-theme;
+  };
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Original-Ice";
+    size = 24;
+  };
+  dconf = {
+    enable = true;
+    settings."org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions =
+        with pkgs.gnomeExtensions;
+        map (ext: ext.extensionUuid) [
+          wiggle
+          gsconnect
+          burn-my-windows
+          user-themes
+        ];
+    };
+  };
 }
