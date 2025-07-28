@@ -25,9 +25,10 @@
       lnav
       nix-prefetch-scripts
       nmap
+      openssl
       pandoc
-      unzip
       syncthing
+      unzip
       zip
       zstd
 
