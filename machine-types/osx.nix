@@ -16,7 +16,6 @@
     coreutils
     yt-dlp
     swiftdefaultapps
-    ghostty
     rectangle
     nerd-fonts.fira-code
     nerd-fonts.fira-mono
