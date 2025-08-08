@@ -89,12 +89,6 @@
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   home.shellAliases = {
-    urldecode = ''
-      python3 -c "import sys, urllib.parse as ul; \
-          print(ul.unquote_plus(sys.argv[1]))"'';
-    urlencode = ''
-      "python3 -c "import sys, urllib.parse as ul; \
-      		print(ul.quote_plus(sys.argv[1]))"'';
   };
 
   services.pueue = {
