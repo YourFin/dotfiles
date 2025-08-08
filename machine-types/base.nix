@@ -64,12 +64,6 @@
   home.file.".inputrc".source = ../share/dot/inputrc;
   home.file.".gitconfig".source = ../share/dot/gitconfig;
 
-  programs.direnv = {
-    enable = true;
-    #enableNixDirenvIntegration = true;
-    enableNushellIntegration = true;
-  };
-
   programs.zoxide = {
     enable = true;
     enableBashIntegration = false;

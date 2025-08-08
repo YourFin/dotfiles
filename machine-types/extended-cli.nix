@@ -80,6 +80,12 @@
         ]
     );
 
+  programs.direnv = {
+    enable = true;
+    enableNushellIntegration = true;
+    nix-direnv.enable = true;
+  };
+
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
   home.shellAliases = {
