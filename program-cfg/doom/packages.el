@@ -71,3 +71,4 @@
 (package! nushell-mode :recipe (:host github :repo "mrkkrp/nushell-mode"))
 (package! treepy)
 (package! llama)
+(package! just-mode)
