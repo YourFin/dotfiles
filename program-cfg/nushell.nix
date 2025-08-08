@@ -11,8 +11,8 @@ let
     # nix-prefetch-git --fetch-submodules https://github.com/YourFin/yfnutool.git
     owner = "YourFin";
     repo = "yfnutool";
-    rev = "afd2989325390843f1621f83e8642e67347a2505";
-    hash = "sha256-5mFmQsag6z2eAlgw/Q3V7UL8wF62THAdO9Y+MtoZ71w=";
+    rev = "b8cceb521f7e99427f46b8b5309ce315c2611e64";
+    hash = "sha256-lx16DOzGU3e5gPQa2PrVjqNfuVCZUhNJMWEHtS0E2wQ=";
     fetchSubmodules = true;
   }) { };
 in
