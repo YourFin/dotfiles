@@ -18,5 +18,7 @@
     # platformio-core
     platformio
     wl-clipboard
+    (llama-cpp.override { vulkanSupport = true; })
+    (callPackage ../program-cfg/llm/chatgpt-oss-unsloth-gguf-f16.nix { })
   ];
 }
