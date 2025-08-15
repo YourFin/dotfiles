@@ -41,6 +41,8 @@
       gnumake
       zig
 
+      fastfetch # screenfetch replacement
+
       nodejs
       python3
       ruby

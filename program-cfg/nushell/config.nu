@@ -10,6 +10,8 @@ use yf-commands.nu *
 use yfnutool *
 use std/dirs
 
+alias screenfetch = fastfetch
+
 $env.config.keybindings ++= [
   { name: yfnutool_interpolate
   , modifier: CONTROL
