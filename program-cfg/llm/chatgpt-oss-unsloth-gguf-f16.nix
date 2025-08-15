@@ -12,7 +12,7 @@ let
       "/template"
       "/README.md"
     ];
-    hash = "sha256-DS+/TRWl4eDGfwXCaxELB2Jwf6JfeAEDXmFvJ5q1Llo=";
+    hash = "sha256-EEuBy/mpOr4Pln3JuwsCwXu00DbPzErNR7SLVdQ+W7U=";
   };
 in
 writeShellScriptBin "gguf-gpt-oss-20b-f16-unsloth-path" ''
