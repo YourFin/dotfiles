@@ -20,6 +20,7 @@
       dhall
       dhall-json
       github-cli
+      git-lfs
       graphviz
       jq
       lnav
