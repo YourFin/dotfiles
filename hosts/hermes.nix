@@ -14,7 +14,7 @@
     jetbrains.idea-community
     android-studio
     guile_3_0
-    ryujinx
+    ryubing
     # platformio-core
     platformio
     wl-clipboard
