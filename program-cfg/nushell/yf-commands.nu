@@ -27,7 +27,7 @@ def assert-pueue-group [name: string, --parallel: int] {
 }
 
 def emacs-socket-file [] {
-  let socket_dir = match [($env | get --ignore-errors XDG_RUNTIME_DIR), $nu.os-info.name] {
+  let socket_dir = match [($env | get --optional XDG_RUNTIME_DIR), $nu.os-info.name] {
     [null, "macos"] => (getconf DARWIN_USER_TEMP_DIR),
     [null, "linux"] => ($env.HOME | path join '.cache' run),
     [null, _] => (error make { msg: "Unsupported OS" }),
