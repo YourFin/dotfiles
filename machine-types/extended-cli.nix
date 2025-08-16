@@ -75,6 +75,7 @@
         [ ]
       else
         [
+          sysz
           strace
           plocate
           nethogs
