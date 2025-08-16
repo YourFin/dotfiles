@@ -13,6 +13,11 @@
       example = [ "python" ];
       description = "Corresponding (provide 'yf-feat-\$feature) statements to load in emacs";
     };
+    pgtk = lib.mkOption {
+      type = with lib.types; bool;
+      default = false;
+      description = "Use pgtk package for emacs <i.e. wayland>";
+    };
   };
   config = {
     home.activation.linkDoomConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
@@ -23,7 +28,7 @@
       feat: "(provide 'yf-feat-${feat})"
     ) config.yf.emacs.features;
     programs.emacs.enable = true;
-    programs.emacs.package = pkgs.emacs30;
+    programs.emacs.package = pkgs.emacs-pgtk;
     programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
   };
 }
