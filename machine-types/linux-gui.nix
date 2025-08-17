@@ -23,6 +23,7 @@
     pdfarranger
     spotify
     signal-desktop
+    pavucontrol
     vlc
     (callPackage ../program-cfg/serious-sans { })
 
@@ -30,15 +31,7 @@
     nerd-fonts.fira-mono
     nerd-fonts.symbols-only
 
-    # nerd-fonts."AnonymousPro"
-    # nerd-fonts."ShareTechMono"
-    # nerd-fonts."ProFont"
-    # nerd-fonts."Monofur"
-    # nerd-fonts."Inconsolata"
-    # nerd-fonts."IntelOneMono"
-    # nerd-fonts."Gohu"
-    # nerd-fonts."3270"
-
+    p11-kit
     yt-dlp
   ];
   fonts.fontconfig.enable = true;
