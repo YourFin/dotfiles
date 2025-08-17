@@ -9,6 +9,7 @@
     ../machine-types/linux-gui.nix
     ../program-cfg/python.nix
     ../program-cfg/zig.nix
+    ../program-cfg/niri.nix
   ];
   home.packages = with pkgs; [
     jetbrains.idea-community
