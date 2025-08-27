@@ -23,6 +23,7 @@
     pdfarranger
     spotify
     (signal-desktop.override { commandLineArgs = "--password-store='gnome-libsecret'"; })
+    koreader
     pavucontrol
     vlc
     (callPackage ../program-cfg/serious-sans { })
