@@ -22,7 +22,7 @@
     keepass
     pdfarranger
     spotify
-    signal-desktop
+    (signal-desktop.override { commandLineArgs = "--password-store='gnome-libsecret'"; })
     pavucontrol
     vlc
     (callPackage ../program-cfg/serious-sans { })

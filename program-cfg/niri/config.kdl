@@ -348,7 +348,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
+    Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "nu" "-c" "NIXOS_OZONE_WL=1 fuzzel"; }
     Mod+B hotkey-overlay-title="Open a new window: Firefox" { spawn "firefox"; }
     Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "nu" "-c" "swaylock --indicator-caps-lock --show-keyboard-layout --image (ls ~/.config/desktopBgs | shuffle | get 0.name)"; }
     Super+E hotkey-overlay-title="Run an Application: Emacsclient" { spawn "emacsclient" "-c" "~"; }
