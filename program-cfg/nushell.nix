@@ -20,6 +20,8 @@ in
   home.packages = with pkgs; [
     yfnutool
   ];
+  home.shell.enableNushellIntegration = true;
+  programs.direnv.enableNushellIntegration = true;
   programs.nushell = {
     enable = true;
     envFile.text = ''
