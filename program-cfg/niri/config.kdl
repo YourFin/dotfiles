@@ -252,8 +252,10 @@ layout {
 // See the binds section below for more spawn examples.
 
 spawn-at-startup "waybar"
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "nu" "-c" "swaybg -i (ls ~/.config/desktopBgs | shuffle | get 0.name)"
+xwayland-satellite {
+    path "xwayland-satellite"
+}
 
 hotkey-overlay {
     // Uncomment this line to disable the "Important Hotkeys" pop-up at startup.
