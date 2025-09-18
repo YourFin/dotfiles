@@ -11,6 +11,7 @@
     xwayland-satellite
     swaybg
     brightnessctl
+    pwvucontrol
   ];
   home.activation.linkNiriConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD mkdir -p $VERBOSE_ARG ${config.xdg.configHome}/niri
