@@ -51,3 +51,18 @@ export def emacsclient-frame [file?: path] {
   assert-pueue-group emacs-frame --parallel 0
   pueue add --group emacs-frame -w . -- emacsclient --socket-name=(emacs-socket-file) -c $f
 }
+
+export def "nu-git ref" [--long] {
+  let ref = $in | default -e "HEAD";
+  let items = {
+    hash: "%H",
+    time: "%at",
+    refs: "%D",
+    committerName: "%cN",
+    committerEmail: "%cE",
+    subject: "%s",
+  } | transpose name git;
+  git log -1 --format=($items | get git | str join "%x1E") $ref
+    | parse ($items | each { $'{($in.name)}' | str join "\u{1E}"})
+    | update time { into int | $in * 1_000_000_000 | into datetime }
+}
