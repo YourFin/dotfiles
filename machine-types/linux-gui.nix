@@ -17,7 +17,7 @@
     proton-pass
     flameshot
     showmethekey
-    gimp
+    gimp3
     gnome-multi-writer
     keepass
     pdfarranger
