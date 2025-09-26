@@ -27,6 +27,7 @@
     home.file.".config/yf/emacs/features.el".text = lib.concatMapStringsSep "\n" (
       feat: "(provide 'yf-feat-${feat})"
     ) config.yf.emacs.features;
+    home.packages = with pkgs; [ typescript-language-server ];
     programs.emacs.enable = true;
     programs.emacs.package = pkgs.emacs-pgtk;
     programs.emacs.extraPackages = epkgs: [ epkgs.vterm ];
