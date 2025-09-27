@@ -74,6 +74,13 @@
 (load! "./langs/latex.el")
 (load! "./langs/haskell.el")
 
+(use-package! cond-let
+  :ensure t)
+
+(use-package! justl
+  :config
+  (map! :n "e" 'justl-exec-recipe))
+
 (use-package! gptel
   :ensure t
   :defer t

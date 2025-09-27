@@ -72,3 +72,6 @@
 (package! treepy)
 (package! llama)
 (package! just-mode)
+(package! justl :recipe (:host github :repo "psibi/justl.el"))
+(package! lsp-biome :recipe (:host github :repo "cxa/lsp-biome"))
+(package! cond-let)

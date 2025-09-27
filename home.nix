@@ -16,6 +16,10 @@ let
       [ baseNix ];
 in
 {
+  nixpkgs.overlays = [
+    (self: super: { yf = super.callPackage ./pkgs/nushell-builder.nix { }; })
+    (self: super: { yf = super.callPackage ./pkgs/tree-sitter-bundle.nix { } // super.yf; })
+  ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
