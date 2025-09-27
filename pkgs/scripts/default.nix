@@ -27,18 +27,20 @@ let
     with builtins;
     mapAttrs (k: v: (toString v.outPath) + "/bin/") neededInterpreters;
 in
-stdenv.mkDerivation (
-  interpreterPathSet
-  // {
-    pname = "yourfin-shell-scripts";
-    version = "0.1";
-    builder = ./builder.sh;
-    src = ./.;
-    coreutils = pkgs.coreutils.outPath;
-    meta = with lib; {
-      homepage = "https://github.com/yourfin/dotfiles/scripts";
-      description = "Throw away shell scripts";
-      license = licenses.unlicense;
-    };
-  }
-)
+{
+  scripts = stdenv.mkDerivation (
+    interpreterPathSet
+    // {
+      pname = "yourfin-shell-scripts";
+      version = "0.1";
+      builder = ./builder.sh;
+      src = ./.;
+      coreutils = pkgs.coreutils.outPath;
+      meta = with lib; {
+        homepage = "https://github.com/yourfin/dotfiles/scripts";
+        description = "Throw away shell scripts";
+        license = licenses.unlicense;
+      };
+    }
+  );
+}

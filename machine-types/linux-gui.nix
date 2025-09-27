@@ -26,7 +26,7 @@
     koreader
     pavucontrol
     vlc
-    (callPackage ../program-cfg/serious-sans { })
+    yf.serious-sans
 
     nerd-fonts.fira-code
     nerd-fonts.fira-mono

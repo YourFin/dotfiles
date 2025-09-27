@@ -20,7 +20,7 @@
     nerd-fonts.fira-code
     nerd-fonts.fira-mono
     nerd-fonts.symbols-only
-    (callPackage ../program-cfg/serious-sans { })
+    yf.serious-sans
   ];
   services.syncthing.enable = true;
   services.emacs = {
