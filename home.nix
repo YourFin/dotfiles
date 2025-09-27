@@ -19,11 +19,14 @@ in
 {
   nixpkgs.overlays = [
     (self: super: { yf = super.callPackage ./pkgs/nushell-builder.nix { }; })
+    # Note: by creating one overlay per package, later package definitions
+    # can depend on earlier ones
     (addPkgFrom ./pkgs/huggingface-git.nix)
     (addPkgFrom ./pkgs/tree-sitter-bundle.nix)
     (addPkgFrom ./pkgs/path-extractor.nix)
     (addPkgFrom ./pkgs/scripts)
     (addPkgFrom ./pkgs/serious-sans.nix)
+    (addPkgFrom ./pkgs/yfnutool.nix)
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
