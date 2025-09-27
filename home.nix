@@ -14,11 +14,13 @@ let
       ]
     else
       [ baseNix ];
+  addPkgFrom = path: (self: super: { yf = super.callPackage path { } // super.yf; });
 in
 {
   nixpkgs.overlays = [
     (self: super: { yf = super.callPackage ./pkgs/nushell-builder.nix { }; })
-    (self: super: { yf = super.callPackage ./pkgs/tree-sitter-bundle.nix { } // super.yf; })
+    (addPkgFrom ./pkgs/huggingface-git.nix)
+    (addPkgFrom ./pkgs/tree-sitter-bundle.nix)
   ];
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
