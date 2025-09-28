@@ -83,12 +83,12 @@ in
       }
       ''
         let ext = if $isMac { "dyld" } else { "so" };
-        mkdir ($env.out)/lib/tree-sitter ($env.out)/etc/tree-sitter/queries;
+        mkdir ($env.out)/lib ($env.out)/etc/tree-sitter/queries;
         $grammars
           | transpose name path
           | each { |grammar|
               # per: https://www.gnu.org/software/emacs/manual/html_node/elisp/Language-Grammar.html#index-treesit_002dlanguage_002davailable_002dp
-              ln -s $"($grammar.path)/parser" $"($env.out)/lib/tree-sitter/libtree-sitter-($grammar.name).($ext)"
+              ln -s $"($grammar.path)/parser" $"($env.out)/lib/libtree-sitter-($grammar.name).($ext)"
               let grammarQueries = $"($grammar.path)/queries";
               if ($grammarQueries | path exists) {
                 ln -s ($grammarQueries) $"($env.out)/etc/tree-sitter/queries/($grammar.name)"

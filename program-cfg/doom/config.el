@@ -16,7 +16,6 @@
 
 (setq shell-file-name (yf/get-login-shell))
 
-
 (setq evil-respect-visual-line-mode t)
 (setq evil-want-C-u-scroll nil)
 (setq evil-want-Y-yank-to-eol t)
@@ -64,6 +63,8 @@
 (load! "./editing.el")
 (load! "./space-binds.el")
 (load! "./snippets.el")
+;; Set by home-manager
+(load! "~/.config/yf/emacs/config.el")
 
 ;;; "Languages". This was called major modes in previous iterations
 ;;; of my emacs config. That was more confusing than languages, even though
@@ -74,8 +75,7 @@
 (load! "./langs/latex.el")
 (load! "./langs/haskell.el")
 
-(use-package! cond-let
-  :ensure t)
+(use-package! cond-let)
 
 (use-package! justl
   :config

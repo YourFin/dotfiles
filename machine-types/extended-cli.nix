@@ -68,7 +68,6 @@
       cmake # For vterm
       shellcheck
       editorconfig-core-c
-      yf.tree-sitter-bundle
       # libvterm
     ]
     ++ (
