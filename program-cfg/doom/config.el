@@ -74,6 +74,9 @@
 (load! "./langs/python.el")
 (load! "./langs/latex.el")
 (load! "./langs/haskell.el")
+(add-load-path! "./pkg")
+(use-package! kdl-ts-mode
+  :mode "\\.kdl\\'")
 
 (use-package! cond-let)
 
