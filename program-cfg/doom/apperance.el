@@ -45,6 +45,8 @@
 
 (after! rainbow-delimiters
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'nix-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'json-mode-hook #'rainbow-delimiters-mode)
   (setq rainbow-delimiters-max-face-count 8)
   ;;more rainbow-ey rainbow delimiters. they cycle around the
   ;;color wheel approximately every three colors with a bit of offset. 256 color
