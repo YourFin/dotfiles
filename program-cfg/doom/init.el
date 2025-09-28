@@ -116,7 +116,7 @@
 
        :lang
        ;;agda              ; types of types of types of types...
-       ;;assembly          ; assembly for fun or debugging
+       assembly          ; assembly for fun or debugging
        (cc +lsp +tree-sitter); C/C++/Obj-C madness
        (clojure +tree-sitter); java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all
