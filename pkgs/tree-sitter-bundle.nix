@@ -82,7 +82,7 @@ in
         nuVars.isMac = (lib.systems.elaborate builtins.currentSystem).isDarwin;
       }
       ''
-        let ext = if $isMac { "dyld" } else { "so" };
+        let ext = if $isMac { "dylib" } else { "so" };
         mkdir ($env.out)/lib ($env.out)/etc/tree-sitter/queries;
         $grammars
           | transpose name path
