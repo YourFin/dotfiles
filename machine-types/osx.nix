@@ -23,9 +23,6 @@
     yf.serious-sans
   ];
   services.syncthing.enable = true;
-  services.emacs = {
-    client.enable = true;
-  };
   fonts.fontconfig.enable = true;
 
   targets.darwin.currentHostDefaults."com.apple.controlcenter".BatteryShowPercentage = true;
