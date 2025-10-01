@@ -16,7 +16,7 @@
   home.packages =
     with pkgs;
     [
-      awscli
+      awscli2
       dhall
       dhall-json
       github-cli
