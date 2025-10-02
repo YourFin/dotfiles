@@ -38,6 +38,7 @@ let
         graphql
         html
         javascript
+        jsdoc
         svelte
         tsx
         typescript
