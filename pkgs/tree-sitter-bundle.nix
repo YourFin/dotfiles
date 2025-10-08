@@ -1,7 +1,9 @@
 {
   yf,
+  tree-sitter,
   tree-sitter-grammars,
   writeText,
+  fetchFromGitHub,
   lib,
 }:
 let
@@ -71,6 +73,17 @@ let
         toml
         yaml
         ;
+      # ref: https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/development/tools/parsing/tree-sitter/grammar.nix
+      doxygen = tree-sitter.buildGrammar {
+        language = "doxygen";
+        version = "1.1.0";
+        src = fetchFromGitHub {
+          owner = "tree-sitter-grammars";
+          repo = "tree-sitter-doxygen";
+          rev = "ccd998f378c3f9345ea4eeb223f56d7b84d16687";
+          hash = "sha256-Yh6FaRvWmeqnSnBgOojWbs1wJaeEoNJlvSEqgzjGh7o=";
+        };
+      };
     };
 in
 {
