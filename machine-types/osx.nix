@@ -8,6 +8,7 @@
 {
   imports = [
     ../program-cfg/kitty.nix
+    ../program-cfg/ghostty.nix
     ./extended-cli.nix
   ];
   home.packages = with pkgs; [

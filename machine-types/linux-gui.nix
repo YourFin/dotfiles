@@ -9,11 +9,11 @@
   imports = [
     ../program-cfg/kitty.nix
     ./extended-cli.nix
+    ../program-cfg/ghostty.nix
   ];
   home.packages = with pkgs; [
     chromium
     discord
-    ghostty
     proton-pass
     flameshot
     showmethekey
