@@ -54,7 +54,12 @@ export def emacsclient-frame [file?: path] {
 
 def "nu-git changes" [] {
  let ref = $in | default -e "HEAD";
- git show --numstat --format="" $ref | lines | each { parse --regex "(?<removals>\\d+)\\s+(?<additions>\\d+)\\s+(?<filename>.+)" | get 0 }
+ git show --numstat --format="" $ref | lines | each {
+    (parse --regex "(?<additions>\\d+)\\s+(?<removals>\\d+)\\s+(?<filename>.+)"
+        | get 0
+        | update removals { into int }
+        | update additions { into int })
+   }
 }
 
 def "nu-git ref" [] {
