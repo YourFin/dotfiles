@@ -7,7 +7,6 @@
 
 {
   imports = [
-    ../program-cfg/kitty.nix
     ../program-cfg/ghostty.nix
     ./extended-cli.nix
   ];
@@ -25,6 +24,11 @@
   ];
   services.syncthing.enable = true;
   fonts.fontconfig.enable = true;
+  home.sessionPath = [
+    "/sbin"
+    "/bin"
+    "/usr/bin"
+  ];
 
   targets.darwin.currentHostDefaults."com.apple.controlcenter".BatteryShowPercentage = true;
 }

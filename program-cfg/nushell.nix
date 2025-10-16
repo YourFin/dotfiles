@@ -19,8 +19,21 @@ in
       ${builtins.readFile ./nushell/env.nu}${
         if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
       }$env.NU_LIB_DIRS ++= ['${pkgs.yf.yfnutool}/share/nushell/vendor/autoload/']
-      # HM session vars
+      def --env load_nix_init [file_path: string] {
+        if ($file_path | path expand | path exists) {
+          load-env (${pkgs.coreutils}/bin/env -i HOME=${config.home.homeDirectory} ${pkgs.bash}/bin/bash --norc --noprofile -c $". ($file_path); ${pkgs.coreutils}/bin/env" 
+            | lines
+            | each { split row --number 2 "=" }
+            | into record
+            | reject --optional PWD "_" SHLVL HOME)
+        }
+      }
+      load_nix_init "~/.nix-profile/etc/profile.d/nix.sh";
+      load_nix_init "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+        
+      # Home-manager session variables
       load-env ${builtins.toJSON config.home.sessionVariables}
+      $env.PATH = $"($env.PATH):(${builtins.toJSON config.home.sessionPath} | str join ":")";
     '';
     configFile.source = ./nushell/config.nu;
   };
