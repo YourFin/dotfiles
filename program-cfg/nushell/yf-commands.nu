@@ -52,7 +52,12 @@ export def emacsclient-frame [file?: path] {
   pueue add --group emacs-frame -w . -- emacsclient --socket-name=(emacs-socket-file) -c $f
 }
 
-export def "nu-git ref" [--long] {
+def "nu-git changes" [] {
+ let ref = $in | default -e "HEAD";
+ git show --numstat --format="" $ref | lines | each { parse --regex "(?<removals>\\d+)\\s+(?<additions>\\d+)\\s+(?<filename>.+)" | get 0 }
+}
+
+def "nu-git ref" [] {
   let ref = $in | default -e "HEAD";
   let items = {
     hash: "%H",
@@ -61,8 +66,16 @@ export def "nu-git ref" [--long] {
     committerName: "%cN",
     committerEmail: "%cE",
     subject: "%s",
+    notes: "%N",
   } | transpose name git;
-  git log -1 --format=($items | get git | str join "%x1E") $ref
-    | parse ($items | each { $'{($in.name)}' | str join "\u{1E}"})
+  git log -1 $"--format=($items | get git | str join "%x1E")" $ref
+    | parse ($items | each { $'{($in.name)}' } | str join "\u{1E}")
     | update time { into int | $in * 1_000_000_000 | into datetime }
+    | insert changes ($ref | nu-git changes)
+    | get 0
+}
+
+export def "nu-git log" [range?: string] {
+  let refs = $in | default -e $range | default -e "HEAD~7..HEAD";
+  git log --format=%H $refs | lines | par-each -k { nu-git ref }
 }
