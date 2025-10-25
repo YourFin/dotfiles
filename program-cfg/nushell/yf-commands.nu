@@ -84,3 +84,23 @@ export def "nu-git log" [range?: string] {
   let refs = $in | default -e $range | default -e "HEAD~7..HEAD";
   git log --format=%H $refs | lines | par-each -k { nu-git ref }
 }
+
+export def "into epochsecond" [time?: datetime] {
+  let inp = $in | default -e $time
+  $inp | into int | $in / 1_000_000_000 | into int
+}
+
+export def "from epochsecond" [epochseconds?: int] {
+  let inp = $in | default -e $epochseconds
+  $inp | $in * 1_000_000_000 | into datetime
+}
+
+export def "into epochmilli" [time?: datetime] {
+  let inp = $in | default -e $time
+  $inp | into int | $in / 1_000_000 | into int
+}
+
+export def "from epochmilli" [epochmilliseconds?: int] {
+  let inp = $in | default -e $epochmilliseconds
+  $inp | $in * 1_000_000 | into datetime
+}
