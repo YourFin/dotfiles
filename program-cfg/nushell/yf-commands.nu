@@ -104,3 +104,11 @@ export def "from epochmilli" [epochmilliseconds?: int] {
   let inp = $in | default -e $epochmilliseconds
   $inp | $in * 1_000_000 | into datetime
 }
+
+export def with_sts_creds (closure) {
+  let parsed = $in | from json;
+  $env.AWS_ACCESS_KEY_ID = $parsed.Credentials.AccessKeyId;
+  $env.AWS_SECRET_ACCESS_KEY = $parsed.Credentials.SecretAccessKey;
+  $env.AWS_SESSION_TOKEN = $parsed.Credentials.SessionToken;
+  do $closure
+}
