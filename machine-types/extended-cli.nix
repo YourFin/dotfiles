@@ -28,6 +28,7 @@
       nmap
       openssl
       pandoc
+      sd
       sqlite
       syncthing
       unzip
