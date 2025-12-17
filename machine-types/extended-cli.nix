@@ -43,6 +43,8 @@
       gnumake
       zig
 
+      haskellPackages.lentil # the best issue tracker
+
       fastfetch # screenfetch replacement
 
       nodejs
