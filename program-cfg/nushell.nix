@@ -33,7 +33,7 @@ in
         
       # Home-manager session variables
       load-env ${builtins.toJSON config.home.sessionVariables}
-      $env.PATH = $"($env.PATH):(${builtins.toJSON config.home.sessionPath} | str join ":")";
+      $env.PATH = ($env.PATH | append ${builtins.toJSON config.home.sessionPath});
     '';
     configFile.source = ./nushell/config.nu;
   };
