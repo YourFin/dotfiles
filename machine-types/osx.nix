@@ -11,7 +11,7 @@
     ./extended-cli.nix
   ];
   home.packages = with pkgs; [
-    (hiPrio gcc)
+    (lib.hiPrio gcc)
     getent
     coreutils
     yt-dlp
