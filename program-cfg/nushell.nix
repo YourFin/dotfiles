@@ -16,15 +16,15 @@ in
   programs.nushell = {
     enable = true;
     envFile.text = ''
-      ${builtins.readFile ./nushell/env.nu}${
-        if isMac then "$env.NU_LIB_DIRS ++= [$'($env.HOME)/.config/nushell']\n" else ""
-      }$env.NU_LIB_DIRS ++= ['${pkgs.yf.yfnutool}/share/nushell/vendor/autoload/']
+      ${builtins.readFile ./nushell/env.nu}
+      $env.NU_LIB_DIRS ++= ['${pkgs.yf.yfnutool}/share/nushell/vendor/autoload/', $'($env.HOME)/.config/nushell']
       def --env load_nix_init [file_path: string] {
         if ($file_path | path expand | path exists) {
           load-env (${pkgs.coreutils}/bin/env -i HOME=${config.home.homeDirectory} ${pkgs.bash}/bin/bash --norc --noprofile -c $". ($file_path); ${pkgs.coreutils}/bin/env" 
             | lines
             | each { split row --number 2 "=" }
             | into record
+            | update PATH { split row ":" | where not ($it =~ '^\s*$') }
             | reject --optional PWD "_" SHLVL HOME)
         }
       }
