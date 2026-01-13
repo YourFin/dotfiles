@@ -76,3 +76,4 @@
 (package! lsp-biome :recipe (:host github :repo "cxa/lsp-biome"))
 (package! cond-let)
 (package! rainbow-delimiters)
+(package! dired-collapse)

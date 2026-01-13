@@ -84,6 +84,10 @@
   :config
   (map! :n "e" 'justl-exec-recipe))
 
+(use-package! dired-collapse
+  :config
+  (global-dired-collapse-mode))
+
 (use-package! rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
