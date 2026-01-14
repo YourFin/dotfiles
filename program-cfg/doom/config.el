@@ -63,6 +63,7 @@
 (load! "./editing.el")
 (load! "./space-binds.el")
 (load! "./snippets.el")
+(load! "./collapse-dirs.el")
 ;; Set by home-manager
 (load! "~/.config/yf/emacs/config.el")
 
