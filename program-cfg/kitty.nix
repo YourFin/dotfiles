@@ -46,7 +46,4 @@
       shell_integration = "no-rc";
     };
   };
-  home.shellAliases = {
-    ssh = "kitty +kitten ssh";
-  };
 }
