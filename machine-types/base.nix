@@ -65,7 +65,7 @@
   home.file.".gitconfig".source = ../share/dot/gitconfig;
 
   programs.zoxide = {
-    enable = true;
+    enable = false;
     enableBashIntegration = false;
     options = [ "--cmd j" ];
   };
