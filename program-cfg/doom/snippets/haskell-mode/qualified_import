@@ -6,4 +6,6 @@
 # expand-env: ((yas-indent-line 'fixed) (yas-wrap-around-region 'nil))
 # condition: (not (string-match "[ \t]" (buffer-substring-no-properties (line-beginning-position) (point))))
 # --
-import qualified ${1:Data.List} as ${2:${1:$(if yas-text (car (last (split-string yas-text "\\\\."))) "")}}$0
+import ${1:Data.List} qualified as ${2:${1:$(if yas-text (car (last (split-string yas-text "\\\\."))) "")}}${3:
+import $1 ($2)}
+$0
