@@ -37,6 +37,17 @@
       ];
     })
     (yf.huggingface-git {
+      username = "unsloth";
+      reponame = "Qwen3-4B-Instruct-2507-GGUF";
+      hash = "sha256-jyXBUan3oPXdrTk+2pHxdFyYNJb+mzH03gj7LCOnGls=";
+      models = [
+        "Qwen3-4B-Instruct-2507-Q8_0"
+      ];
+      otherfiles = [
+        "/README.md"
+      ];
+    })
+    (yf.huggingface-git {
       username = "BasedBase";
       reponame = "Qwen3-Coder-30B-A3B-Instruct-480B-Distill-V2";
       hash = "sha256-GvipJaDCm/EYFFiJqkwubOaQuwwJqjIlBkvGxMJFP9M=";
