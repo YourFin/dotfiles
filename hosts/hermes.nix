@@ -12,8 +12,8 @@
     ../program-cfg/niri.nix
   ];
   home.packages = with pkgs; [
-    jetbrains.idea-community
-    android-studio
+    #jetbrains.idea-community
+    #android-studio
     guile_3_0
     ryubing
     # platformio-core
