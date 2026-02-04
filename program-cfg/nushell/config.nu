@@ -27,15 +27,15 @@ $env.config.keybindings ++= [
 # TODO: unescape stuff
 let fish_completer = {|spans|
     fish --command $'complete "--do-complete=($spans | str join " ")"'
-    | from tsv --flexible --noheaders --no-infer
-    | rename value description
-    | update value {|row|
-        if ($row.value | try { ($in | path exists) and ($in =~ ".*[ \\\\].*") } catch { false }) {
-          $'r#"($row.value)"#'
-        } else {
-          $row.value
-        }
-    }
+      | from tsv --flexible --noheaders --no-infer
+      | rename value description
+      | update value {|row|
+          if ($row.value | try { ($in | path exists) and ($in =~ ".*[ \\\\].*") } catch { false }) {
+            $'r#"($row.value)"#'
+          } else {
+            $row.value
+          }
+      }
 }
 
 $env.config.completions.external = {
