@@ -12,16 +12,16 @@
     ../program-cfg/npm.nix
     ../program-cfg/rust.nix
   ];
-
   home.packages =
     with pkgs;
     [
-      awscli2
+      # awscli2
       dhall
       dhall-json
       github-cli
       git-lfs
       graphviz
+      hut
       jq
       lnav
       nix-prefetch-scripts
@@ -94,6 +94,7 @@
     enableZshIntegration = true;
     nix-direnv.enable = true;
   };
+  programs.git.package = pkgs.gitFull;
 
   home.file.".stack/config.yaml".source = ../share/stackConfig.yaml;
 
