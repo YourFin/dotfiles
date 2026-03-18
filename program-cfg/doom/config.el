@@ -79,6 +79,10 @@
 (use-package! kdl-ts-mode
   :mode "\\.kdl\\'")
 
+(use-package! agent-shell
+  :config
+  (setq-default agent-shell-preferred-agent-config "Kiro"))
+
 (use-package! cond-let)
 
 (use-package! justl

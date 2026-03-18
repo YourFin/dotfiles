@@ -77,3 +77,9 @@
 (package! cond-let)
 (package! rainbow-delimiters)
 (package! dired-collapse)
+(package! agent-shell :recipe (:pre-build
+                               `("patch" "-p1f" "--input"
+                                 ,(concat
+                                   (file-name-directory (or load-file-name (buffer-file-name)))
+                                   "/kiro-rebased.patch"))
+                               ))

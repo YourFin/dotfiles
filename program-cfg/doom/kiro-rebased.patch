@@ -1,0 +1,183 @@
+diff --git a/agent-shell-kiro.el b/agent-shell-kiro.el
+new file mode 100644
+index 0000000..d138c97
+--- /dev/null
++++ b/agent-shell-kiro.el
+@@ -0,0 +1,83 @@
++;;; agent-shell-kiro.el --- Kiro agent configurations -*- lexical-binding: t; -*-
++
++;;; Commentary:
++;;
++;; This file includes Kiro-specific configurations.
++;;
++
++;;; Code:
++
++(eval-when-compile
++  (require 'cl-lib))
++(require 'shell-maker)
++(require 'acp)
++
++(declare-function agent-shell--indent-string "agent-shell")
++(declare-function agent-shell-make-agent-config "agent-shell")
++(autoload 'agent-shell-make-agent-config "agent-shell")
++(declare-function agent-shell--make-acp-client "agent-shell")
++(declare-function agent-shell-start "agent-shell")
++
++(defcustom agent-shell-kiro-command
++  '("kiro-cli" "acp")
++  "Command and parameters for the Kiro client."
++  :type '(repeat string)
++  :group 'agent-shell)
++
++(defcustom agent-shell-kiro-environment
++  nil
++  "Environment variables for the Kiro client."
++  :type '(repeat string)
++  :group 'agent-shell)
++
++(defun agent-shell-kiro-make-agent-config ()
++  "Create a Kiro agent configuration."
++  (agent-shell-make-agent-config
++   :identifier 'kiro
++   :mode-line-name "Kiro"
++   :buffer-name "Kiro"
++   :shell-prompt "Kiro> "
++   :shell-prompt-regexp "Kiro> "
++   :welcome-function #'agent-shell-kiro--welcome-message
++   :client-maker (lambda (buffer)
++                   (agent-shell-kiro-make-client :buffer buffer))
++   :install-instructions "Install kiro-cli and ensure it's in PATH."))
++
++(defun agent-shell-kiro-start-agent ()
++  "Start an interactive Kiro agent shell."
++  (interactive)
++  (agent-shell-start
++   :config (agent-shell-kiro-make-agent-config)))
++
++(cl-defun agent-shell-kiro-make-client (&key buffer)
++  "Create a Kiro client with BUFFER as context."
++  (unless buffer
++    (error "Missing required argument: :buffer"))
++  (agent-shell--make-acp-client :command (car agent-shell-kiro-command)
++                                :command-params (cdr agent-shell-kiro-command)
++                                :environment-variables agent-shell-kiro-environment
++                                :context-buffer buffer))
++
++(defun agent-shell-kiro--welcome-message (config)
++  "Return Kiro welcome message using `shell-maker' CONFIG."
++  (let ((art (agent-shell--indent-string 4 (agent-shell-kiro--ascii-art)))
++        (message (string-trim-left (shell-maker-welcome-message config) "\n")))
++    (concat "\n\n" art "\n\n" message)))
++
++(defun agent-shell-kiro--ascii-art ()
++  "Kiro ASCII art."
++  (let* ((is-dark (eq (frame-parameter nil 'background-mode) 'dark))
++         (text (string-trim "
++██╗  ██╗██╗██████╗  ██████╗
++██║ ██╔╝██║██╔══██╗██╔═══██╗
++█████╔╝ ██║██████╔╝██║   ██║
++██╔═██╗ ██║██╔══██╗██║   ██║
++██║  ██╗██║██║  ██║╚██████╔╝
++╚═╝  ╚═╝╚═╝╚═╝  ╚═╝ ╚═════╝" "\n")))
++    (propertize text 'font-lock-face (if is-dark
++                                         '(:foreground "#FF9900")
++                                       '(:foreground "#EC7211")))))
++
++(provide 'agent-shell-kiro)
++
++;;; agent-shell-kiro.el ends here
+diff --git a/agent-shell.el b/agent-shell.el
+index cb1363a..66a6943 100644
+--- a/agent-shell.el
++++ b/agent-shell.el
+@@ -57,6 +57,7 @@
+ (require 'agent-shell-google)
+ (require 'agent-shell-goose)
+ (require 'agent-shell-heartbeat)
++(require 'agent-shell-kiro)
+ (require 'agent-shell-active-message)
+ (require 'agent-shell-mistral)
+ (require 'agent-shell-openai)
+@@ -413,6 +414,7 @@ Goose, Cursor, Auggie, and others."
+         (agent-shell-github-make-copilot-config)
+         (agent-shell-google-make-gemini-config)
+         (agent-shell-goose-make-agent-config)
++        (agent-shell-kiro-make-agent-config)
+         (agent-shell-mistral-make-config)
+         (agent-shell-opencode-make-agent-config)
+         (agent-shell-pi-make-agent-config)
+@@ -443,6 +445,7 @@ configuration alist for backwards compatibility."
+                  (const :tag "Droid" droid)
+                  (const :tag "Gemini CLI" gemini-cli)
+                  (const :tag "Goose" goose)
++                 (const :tag "Kiro" kiro)
+                  (const :tag "Mistral" le-chat)
+                  (const :tag "OpenCode" opencode)
+                  (const :tag "Pi" pi)
+@@ -594,6 +597,7 @@ OUTGOING-REQUEST-DECORATOR (passed through to `acp-make-client')."
+         (cons :prompt-capabilities nil)
+         (cons :event-subscriptions nil)
+         (cons :pending-requests nil)
++        (cons :context-usage-percentage nil)
+         (cons :usage (list (cons :total-tokens 0)
+                            (cons :input-tokens 0)
+                            (cons :output-tokens 0)
+@@ -1129,7 +1133,18 @@ COMMAND, when present, may be a shell command string or an argv vector."
+ (cl-defun agent-shell--on-notification (&key state notification)
+   "Handle incoming notification using SHELL, STATE, and NOTIFICATION."
+   (let-alist notification
+-    (cond ((equal .method "session/update")
++    (cond ((equal .method "_kiro.dev/metadata")
++           ;; Kiro context usage notification - store and update header
++           (when-let ((percentage .params.contextUsagePercentage))
++             (map-put! state :context-usage-percentage percentage)
++             (when-let ((buf (map-elt state :buffer)))
++               (with-current-buffer buf
++                 (agent-shell--update-header-and-mode-line))))
++           nil)
++          ((string-prefix-p "_kiro.dev/" .method)
++           ;; Other Kiro-specific notifications - silently ignore
++           nil)
++          ((equal .method "session/update")
+            (let ((update (map-elt (map-elt notification 'params) 'update)))
+              (cond
+               ((equal (map-elt update 'sessionUpdate) "tool_call")
+@@ -2669,13 +2684,15 @@ The model contains all inputs needed to render the graphical header."
+                       (or (agent-shell--resolve-session-mode-name
+                            mode-id
+                            (agent-shell--get-available-modes state))
+-                          mode-id))))
++                          mode-id)))
++         (context-usage (map-elt state :context-usage-percentage)))
+     `((:buffer-name . ,(map-nested-elt state '(:agent-config :buffer-name)))
+       (:icon-name . ,(map-nested-elt state '(:agent-config :icon-name)))
+       (:model-id . ,(map-nested-elt state '(:session :model-id)))
+       (:model-name . ,model-name)
+       (:mode-id . ,mode-id)
+       (:mode-name . ,mode-name)
++      (:context-usage-percentage . ,context-usage)
+       (:directory . ,default-directory)
+       (:frame-width . ,(frame-pixel-width))
+       (:font-height . ,(frame-char-height))
+@@ -2709,7 +2726,9 @@ BINDINGS is a list of alists defining key bindings to display, each with:
+   (unless state
+     (error "STATE is required"))
+   (let* ((header-model (agent-shell--make-header-model state :qualifier qualifier :bindings bindings))
+-         (text-header (format " %s%s%s @ %s%s%s"
++         (context-usage-str (when-let ((usage (map-elt header-model :context-usage-percentage)))
++                              (format " [%d%%]" (round usage))))
++         (text-header (format " %s%s%s%s @ %s%s%s"
+                               (propertize (concat (map-elt header-model :buffer-name) " Agent")
+                                           'font-lock-face 'font-lock-variable-name-face)
+                               (if (map-elt header-model :model-name)
+@@ -2718,6 +2737,9 @@ BINDINGS is a list of alists defining key bindings to display, each with:
+                               (if (map-elt header-model :mode-name)
+                                   (concat " ➤ " (propertize (map-elt header-model :mode-name) 'font-lock-face 'font-lock-type-face))
+                                 "")
++                              (if context-usage-str
++                                  (propertize context-usage-str 'font-lock-face 'font-lock-comment-face)
++                                "")
+                               (propertize (string-remove-suffix "/" (abbreviate-file-name (map-elt header-model :directory)))
+                                           'font-lock-face 'font-lock-string-face)
+                               (if (map-elt header-model :context-indicator)
