@@ -115,9 +115,15 @@
   :defer t
   :config
   (after! f
-    (setq gptel-model 'gemini-1.5-flash)
-    (setq gptel-backend
-          (gptel-make-gemini "Gemini" :key (lambda () (string-trim (f-read-text "~/.local/share/gemini-key.txt"))) :stream t))))
+    (setq gptel-model 'Qwen3-4B-Instruct-2507-Q8_0)
+    ;;(setq gptel-backend
+    ;;      (gptel-make-gemini "Gemini" :key (lambda () (string-trim (f-read-text "~/.local/share/gemini-key.txt"))) :stream t)
+    (setq gptel-backend (gptel-make-openai "llama-cpp"
+                          :stream t
+                          :protocol "http"
+                          :host "localhost:11434"
+                          :models '(Qwen3-4B-Instruct-2507-Q8_0)))
+    ))
 
 ;; TODO: Find somewhere else to put this
 (after! hydra

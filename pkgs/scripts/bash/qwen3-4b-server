@@ -1,0 +1,1 @@
+llama-server -m $(gguf-Qwen3-4B-Instruct-2507-Q8_0-path) -ngl 99 --port 11434
