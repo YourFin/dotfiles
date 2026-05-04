@@ -47,6 +47,8 @@
       gnumake
       zig
 
+      yf.llm-ticket
+
       haskellPackages.lentil # the best issue tracker
 
       fastfetch # screenfetch replacement
