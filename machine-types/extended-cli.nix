@@ -17,7 +17,9 @@
     with pkgs;
     [
       # awscli2
+      codespelunker
       dhall
+      dua
       dhall-json
       github-cli
       git-lfs
@@ -39,6 +41,7 @@
       parallel
       pueue
 
+      jdt-language-server
       clang_21
       clang-tools
       gnumake
