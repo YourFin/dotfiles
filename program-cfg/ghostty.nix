@@ -58,7 +58,7 @@ in
     font-family = "FiraMono Nerd Font Mono"
     background-opacity = 0.8
     background = 000000
-    command = ${pkgs.nushell}/bin/nu
+    command = ${config.home.homeDirectory}/.nix-profile/bin/nu
     window-inherit-font-size = false
     copy-on-select = false
   '';
