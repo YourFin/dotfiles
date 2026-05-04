@@ -8,6 +8,7 @@
 {
   imports = [
     ./base.nix
+    ../program-cfg/go.nix
     ../program-cfg/emacs.nix
     ../program-cfg/npm.nix
     ../program-cfg/rust.nix
