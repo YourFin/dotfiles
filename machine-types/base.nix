@@ -23,6 +23,7 @@
       fd
       fish
       git
+      jujutsu
       delta
       iftop
       ncdu
