@@ -1,3 +1,5 @@
+export use ./to-nix.nu *
+
 def "nu-complete external-command" [context?: string] {
   let substr = $context | split words | last;
   bash -c $'IFS="\\t" compgen -c(if $substr == null { "" } else { $" ($substr)" })'
@@ -112,3 +114,4 @@ export def with_sts_creds (closure) {
   $env.AWS_SESSION_TOKEN = $parsed.Credentials.SessionToken;
   do $closure
 }
+
