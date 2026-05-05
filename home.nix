@@ -25,6 +25,7 @@ in
     (addPkgFrom ./pkgs/tree-sitter-bundle.nix)
     (addPkgFrom ./pkgs/path-extractor.nix)
     (addPkgFrom ./pkgs/scripts)
+    (addPkgFrom ./pkgs/ticket.nix)
     (addPkgFrom ./pkgs/serious-sans.nix)
     (addPkgFrom ./pkgs/yfnutool.nix)
   ];
